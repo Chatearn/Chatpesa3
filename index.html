@@ -10,6 +10,7 @@
 content="ChatPesa connects people across borders through conversations and opportunities.">
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -37,6 +38,7 @@ body{
     --white:#ffffff;
 }
 
+
 /* ================= GLOBAL ================= */
 
 .container{
@@ -52,6 +54,7 @@ button,
 a{
     transition:.25s ease;
 }
+
 
 /* ================= HEADER ================= */
 
@@ -99,7 +102,11 @@ header{
     font-size:14px;
     font-weight:850;
 
-    background:linear-gradient(135deg,#8b5cf6,#5b21b6);
+    background:linear-gradient(
+        135deg,
+        #8b5cf6,
+        #5b21b6
+    );
 
     box-shadow:
         0 8px 25px rgba(91,33,182,.25);
@@ -108,6 +115,7 @@ header{
 .nav-link:hover{
     transform:translateY(-2px);
 }
+
 
 /* ================= HERO ================= */
 
@@ -119,15 +127,26 @@ header{
     overflow:hidden;
 
     background:
-        radial-gradient(circle at 15% 20%,rgba(139,92,246,.20),transparent 28%),
-        radial-gradient(circle at 90% 12%,rgba(109,40,217,.17),transparent 30%),
-        linear-gradient(135deg,#f8f4ff,#fff 60%);
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(139,92,246,.20),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 12%,
+            rgba(109,40,217,.17),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #f8f4ff,
+            #fff 60%
+        );
 }
-
-/* floating glow */
 
 .hero::before{
     content:"";
+
     position:absolute;
 
     width:420px;
@@ -145,6 +164,7 @@ header{
 
 .hero::after{
     content:"";
+
     position:absolute;
 
     width:350px;
@@ -163,12 +183,15 @@ header{
 .hero-content{
     position:relative;
     z-index:2;
+
     text-align:center;
 }
 
 .eyebrow{
     display:inline-flex;
+
     align-items:center;
+
     gap:9px;
 
     padding:9px 15px;
@@ -176,24 +199,31 @@ header{
     border-radius:50px;
 
     background:rgba(255,255,255,.75);
+
     border:1px solid rgba(109,40,217,.15);
 
     color:var(--purple);
 
     font-size:12px;
+
     font-weight:850;
+
     letter-spacing:.3px;
 
-    box-shadow:0 8px 25px rgba(50,20,80,.06);
+    box-shadow:
+        0 8px 25px rgba(50,20,80,.06);
 }
 
 .live-dot{
     width:7px;
     height:7px;
+
     border-radius:50%;
+
     background:#8b5cf6;
 
-    box-shadow:0 0 0 5px rgba(139,92,246,.12);
+    box-shadow:
+        0 0 0 5px rgba(139,92,246,.12);
 }
 
 .hero h1{
@@ -213,9 +243,16 @@ header{
 }
 
 .hero h1 .gradient{
-    background:linear-gradient(90deg,#4c1d95,#7c3aed,#a855f7);
+    background:
+        linear-gradient(
+            90deg,
+            #4c1d95,
+            #7c3aed,
+            #a855f7
+        );
 
     -webkit-background-clip:text;
+
     background-clip:text;
 
     color:transparent;
@@ -229,13 +266,17 @@ header{
     color:var(--muted);
 
     font-size:18px;
+
     line-height:1.7;
 }
 
 .hero-actions{
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
     gap:14px;
 
     margin-top:34px;
@@ -243,10 +284,16 @@ header{
     flex-wrap:wrap;
 }
 
+
+/* ================= BUTTONS ================= */
+
 .btn{
     display:inline-flex;
+
     align-items:center;
+
     justify-content:center;
+
     gap:9px;
 
     min-height:54px;
@@ -258,13 +305,19 @@ header{
     text-decoration:none;
 
     font-size:15px;
+
     font-weight:850;
 }
 
 .btn-primary{
     color:white;
 
-    background:linear-gradient(135deg,#8b5cf6,#5b21b6);
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #5b21b6
+        );
 
     box-shadow:
         0 14px 35px rgba(91,33,182,.28);
@@ -272,6 +325,7 @@ header{
 
 .btn-primary:hover{
     transform:translateY(-3px);
+
     box-shadow:
         0 18px 42px rgba(91,33,182,.35);
 }
@@ -288,6 +342,7 @@ header{
     transform:translateY(-3px);
 }
 
+
 /* ================= HERO PREVIEW ================= */
 
 .preview-wrap{
@@ -296,6 +351,7 @@ header{
     margin:70px auto 0;
 
     position:relative;
+
     z-index:3;
 }
 
@@ -328,12 +384,11 @@ header{
     border:1px solid #eee7f4;
 }
 
-/* fake browser bar */
-
 .window-top{
     height:48px;
 
     display:flex;
+
     align-items:center;
 
     gap:7px;
@@ -348,7 +403,9 @@ header{
 .window-dot{
     width:8px;
     height:8px;
+
     border-radius:50%;
+
     background:#d5cadf;
 }
 
@@ -356,17 +413,17 @@ header{
     margin-left:9px;
 
     font-size:11px;
+
     color:#91869b;
 }
-
-/* dashboard preview */
 
 .preview-content{
     padding:24px;
 
     display:grid;
 
-    grid-template-columns:1.5fr .8fr .8fr;
+    grid-template-columns:
+        1.5fr .8fr .8fr;
 
     gap:15px;
 }
@@ -387,8 +444,16 @@ header{
     color:white;
 
     background:
-        radial-gradient(circle at 90% 10%,rgba(255,255,255,.20),transparent 35%),
-        linear-gradient(135deg,#4c1d95,#7c3aed);
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(255,255,255,.20),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #4c1d95,
+            #7c3aed
+        );
 }
 
 .preview-card small{
@@ -423,10 +488,12 @@ header{
     color:#eadfff;
 }
 
-/* ================= TRUST STRIP ================= */
+
+/* ================= TRUST ================= */
 
 .trust{
     position:relative;
+
     z-index:5;
 
     margin-top:-40px;
@@ -435,13 +502,15 @@ header{
 .trust-grid{
     display:grid;
 
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
     gap:15px;
 }
 
 .trust-card{
     display:flex;
+
     align-items:center;
 
     gap:13px;
@@ -454,7 +523,8 @@ header{
 
     border:1px solid #ebe3f2;
 
-    box-shadow:0 15px 35px rgba(35,15,55,.07);
+    box-shadow:
+        0 15px 35px rgba(35,15,55,.07);
 }
 
 .trust-icon{
@@ -462,7 +532,9 @@ header{
     height:42px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     border-radius:13px;
@@ -483,6 +555,7 @@ header{
 
     font-size:11px;
 }
+
 
 /* ================= SECTIONS ================= */
 
@@ -528,12 +601,14 @@ header{
     font-size:16px;
 }
 
+
 /* ================= FEATURES ================= */
 
 .feature-grid{
     display:grid;
 
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
     gap:20px;
 }
@@ -582,7 +657,9 @@ header{
     height:58px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     border-radius:17px;
@@ -620,72 +697,134 @@ header{
     line-height:1.7;
 }
 
-/* ================= DARK HOW ================= */
 
-.dark-section{
-    position:relative;
+/* ================= COUNTRIES ================= */
 
-    overflow:hidden;
+.countries-section{
+    padding:105px 0;
 
-    background:
-        radial-gradient(circle at 10% 20%,rgba(139,92,246,.18),transparent 30%),
-        radial-gradient(circle at 90% 80%,rgba(124,58,237,.14),transparent 30%),
-        linear-gradient(135deg,#160625,#28103e);
-
-    color:white;
+    background:#faf9ff;
 }
 
-.dark-section .section-heading h2{
-    color:white;
-}
-
-.dark-section .section-heading p{
-    color:#bdb1c9;
-}
-
-.steps{
+.countries-grid{
     display:grid;
 
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
     gap:20px;
 }
 
-.step{
-    padding:31px;
+.country-card{
+    text-align:center;
 
-    border-radius:23px;
+    padding:38px 25px;
 
-    background:rgba(255,255,255,.045);
+    background:#fff;
 
-    border:1px solid rgba(255,255,255,.11);
+    border:1px solid #ece5f2;
 
-    backdrop-filter:blur(10px);
+    border-radius:25px;
+
+    box-shadow:
+        0 15px 40px rgba(38,15,60,.06);
+
+    transition:.3s ease;
 }
 
-.step-number{
-    color:#b995ff;
+.country-card:hover{
+    transform:translateY(-8px);
 
-    font-size:11px;
+    border-color:#d9c4f2;
 
-    font-weight:900;
-
-    letter-spacing:1.5px;
+    box-shadow:
+        0 25px 55px rgba(38,15,60,.12);
 }
 
-.step h3{
-    margin-top:27px;
+.country-icon{
+    width:90px;
+    height:90px;
 
-    font-size:22px;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:0 auto 15px;
+
+    border-radius:26px;
+
+    background:#f3eaff;
+
+    font-size:52px;
+
+    box-shadow:
+        0 10px 25px rgba(91,33,182,.10);
 }
 
-.step p{
-    margin-top:10px;
 
-    color:#b9adbf;
+/* ================= FLAG BUTTON ================= */
 
-    font-size:14px;
+.flag-button{
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:0 auto 20px;
+
+    padding:10px 18px;
+
+    border-radius:11px;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #5b21b6
+        );
+
+    font-size:12px;
+
+    font-weight:850;
+
+    box-shadow:
+        0 8px 20px rgba(91,33,182,.20);
 }
+
+.flag-button:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(91,33,182,.30);
+}
+
+.flag-button:active{
+    transform:scale(.96);
+}
+
+.country-card h3{
+    font-size:20px;
+
+    color:#21152f;
+
+    margin-bottom:9px;
+}
+
+.country-card p{
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
 
 /* ================= WHY ================= */
 
@@ -705,8 +844,16 @@ header{
     border-radius:32px;
 
     background:
-        radial-gradient(circle at 15% 20%,rgba(139,92,246,.15),transparent 30%),
-        linear-gradient(135deg,#f3eaff,#fff);
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(139,92,246,.15),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #f3eaff,
+            #fff
+        );
 
     border:1px solid #e4d7ef;
 }
@@ -725,6 +872,7 @@ header{
     color:var(--muted);
 }
 
+
 /* ================= CTA ================= */
 
 .cta{
@@ -739,9 +887,21 @@ header{
     color:white;
 
     background:
-        radial-gradient(circle at 15% 15%,rgba(255,255,255,.16),transparent 30%),
-        radial-gradient(circle at 90% 80%,rgba(255,255,255,.10),transparent 30%),
-        linear-gradient(135deg,#3b0764,#7c3aed);
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(255,255,255,.16),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(255,255,255,.10),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #3b0764,
+            #7c3aed
+        );
 
     box-shadow:
         0 30px 75px rgba(76,29,149,.27);
@@ -768,8 +928,10 @@ header{
 
     color:#5b21b6;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.15);
 }
+
 
 /* ================= FOOTER ================= */
 
@@ -798,6 +960,7 @@ footer{
 footer p{
     font-size:12px;
 }
+
 
 /* ================= MOBILE ================= */
 
@@ -897,16 +1060,28 @@ footer p{
         letter-spacing:-1.8px;
     }
 
-    .feature-grid,
-    .steps{
+    .feature-grid{
         grid-template-columns:1fr;
 
         gap:15px;
     }
 
-    .feature,
-    .step{
+    .feature{
         padding:27px;
+    }
+
+    .countries-section{
+        padding:75px 0;
+    }
+
+    .countries-grid{
+        grid-template-columns:1fr;
+
+        gap:15px;
+    }
+
+    .country-card{
+        padding:30px 22px;
     }
 
     .why{
@@ -926,12 +1101,15 @@ footer p{
 
         border-radius:27px;
     }
+
 }
 
 </style>
 </head>
 
+
 <body>
+
 
 <!-- ================= HEADER ================= -->
 
@@ -959,30 +1137,53 @@ footer p{
 <div class="container hero-content">
 
     <div class="eyebrow">
+
         <span class="live-dot"></span>
+
         A smarter way to connect online
+
     </div>
 
+
     <h1>
+
         Conversations that
-        <span class="gradient">create possibilities.</span>
+
+        <span class="gradient">
+            create possibilities.
+        </span>
+
     </h1>
 
+
     <p class="hero-description">
+
         ChatPesa brings people together across borders.
+
         Connect, communicate and discover opportunities
+
         through meaningful conversations.
+
     </p>
+
 
     <div class="hero-actions">
 
-        <a href="register.html" class="btn btn-primary">
+        <a href="register.html"
+           class="btn btn-primary">
+
             Create Your Account
+
             <span>→</span>
+
         </a>
 
-        <a href="#how" class="btn btn-secondary">
-            See How It Works
+
+        <a href="#countries"
+           class="btn btn-secondary">
+
+            Explore Connections
+
         </a>
 
     </div>
@@ -990,7 +1191,7 @@ footer p{
 </div>
 
 
-<!-- PLATFORM PREVIEW -->
+<!-- ================= PLATFORM PREVIEW ================= -->
 
 <div class="container preview-wrap">
 
@@ -998,20 +1199,26 @@ footer p{
 
 <div class="preview-window">
 
+
     <div class="window-top">
 
         <span class="window-dot"></span>
+
         <span class="window-dot"></span>
+
         <span class="window-dot"></span>
 
         <span class="window-title">
+
             chatpesa • your connection space
+
         </span>
 
     </div>
 
 
     <div class="preview-content">
+
 
         <div class="preview-card primary">
 
@@ -1064,6 +1271,7 @@ footer p{
 
         </div>
 
+
     </div>
 
 </div>
@@ -1081,6 +1289,7 @@ footer p{
 
 <div class="container trust-grid">
 
+
     <div class="trust-card">
 
         <div class="trust-icon">
@@ -1088,8 +1297,15 @@ footer p{
         </div>
 
         <div>
-            <strong>Global Connections</strong>
-            <span>Connect across borders</span>
+
+            <strong>
+                Global Connections
+            </strong>
+
+            <span>
+                Connect across borders
+            </span>
+
         </div>
 
     </div>
@@ -1102,8 +1318,15 @@ footer p{
         </div>
 
         <div>
-            <strong>Mobile First</strong>
-            <span>Built for your phone</span>
+
+            <strong>
+                Mobile First
+            </strong>
+
+            <span>
+                Built for your phone
+            </span>
+
         </div>
 
     </div>
@@ -1116,11 +1339,19 @@ footer p{
         </div>
 
         <div>
-            <strong>Simple Experience</strong>
-            <span>Easy to get started</span>
+
+            <strong>
+                Simple Experience
+            </strong>
+
+            <span>
+                Easy to get started
+            </span>
+
         </div>
 
     </div>
+
 
 </div>
 
@@ -1132,6 +1363,7 @@ footer p{
 <section class="section">
 
 <div class="container">
+
 
 <div class="section-heading">
 
@@ -1152,6 +1384,7 @@ footer p{
 
 
 <div class="feature-grid">
+
 
     <div class="feature">
 
@@ -1218,6 +1451,7 @@ footer p{
 
     </div>
 
+
 </div>
 
 </div>
@@ -1225,84 +1459,118 @@ footer p{
 </section>
 
 
-<!-- ================= HOW IT WORKS ================= -->
+<!-- ================= COUNTRIES ================= -->
 
-<section class="dark-section" id="how">
+<section class="countries-section"
+         id="countries">
 
-<div class="container section">
+<div class="container">
+
 
 <div class="section-heading">
 
     <div class="section-label">
-        Simple Process
+        GLOBAL CONNECTIONS
     </div>
 
     <h2>
-        Your journey starts here.
+        Connect across borders.
     </h2>
 
     <p>
-        Three simple steps to begin your
-        ChatPesa experience.
+        ChatPesa helps you connect and communicate
+        with people from different parts of the world.
     </p>
 
 </div>
 
 
-<div class="steps">
+<div class="countries-grid">
 
-    <div class="step">
 
-        <div class="step-number">
-            STEP 01
+    <!-- ================= USA ================= -->
+
+    <div class="country-card">
+
+        <div class="country-icon">
+            🇺🇸
         </div>
 
+
+        <a href="register.html"
+           class="flag-button">
+
+            Select USA →
+
+        </a>
+
+
         <h3>
-            Create Your Account
+            United States
         </h3>
 
         <p>
-            Register with your details and
-            create your ChatPesa account.
+            Connect with people from the United States.
         </p>
 
     </div>
 
 
-    <div class="step">
+    <!-- ================= CANADA ================= -->
 
-        <div class="step-number">
-            STEP 02
+    <div class="country-card">
+
+        <div class="country-icon">
+            🇨🇦
         </div>
 
+
+        <a href="register.html"
+           class="flag-button">
+
+            Select Canada →
+
+        </a>
+
+
         <h3>
-            Get Connected
+            Canada
         </h3>
 
         <p>
-            Enter the platform and begin
-            connecting with other users.
+            Discover conversations and connections in Canada.
         </p>
 
     </div>
 
 
-    <div class="step">
+    <!-- ================= UK ================= -->
 
-        <div class="step-number">
-            STEP 03
+    <div class="country-card">
+
+        <div class="country-icon">
+            🇬🇧
         </div>
 
+
+        <a href="register.html"
+           class="flag-button">
+
+            Select UK →
+
+        </a>
+
+
         <h3>
-            Chat & Explore
+            United Kingdom
         </h3>
 
         <p>
-            Start conversations and explore
-            available opportunities.
+            Build connections with people in the UK.
         </p>
 
     </div>
+
 
 </div>
 
@@ -1319,13 +1587,16 @@ footer p{
 
 <div class="why-box">
 
+
     <div class="section-label">
         Why ChatPesa
     </div>
 
+
     <h2>
         Built around people.
     </h2>
+
 
     <p>
         We believe online communication should be
@@ -1333,6 +1604,7 @@ footer p{
         brings connection and opportunity together
         in one modern experience.
     </p>
+
 
 </div>
 
@@ -1347,20 +1619,28 @@ footer p{
 
 <div class="cta">
 
+
     <h2>
         Your next connection
         starts here.
     </h2>
+
 
     <p>
         Create your ChatPesa account and
         take the first step today.
     </p>
 
-    <a href="register.html" class="btn btn-primary">
+
+    <a href="register.html"
+       class="btn btn-primary">
+
         Get Started
+
         <span>→</span>
+
     </a>
+
 
 </div>
 
@@ -1371,19 +1651,24 @@ footer p{
 
 <footer>
 
+
     <div class="footer-logo">
         ChatPesa
     </div>
+
 
     <p>
         Connect. Chat. Earn.
     </p>
 
+
     <p style="margin-top:8px;">
         © 2026 ChatPesa. All rights reserved.
     </p>
 
+
 </footer>
+
 
 </body>
 </html>
