@@ -1,391 +1,809 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Register | ChatPesa</title>
+<title>Register | ChatPesa</title>
 
-  <meta name="description" content="Create your ChatPesa account and connect with people around the world.">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+:root{
+    --purple:#6d28d9;
+    --violet:#8b5cf6;
+    --dark:#3b0764;
+    --deep:#180629;
+    --light:#f3eaff;
+    --text:#24152f;
+    --muted:#7b7085;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+
+    background:
+        radial-gradient(circle at 10% 10%,rgba(139,92,246,.25),transparent 30%),
+        radial-gradient(circle at 90% 90%,rgba(109,40,217,.20),transparent 30%),
+        linear-gradient(135deg,#f8f4fc,#eee7f7);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:25px 15px;
+    color:var(--text);
+}
+
+/* MAIN */
+
+.wrapper{
+    width:100%;
+    max-width:1000px;
+
+    display:grid;
+    grid-template-columns: .85fr 1.15fr;
+
+    background:white;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 35px 90px rgba(45,20,70,.18);
+
+    position:relative;
+    z-index:2;
+}
+
+/* LEFT SIDE */
+
+.brand-panel{
+    padding:50px 38px;
+
+    color:white;
+
+    background:
+        radial-gradient(circle at 90% 10%,rgba(255,255,255,.16),transparent 30%),
+        radial-gradient(circle at 10% 90%,rgba(168,85,247,.18),transparent 30%),
+        linear-gradient(145deg,#180629,#4c1d95,#7c3aed);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    position:relative;
+    overflow:hidden;
+}
+
+.brand-panel::after{
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    right:-100px;
+    bottom:-90px;
+}
+
+.brand-logo{
+    font-size:32px;
+    font-weight:950;
+    letter-spacing:-2px;
+
+    margin-bottom:8px;
+}
+
+.brand-tagline{
+    color:#ddd0ed;
+    font-size:13px;
+    margin-bottom:55px;
+}
+
+.brand-panel h2{
+    font-size:38px;
+    line-height:1.08;
+    letter-spacing:-1.8px;
+    margin-bottom:18px;
+}
+
+.brand-panel h2 span{
+    color:#c4a7ff;
+}
+
+.brand-panel p{
+    color:#d0c2dc;
+    font-size:14px;
+    line-height:1.7;
+    max-width:330px;
+}
+
+.benefits{
+    margin-top:35px;
+}
+
+.benefit{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:17px;
+    color:#eee7f5;
+    font-size:13px;
+}
+
+.benefit-icon{
+    width:35px;
+    height:35px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:11px;
+
+    background:rgba(255,255,255,.10);
+
+    font-size:16px;
+}
+
+/* FORM SIDE */
+
+.form-panel{
+    padding:42px 42px;
+}
+
+.logo-mobile{
+    display:none;
+}
+
+.progress{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:25px;
+}
+
+.progress-item{
+    flex:1;
+}
+
+.progress-line{
+    height:5px;
+    border-radius:20px;
+    background:#e9e1ef;
+}
+
+.progress-line.active{
+    background:linear-gradient(90deg,#8b5cf6,#5b21b6);
+}
+
+.progress-label{
+    font-size:9px;
+    color:#918698;
+    margin-top:6px;
+    font-weight:700;
+}
+
+.progress-item.active .progress-label{
+    color:#6d28d9;
+}
+
+.title{
+    font-size:29px;
+    letter-spacing:-1px;
+    font-weight:900;
+}
+
+.subtitle{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+    margin-top:8px;
+    margin-bottom:25px;
+}
+
+/* FORM */
+
+.form-group{
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:7px;
+    color:#40334b;
+}
+
+.input-box{
+    position:relative;
+}
+
+.input-icon{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:16px;
+    pointer-events:none;
+}
+
+input,
+select{
+    width:100%;
+    height:51px;
+
+    border:1px solid #e1d8e8;
+    border-radius:12px;
+
+    padding:0 14px 0 44px;
+
+    background:#fbf9fd;
+
+    color:#24152f;
+
+    outline:none;
+
+    font-size:14px;
+
+    transition:.2s;
+}
+
+input::placeholder{
+    color:#a39aa9;
+}
+
+input:focus,
+select:focus{
+    background:white;
+
+    border-color:#8b5cf6;
+
+    box-shadow:
+        0 0 0 4px rgba(139,92,246,.10);
+}
+
+.password-note{
+    color:#968c9e;
+    font-size:10px;
+    margin-top:5px;
+}
+
+/* TERMS */
+
+.terms{
+    display:flex;
+    gap:9px;
+    align-items:flex-start;
+
+    margin:17px 0;
+}
+
+.terms input{
+    width:16px;
+    height:16px;
+    padding:0;
+    margin-top:2px;
+    accent-color:#6d28d9;
+    flex-shrink:0;
+}
+
+.terms label{
+    font-size:10.5px;
+    line-height:1.5;
+    font-weight:500;
+    margin:0;
+    color:#756b7e;
+}
+
+.terms a{
+    color:#6d28d9;
+    font-weight:800;
+    text-decoration:none;
+}
+
+/* BUTTON */
+
+.continue-btn{
+    width:100%;
+    height:54px;
+
+    border:0;
+    border-radius:13px;
+
+    color:white;
+
+    background:
+        linear-gradient(135deg,#8b5cf6,#5b21b6);
+
+    font-size:15px;
+    font-weight:850;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 12px 28px rgba(91,33,182,.27);
+
+    transition:.25s;
+}
+
+.continue-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 17px 35px rgba(91,33,182,.34);
+}
+
+.continue-btn:active{
+    transform:translateY(1px);
+}
+
+/* SECURITY */
+
+.secure{
+    text-align:center;
+
+    color:#958a9d;
+
+    font-size:10px;
+
+    margin-top:15px;
+}
+
+.secure strong{
+    color:#5b21b6;
+}
+
+/* BACK */
+
+.back{
+    display:block;
+
+    text-align:center;
+
+    margin-top:15px;
+
+    color:#6d28d9;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    text-decoration:none;
+}
+
+/* MOBILE */
+
+@media(max-width:760px){
+
+    body{
+        padding:15px;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #061f16, #0b6b4f);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 25px 15px;
-      color: #17251f;
+    .wrapper{
+        display:block;
+        max-width:500px;
+        border-radius:24px;
     }
 
-    .container {
-      width: 100%;
-      max-width: 470px;
+    .brand-panel{
+        padding:25px 25px 28px;
+        min-height:auto;
     }
 
-    .card {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 32px 26px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+    .brand-logo{
+        font-size:27px;
     }
 
-    .logo {
-      text-align: center;
-      margin-bottom: 10px;
+    .brand-tagline{
+        margin-bottom:25px;
     }
 
-    .logo span {
-      font-size: 32px;
-      font-weight: 800;
-      color: #0a8f68;
-      letter-spacing: -1px;
+    .brand-panel h2{
+        font-size:29px;
     }
 
-    .logo small {
-      display: block;
-      margin-top: 4px;
-      color: #777;
-      font-size: 13px;
+    .brand-panel p{
+        font-size:13px;
     }
 
-    .title {
-      text-align: center;
-      margin-top: 22px;
-      margin-bottom: 7px;
-      font-size: 25px;
-      font-weight: 750;
-      color: #17251f;
+    .benefits{
+        display:none;
     }
 
-    .subtitle {
-      text-align: center;
-      color: #777;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 25px;
+    .form-panel{
+        padding:28px 22px;
     }
 
-    .form-group {
-      margin-bottom: 17px;
+}
+
+@media(max-width:400px){
+
+    .brand-panel{
+        padding:22px 20px;
     }
 
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 7px;
-      color: #34423c;
+    .form-panel{
+        padding:25px 18px;
     }
 
-    .input-box {
-      position: relative;
+    .brand-panel h2{
+        font-size:26px;
     }
 
-    .input-box span {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 17px;
-      color: #0a8f68;
+    .title{
+        font-size:25px;
     }
+}
 
-    input,
-    select {
-      width: 100%;
-      height: 51px;
-      border: 1px solid #dce5e1;
-      border-radius: 12px;
-      padding: 0 14px 0 43px;
-      outline: none;
-      font-size: 15px;
-      background: #f9fbfa;
-      color: #222;
-      transition: 0.2s ease;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: #0a9b70;
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(10, 155, 112, 0.10);
-    }
-
-    .password-note {
-      font-size: 11px;
-      color: #888;
-      margin-top: 6px;
-    }
-
-    .terms {
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-      margin: 18px 0;
-      font-size: 12px;
-      color: #666;
-      line-height: 1.5;
-    }
-
-    .terms input {
-      width: 16px;
-      height: 16px;
-      margin-top: 2px;
-      padding: 0;
-      flex-shrink: 0;
-      accent-color: #0a8f68;
-    }
-
-    .terms a {
-      color: #0a8f68;
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .continue-btn {
-      width: 100%;
-      height: 53px;
-      border: none;
-      border-radius: 13px;
-      background: linear-gradient(135deg, #0a9b70, #087653);
-      color: white;
-      font-size: 16px;
-      font-weight: 750;
-      cursor: pointer;
-      box-shadow: 0 8px 18px rgba(8, 118, 83, 0.25);
-      transition: 0.2s ease;
-    }
-
-    .continue-btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .continue-btn:active {
-      transform: translateY(1px);
-    }
-
-    .secure {
-      text-align: center;
-      margin-top: 18px;
-      color: #888;
-      font-size: 11px;
-    }
-
-    .secure strong {
-      color: #0a8f68;
-    }
-
-    .back {
-      display: block;
-      text-align: center;
-      margin-top: 17px;
-      color: #0a8f68;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    @media (max-width: 420px) {
-      .card {
-        padding: 27px 20px;
-        border-radius: 20px;
-      }
-
-      .title {
-        font-size: 23px;
-      }
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="wrapper">
 
-    <div class="card">
+    <!-- ================= LEFT BRAND PANEL ================= -->
 
-      <div class="logo">
-        <span>ChatPesa</span>
-        <small>Connect. Chat. Earn.</small>
-      </div>
+    <div class="brand-panel">
 
-      <h1 class="title">Create Your Account</h1>
-
-      <p class="subtitle">
-        Enter your details below to create your ChatPesa account.
-      </p>
-
-      <form id="registrationForm">
-
-        <div class="form-group">
-          <label for="fullName">Full Name</label>
-
-          <div class="input-box">
-            <span>👤</span>
-            <input
-              type="text"
-              id="fullName"
-              name="fullName"
-              placeholder="Enter your full name"
-              required
-            >
-          </div>
+        <div class="brand-logo">
+            ChatPesa
         </div>
 
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-
-          <div class="input-box">
-            <span>📱</span>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder="e.g. 0712 345 678"
-              required
-            >
-          </div>
+        <div class="brand-tagline">
+            Connect. Chat. Earn.
         </div>
 
-        <div class="form-group">
-          <label for="email">Email Address</label>
+        <h2>
+            Your next connection
+            <span>starts here.</span>
+        </h2>
 
-          <div class="input-box">
-            <span>✉️</span>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter your email address"
-              required
-            >
-          </div>
+        <p>
+            Create your ChatPesa account and
+            join a growing community built around
+            conversations and opportunities.
+        </p>
+
+        <div class="benefits">
+
+            <div class="benefit">
+                <div class="benefit-icon">🌍</div>
+                <span>Connect across borders</span>
+            </div>
+
+            <div class="benefit">
+                <div class="benefit-icon">💬</div>
+                <span>Enjoy meaningful conversations</span>
+            </div>
+
+            <div class="benefit">
+                <div class="benefit-icon">⚡</div>
+                <span>Simple and mobile friendly</span>
+            </div>
+
         </div>
-
-        <div class="form-group">
-          <label for="country">Country</label>
-
-          <div class="input-box">
-            <span>🌍</span>
-
-            <select id="country" name="country" required>
-              <option value="">Select your country</option>
-              <option value="Kenya">Kenya</option>
-              <option value="Uganda">Uganda</option>
-              <option value="Tanzania">Tanzania</option>
-              <option value="Rwanda">Rwanda</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="password">Create Password</label>
-
-          <div class="input-box">
-            <span>🔒</span>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Create a password"
-              minlength="6"
-              required
-            >
-          </div>
-
-          <div class="password-note">
-            Password must contain at least 6 characters.
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="confirmPassword">Confirm Password</label>
-
-          <div class="input-box">
-            <span>🔐</span>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              placeholder="Confirm your password"
-              required
-            >
-          </div>
-        </div>
-
-        <div class="terms">
-          <input type="checkbox" id="terms" required>
-
-          <label for="terms">
-            I agree to the ChatPesa
-            <a href="#">Terms & Conditions</a>
-            and
-            <a href="#">Privacy Policy</a>.
-          </label>
-        </div>
-
-        <button type="submit" class="continue-btn">
-          Continue to Payment →
-        </button>
-
-      </form>
-
-      <div class="secure">
-        🔒 <strong>Your information is kept secure.</strong>
-      </div>
-
-      <a href="index.html" class="back">
-        ← Back to Home
-      </a>
 
     </div>
 
-  </div>
 
-  <script>
-    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+    <!-- ================= FORM PANEL ================= -->
 
-      event.preventDefault();
+    <div class="form-panel">
 
-      const password = document.getElementById("password").value;
-      const confirmPassword = document.getElementById("confirmPassword").value;
+        <!-- PROGRESS -->
 
-      if (password !== confirmPassword) {
-        alert("Passwords do not match. Please try again.");
+        <div class="progress">
+
+            <div class="progress-item active">
+
+                <div class="progress-line active"></div>
+
+                <div class="progress-label">
+                    01 — ACCOUNT
+                </div>
+
+            </div>
+
+            <div class="progress-item">
+
+                <div class="progress-line"></div>
+
+                <div class="progress-label">
+                    02 — PAYMENT
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <h1 class="title">
+            Create your account
+        </h1>
+
+        <p class="subtitle">
+            Enter your details below to continue
+            to registration payment.
+        </p>
+
+
+        <form id="registrationForm">
+
+            <!-- FULL NAME -->
+
+            <div class="form-group">
+
+                <label for="fullName">
+                    Full Name
+                </label>
+
+                <div class="input-box">
+
+                    <span class="input-icon">👤</span>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <div class="input-box">
+
+                    <span class="input-icon">📱</span>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="e.g. 0712 345 678"
+                        autocomplete="tel"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- COUNTRY -->
+
+            <div class="form-group">
+
+                <label for="country">
+                    Country
+                </label>
+
+                <div class="input-box">
+
+                    <span class="input-icon">🌍</span>
+
+                    <select id="country" required>
+
+                        <option value="">
+                            Select your country
+                        </option>
+
+                        <option value="Kenya">
+                            Kenya
+                        </option>
+
+                        <option value="Uganda">
+                            Uganda
+                        </option>
+
+                        <option value="Tanzania">
+                            Tanzania
+                        </option>
+
+                        <option value="Rwanda">
+                            Rwanda
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Create Password
+                </label>
+
+                <div class="input-box">
+
+                    <span class="input-icon">🔒</span>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        minlength="6"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+                <div class="password-note">
+                    Minimum 6 characters.
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <div class="input-box">
+
+                    <span class="input-icon">🔐</span>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm your password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- TERMS -->
+
+            <div class="terms">
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                    required
+                >
+
+                <label for="terms">
+
+                    I agree to the ChatPesa
+                    <a href="#">
+                        Terms & Conditions
+                    </a>
+                    and
+                    <a href="#">
+                        Privacy Policy
+                    </a>.
+
+                </label>
+
+            </div>
+
+
+            <!-- CONTINUE -->
+
+            <button
+                type="submit"
+                class="continue-btn"
+            >
+                Continue to Payment →
+            </button>
+
+        </form>
+
+
+        <div class="secure">
+            🔒 <strong>Your information is protected</strong>
+        </div>
+
+
+        <a
+            href="index.html"
+            class="back"
+        >
+            ← Back to Home
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+document
+.getElementById("registrationForm")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    const password =
+        document.getElementById("password").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+
+    if(password !== confirmPassword){
+
+        alert(
+            "Passwords do not match. Please check your password."
+        );
+
         return;
-      }
+    }
 
-      /*
-        Registration details are temporarily saved.
-        Later, we can connect this to your backend/database.
-      */
 
-      const registrationData = {
-        fullName: document.getElementById("fullName").value,
-        phone: document.getElementById("phone").value,
-        email: document.getElementById("email").value,
-        country: document.getElementById("country").value
-      };
+    const registrationData = {
 
-      localStorage.setItem(
+        fullName:
+            document.getElementById("fullName").value,
+
+        phone:
+            document.getElementById("phone").value,
+
+        country:
+            document.getElementById("country").value
+
+    };
+
+
+    localStorage.setItem(
         "chatpesaRegistration",
         JSON.stringify(registrationData)
-      );
+    );
 
-      // Go to your existing payment page
-      window.location.href = "payment.html";
-    });
-  </script>
+
+    /*
+      The password is intentionally NOT stored
+      in localStorage.
+    */
+
+    window.location.href = "payment.html";
+
+});
+
+</script>
 
 </body>
 </html>
