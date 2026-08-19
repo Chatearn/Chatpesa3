@@ -5,200 +5,224 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Register | ChatPesa</title>
-<meta name="description" content="Create your ChatPesa account and connect with people worldwide.">
 
 <style>
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #f4fff9, #ffffff);
     min-height: 100vh;
-    color: #17201b;
+    background: #f5f8f6;
+    color: #18221d;
 }
 
+/* HEADER */
 .header {
-    background: #0b8f55;
-    color: white;
-    padding: 18px 20px;
+    height: 68px;
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    padding: 0 20px;
+    border-bottom: 1px solid #e8eee9;
 }
 
 .logo {
     font-size: 25px;
     font-weight: 800;
-    letter-spacing: -0.5px;
+    color: #0a8f55;
 }
 
 .logo span {
-    color: #d9ffea;
+    color: #18221d;
 }
 
-.back-btn {
-    color: white;
+.home-link {
     text-decoration: none;
+    color: #0a8f55;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
-.container {
+/* MAIN */
+.main {
     width: 100%;
     max-width: 520px;
-    margin: 35px auto;
-    padding: 0 18px;
+    margin: auto;
+    padding: 30px 18px 45px;
 }
 
+/* PROGRESS */
+.progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+}
+
+.circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.active {
+    background: #0a8f55;
+    color: #ffffff;
+}
+
+.next {
+    background: #e2e9e4;
+    color: #728078;
+}
+
+.line {
+    width: 70px;
+    height: 2px;
+    background: #dce5df;
+}
+
+/* CARD */
 .card {
-    background: white;
+    background: #ffffff;
     border-radius: 22px;
     padding: 28px 22px;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.07);
 }
 
-.title {
+.heading {
     text-align: center;
-    margin-bottom: 8px;
-    font-size: 28px;
-    color: #087c49;
+    margin-bottom: 7px;
 }
 
-.subtitle {
-    text-align: center;
-    color: #68736d;
+.heading h1 {
+    font-size: 27px;
+    color: #17231c;
+}
+
+.heading p {
+    margin-top: 8px;
     font-size: 14px;
+    color: #78837d;
     line-height: 1.5;
-    margin-bottom: 25px;
 }
 
+/* FORM */
 .form-group {
-    margin-bottom: 17px;
+    margin-top: 19px;
 }
 
 label {
     display: block;
-    margin-bottom: 7px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
-    color: #26332c;
+    margin-bottom: 7px;
 }
 
-input,
-select {
+input {
     width: 100%;
-    padding: 14px 15px;
-    border: 1px solid #d8e1dc;
-    border-radius: 12px;
-    background: #fafcfb;
+    height: 50px;
+    border: 1px solid #dbe4de;
+    border-radius: 11px;
+    padding: 0 14px;
     font-size: 15px;
     outline: none;
-    transition: 0.2s;
+    background: #fbfcfb;
 }
 
-input:focus,
-select:focus {
-    border-color: #0b8f55;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(11,143,85,0.10);
+input:focus {
+    border-color: #0a8f55;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(10,143,85,0.08);
 }
 
-.phone-row {
+/* PHONE */
+.phone {
     display: flex;
-    gap: 8px;
+    gap: 9px;
 }
 
-.country-code {
-    width: 92px;
+.code {
+    width: 90px;
+    height: 50px;
+    border: 1px solid #dbe4de;
+    border-radius: 11px;
+    background: #fbfcfb;
+    padding: 0 8px;
+    font-size: 14px;
 }
 
-.phone-number {
+.phone input {
     flex: 1;
 }
 
-.fee-box {
-    background: #effaf4;
-    border: 1px solid #c9eedb;
-    border-radius: 14px;
-    padding: 15px;
-    margin: 22px 0;
-    text-align: center;
-}
-
-.fee-label {
-    font-size: 13px;
-    color: #627068;
-    margin-bottom: 4px;
-}
-
-.fee {
-    color: #087c49;
-    font-size: 25px;
-    font-weight: 800;
-}
-
-.continue-btn {
+/* BUTTON */
+.continue {
     width: 100%;
+    height: 53px;
     border: none;
-    background: #0b8f55;
-    color: white;
-    padding: 15px;
-    border-radius: 13px;
+    border-radius: 12px;
+    margin-top: 25px;
+    background: #0a8f55;
+    color: #ffffff;
     font-size: 16px;
     font-weight: 800;
     cursor: pointer;
-    transition: 0.2s;
 }
 
-.continue-btn:hover {
-    background: #087947;
+.continue:hover {
+    background: #087a49;
 }
 
-.continue-btn:active {
-    transform: scale(0.98);
-}
-
-.terms {
+/* FOOTER */
+.note {
     text-align: center;
-    font-size: 12px;
-    color: #7a847f;
-    line-height: 1.5;
     margin-top: 17px;
-}
-
-.terms a {
-    color: #087c49;
-    text-decoration: none;
-    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #8a948e;
 }
 
 .error {
     display: none;
+    margin-top: 15px;
+    padding: 11px;
+    border-radius: 9px;
     background: #fff0f0;
     color: #c62828;
-    border: 1px solid #ffcaca;
-    padding: 11px;
-    border-radius: 10px;
     font-size: 13px;
-    margin-bottom: 15px;
 }
 
+/* MOBILE */
 @media (max-width: 480px) {
-    .container {
-        margin-top: 22px;
+    .main {
+        padding-top: 22px;
     }
 
     .card {
-        padding: 24px 18px;
+        padding: 25px 18px;
     }
 
-    .title {
-        font-size: 25px;
+    .heading h1 {
+        font-size: 24px;
+    }
+
+    .line {
+        width: 55px;
     }
 }
 </style>
@@ -208,75 +232,83 @@ select:focus {
 
 <header class="header">
     <div class="logo">Chat<span>Pesa</span></div>
-    <a href="index.html" class="back-btn">← Home</a>
+    <a href="index.html" class="home-link">Home</a>
 </header>
 
-<main class="container">
+<main class="main">
 
+    <!-- PROGRESS -->
+    <div class="progress">
+
+        <div class="step">
+            <div class="circle active">1</div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+            <div class="circle next">2</div>
+        </div>
+
+    </div>
+
+    <!-- REGISTRATION CARD -->
     <div class="card">
 
-        <h1 class="title">Create Your Account</h1>
+        <div class="heading">
+            <h1>Create your account</h1>
+            <p>
+                Enter your details below to get started with ChatPesa.
+            </p>
+        </div>
 
-        <p class="subtitle">
-            Enter your details below to create your ChatPesa account.
-        </p>
+        <div id="error" class="error"></div>
 
-        <div id="errorMessage" class="error"></div>
-
-        <form id="registrationForm">
+        <form id="registerForm">
 
             <div class="form-group">
-                <label for="fullName">Full Name</label>
+                <label>Full Name</label>
                 <input
                     type="text"
                     id="fullName"
-                    name="fullName"
                     placeholder="Enter your full name"
                     required
                 >
             </div>
 
             <div class="form-group">
-                <label for="username">Username</label>
+                <label>Username</label>
                 <input
                     type="text"
                     id="username"
-                    name="username"
                     placeholder="Choose a username"
-                    minlength="3"
                     required
                 >
             </div>
 
             <div class="form-group">
-                <label for="email">Email Address</label>
+                <label>Email Address</label>
                 <input
                     type="email"
                     id="email"
-                    name="email"
-                    placeholder="you@example.com"
+                    placeholder="Enter your email"
                     required
                 >
             </div>
 
             <div class="form-group">
-                <label for="phone">Phone Number</label>
+                <label>Phone Number</label>
 
-                <div class="phone-row">
-                    <select id="countryCode" class="country-code">
+                <div class="phone">
+                    <select class="code" id="countryCode">
                         <option value="+254">+254</option>
                         <option value="+44">+44</option>
                         <option value="+1">+1</option>
-                        <option value="+27">+27</option>
-                        <option value="+255">+255</option>
-                        <option value="+256">+256</option>
                     </select>
 
                     <input
                         type="tel"
                         id="phone"
-                        name="phone"
-                        class="phone-number"
                         placeholder="712345678"
                         required
                     >
@@ -284,88 +316,80 @@ select:focus {
             </div>
 
             <div class="form-group">
-                <label for="password">Create Password</label>
+                <label>Password</label>
                 <input
                     type="password"
                     id="password"
-                    name="password"
                     placeholder="Create a password"
-                    minlength="6"
                     required
                 >
             </div>
 
             <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
+                <label>Confirm Password</label>
                 <input
                     type="password"
                     id="confirmPassword"
-                    name="confirmPassword"
                     placeholder="Confirm your password"
-                    minlength="6"
                     required
                 >
             </div>
 
-            <div class="fee-box">
-                <div class="fee-label">Registration Fee</div>
-                <div class="fee">KSh 100</div>
-            </div>
-
-            <button type="submit" class="continue-btn">
+            <button type="submit" class="continue">
                 Continue to Payment →
             </button>
 
-            <p class="terms">
-                By continuing, you agree to the ChatPesa
-                <a href="#">Terms & Conditions</a> and
-                <a href="#">Privacy Policy</a>.
-            </p>
-
         </form>
+
+        <p class="note">
+            Your information is used to create your ChatPesa account.
+        </p>
 
     </div>
 
 </main>
 
 <script>
-const form = document.getElementById("registrationForm");
-const errorMessage = document.getElementById("errorMessage");
+document.getElementById("registerForm").addEventListener("submit", function(e) {
 
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
+    e.preventDefault();
+
+    const error = document.getElementById("error");
 
     const fullName = document.getElementById("fullName").value.trim();
     const username = document.getElementById("username").value.trim();
     const email = document.getElementById("email").value.trim();
-    const countryCode = document.getElementById("countryCode").value;
-    const phone = document.getElementById("phone").value.trim();
+    const phone =
+        document.getElementById("countryCode").value +
+        document.getElementById("phone").value.trim();
+
     const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
 
-    errorMessage.style.display = "none";
-
-    if (password !== confirmPassword) {
-        errorMessage.textContent = "Passwords do not match.";
-        errorMessage.style.display = "block";
-        return;
-    }
+    error.style.display = "none";
 
     if (password.length < 6) {
-        errorMessage.textContent = "Password must be at least 6 characters.";
-        errorMessage.style.display = "block";
+        error.textContent = "Password must be at least 6 characters.";
+        error.style.display = "block";
         return;
     }
 
-    const userData = {
+    if (password !== confirmPassword) {
+        error.textContent = "Passwords do not match.";
+        error.style.display = "block";
+        return;
+    }
+
+    /* Save registration details for the next page */
+    localStorage.setItem("chatpesaRegistration", JSON.stringify({
         fullName: fullName,
         username: username,
         email: email,
-        phone: countryCode + phone
-    };
+        phone: phone
+    }));
 
-    localStorage.setItem("chatpesaUser", JSON.stringify(userData));
-
+    /* Go to the separate payment page */
     window.location.href = "payment.html";
 });
 </script>
