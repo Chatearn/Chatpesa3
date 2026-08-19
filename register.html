@@ -1,355 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Account | ChatPesa</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<title>Register | ChatPesa</title>
+<meta name="description" content="Create your ChatPesa account and connect with people worldwide.">
 
-    body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #f4fff8, #ffffff);
-      display: flex;
-      justify-content: center;
-      padding: 25px 18px;
-      color: #17251d;
-    }
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #f4fff9, #ffffff);
+    min-height: 100vh;
+    color: #17201b;
+}
+
+.header {
+    background: #0b8f55;
+    color: white;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: #d9ffea;
+}
+
+.back-btn {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.container {
+    width: 100%;
+    max-width: 520px;
+    margin: 35px auto;
+    padding: 0 18px;
+}
+
+.card {
+    background: white;
+    border-radius: 22px;
+    padding: 28px 22px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 28px;
+    color: #087c49;
+}
+
+.subtitle {
+    text-align: center;
+    color: #68736d;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #26332c;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #d8e1dc;
+    border-radius: 12px;
+    background: #fafcfb;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: #0b8f55;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(11,143,85,0.10);
+}
+
+.phone-row {
+    display: flex;
+    gap: 8px;
+}
+
+.country-code {
+    width: 92px;
+}
+
+.phone-number {
+    flex: 1;
+}
+
+.fee-box {
+    background: #effaf4;
+    border: 1px solid #c9eedb;
+    border-radius: 14px;
+    padding: 15px;
+    margin: 22px 0;
+    text-align: center;
+}
+
+.fee-label {
+    font-size: 13px;
+    color: #627068;
+    margin-bottom: 4px;
+}
+
+.fee {
+    color: #087c49;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.continue-btn {
+    width: 100%;
+    border: none;
+    background: #0b8f55;
+    color: white;
+    padding: 15px;
+    border-radius: 13px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.continue-btn:hover {
+    background: #087947;
+}
+
+.continue-btn:active {
+    transform: scale(0.98);
+}
+
+.terms {
+    text-align: center;
+    font-size: 12px;
+    color: #7a847f;
+    line-height: 1.5;
+    margin-top: 17px;
+}
+
+.terms a {
+    color: #087c49;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.error {
+    display: none;
+    background: #fff0f0;
+    color: #c62828;
+    border: 1px solid #ffcaca;
+    padding: 11px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 480px) {
     .container {
-      width: 100%;
-      max-width: 440px;
-    }
-
-    .logo {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .logo h1 {
-      color: #087f3f;
-      font-size: 34px;
-      font-weight: 800;
-    }
-
-    .logo p {
-      color: #69746d;
-      font-size: 14px;
-      margin-top: 5px;
+        margin-top: 22px;
     }
 
     .card {
-      background: #fff;
-      border-radius: 22px;
-      padding: 28px 23px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.08);
-      border: 1px solid #e7eee9;
+        padding: 24px 18px;
     }
 
-    h2 {
-      text-align: center;
-      font-size: 25px;
-      margin-bottom: 7px;
+    .title {
+        font-size: 25px;
     }
-
-    .subtitle {
-      text-align: center;
-      color: #707a74;
-      font-size: 14px;
-      margin-bottom: 24px;
-    }
-
-    .input-group {
-      margin-bottom: 16px;
-    }
-
-    label {
-      display: block;
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 7px;
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #d6dfd9;
-      border-radius: 12px;
-      font-size: 15px;
-      background: #fbfdfb;
-      outline: none;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: #087f3f;
-      box-shadow: 0 0 0 3px rgba(8,127,63,0.10);
-      background: #fff;
-    }
-
-    .checkbox {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      margin: 18px 0;
-      font-size: 13px;
-      color: #5f6963;
-      line-height: 1.5;
-    }
-
-    .checkbox input {
-      width: 17px;
-      height: 17px;
-      margin-top: 2px;
-      accent-color: #087f3f;
-      flex-shrink: 0;
-    }
-
-    .fee-box {
-      background: #f1faf4;
-      border: 1px solid #cfe8d7;
-      border-radius: 13px;
-      padding: 13px;
-      margin-bottom: 18px;
-      text-align: center;
-    }
-
-    .fee-box strong {
-      display: block;
-      color: #087f3f;
-      font-size: 17px;
-      margin-bottom: 4px;
-    }
-
-    .fee-box span {
-      font-size: 12px;
-      color: #68746c;
-    }
-
-    .register-btn {
-      width: 100%;
-      border: none;
-      padding: 15px;
-      border-radius: 13px;
-      background: #087f3f;
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .register-btn:hover {
-      background: #066b35;
-    }
-
-    .login-link {
-      text-align: center;
-      margin-top: 21px;
-      font-size: 14px;
-      color: #68736c;
-    }
-
-    .login-link a {
-      color: #087f3f;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .error {
-      display: none;
-      background: #fff1f1;
-      color: #c62828;
-      padding: 11px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      font-size: 13px;
-      text-align: center;
-    }
-
-    .security {
-      text-align: center;
-      color: #8b948e;
-      font-size: 12px;
-      margin-top: 18px;
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<header class="header">
+    <div class="logo">Chat<span>Pesa</span></div>
+    <a href="index.html" class="back-btn">← Home</a>
+</header>
 
-    <div class="logo">
-      <h1>ChatPesa</h1>
-      <p>Connect. Chat. Earn.</p>
-    </div>
+<main class="container">
 
     <div class="card">
 
-      <h2>Create Account</h2>
-      <p class="subtitle">
-        Join ChatPesa and create your client account
-      </p>
+        <h1 class="title">Create Your Account</h1>
 
-      <div class="error" id="errorMessage"></div>
+        <p class="subtitle">
+            Enter your details below to create your ChatPesa account.
+        </p>
 
-      <form id="registerForm">
+        <div id="errorMessage" class="error"></div>
 
-        <div class="input-group">
-          <label for="fullName">Full Name</label>
-          <input
-            type="text"
-            id="fullName"
-            placeholder="Enter your full name"
-            required
-          >
-        </div>
+        <form id="registrationForm">
 
-        <div class="input-group">
-          <label for="phone">Phone Number</label>
-          <input
-            type="tel"
-            id="phone"
-            placeholder="e.g. 0712345678"
-            required
-          >
-        </div>
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    placeholder="Enter your full name"
+                    required
+                >
+            </div>
 
-        <div class="input-group">
-          <label for="email">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            required
-          >
-        </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Choose a username"
+                    minlength="3"
+                    required
+                >
+            </div>
 
-        <div class="input-group">
-          <label for="country">Country</label>
-          <select id="country" required>
-            <option value="">Select your country</option>
-            <option value="Kenya">Kenya</option>
-            <option value="Uganda">Uganda</option>
-            <option value="Tanzania">Tanzania</option>
-            <option value="Rwanda">Rwanda</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                >
+            </div>
 
-        <div class="input-group">
-          <label for="language">Preferred Language</label>
-          <select id="language" required>
-            <option value="">Select language</option>
-            <option value="English">English</option>
-            <option value="Swahili">Swahili</option>
-            <option value="Both">English & Swahili</option>
-          </select>
-        </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
 
-        <div class="input-group">
-          <label for="password">Create Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Create a password"
-            required
-          >
-        </div>
+                <div class="phone-row">
+                    <select id="countryCode" class="country-code">
+                        <option value="+254">+254</option>
+                        <option value="+44">+44</option>
+                        <option value="+1">+1</option>
+                        <option value="+27">+27</option>
+                        <option value="+255">+255</option>
+                        <option value="+256">+256</option>
+                    </select>
 
-        <div class="input-group">
-          <label for="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            placeholder="Confirm your password"
-            required
-          >
-        </div>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        class="phone-number"
+                        placeholder="712345678"
+                        required
+                    >
+                </div>
+            </div>
 
-        <label class="checkbox">
-          <input type="checkbox" id="ageConfirm" required>
-          <span>I confirm that I am 18 years old or above.</span>
-        </label>
+            <div class="form-group">
+                <label for="password">Create Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Create a password"
+                    minlength="6"
+                    required
+                >
+            </div>
 
-        <div class="fee-box">
-          <strong>Registration Fee: KSh 100</strong>
-          <span>Payment will be required after submitting your details.</span>
-        </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Confirm your password"
+                    minlength="6"
+                    required
+                >
+            </div>
 
-        <button type="submit" class="register-btn">
-          Continue to Payment
-        </button>
+            <div class="fee-box">
+                <div class="fee-label">Registration Fee</div>
+                <div class="fee">KSh 100</div>
+            </div>
 
-      </form>
+            <button type="submit" class="continue-btn">
+                Continue to Payment →
+            </button>
 
-      <div class="login-link">
-        Already have an account?
-        <a href="login.html">Login</a>
-      </div>
+            <p class="terms">
+                By continuing, you agree to the ChatPesa
+                <a href="#">Terms & Conditions</a> and
+                <a href="#">Privacy Policy</a>.
+            </p>
+
+        </form>
 
     </div>
 
-    <div class="security">
-      🔒 Your information should be kept secure.
-    </div>
+</main>
 
-  </div>
+<script>
+const form = document.getElementById("registrationForm");
+const errorMessage = document.getElementById("errorMessage");
 
-  <script>
-    document.getElementById("registerForm").addEventListener("submit", function(e) {
-      e.preventDefault();
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
 
-      const fullName = document.getElementById("fullName").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const country = document.getElementById("country").value;
-      const language = document.getElementById("language").value;
-      const password = document.getElementById("password").value;
-      const confirmPassword = document.getElementById("confirmPassword").value;
-      const ageConfirm = document.getElementById("ageConfirm").checked;
-      const error = document.getElementById("errorMessage");
+    const fullName = document.getElementById("fullName").value.trim();
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const countryCode = document.getElementById("countryCode").value;
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-      if (password.length < 8) {
-        error.textContent = "Password must contain at least 8 characters.";
-        error.style.display = "block";
+    errorMessage.style.display = "none";
+
+    if (password !== confirmPassword) {
+        errorMessage.textContent = "Passwords do not match.";
+        errorMessage.style.display = "block";
         return;
-      }
+    }
 
-      if (password !== confirmPassword) {
-        error.textContent = "Passwords do not match.";
-        error.style.display = "block";
+    if (password.length < 6) {
+        errorMessage.textContent = "Password must be at least 6 characters.";
+        errorMessage.style.display = "block";
         return;
-      }
+    }
 
-      if (!ageConfirm) {
-        error.textContent = "You must confirm that you are 18 or older.";
-        error.style.display = "block";
-        return;
-      }
+    const userData = {
+        fullName: fullName,
+        username: username,
+        email: email,
+        phone: countryCode + phone
+    };
 
-      error.style.display = "none";
+    localStorage.setItem("chatpesaUser", JSON.stringify(userData));
 
-      /*
-        The registration details will be sent to the
-        secure ChatPesa backend here.
-
-        After successful registration, the user will
-        be redirected to payment.html.
-
-        Do NOT store passwords directly in this HTML file.
-      */
-
-      window.location.href = "payment.html";
-    });
-  </script>
+    window.location.href = "payment.html";
+});
+</script>
 
 </body>
 </html>
