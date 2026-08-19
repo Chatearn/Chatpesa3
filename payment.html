@@ -1,1 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Payment | ChatPesa</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    background: #f5f8f6;
+    color: #18221d;
+}
+
+/* HEADER */
+.header {
+    height: 68px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid #e8eee9;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: #0a8f55;
+}
+
+.logo span {
+    color: #18221d;
+}
+
+.back {
+    color: #0a8f55;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* MAIN */
+.main {
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+    padding: 25px 18px 45px;
+}
+
+/* PROGRESS */
+.progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.done {
+    background: #0a8f55;
+    color: white;
+}
+
+.active {
+    background: #0a8f55;
+    color: white;
+}
+
+.line {
+    width: 70px;
+    height: 2px;
+    background: #0a8f55;
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 22px;
+    padding: 28px 22px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.07);
+}
+
+.title {
+    text-align: center;
+}
+
+.title h1 {
+    font-size: 27px;
+}
+
+.title p {
+    margin-top: 8px;
+    color: #78837d;
+    font-size: 14px;
+}
+
+/* PRICE */
+.price-box {
+    background: #effaf4;
+    border: 1px solid #cdebd9;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin: 25px 0;
+}
+
+.price-label {
+    font-size: 13px;
+    color: #68746d;
+}
+
+.price {
+    margin-top: 5px;
+    color: #0a8f55;
+    font-size: 34px;
+    font-weight: 900;
+}
+
+/* USER */
+.user-box {
+    background: #fafcfb;
+    border: 1px solid #e1e8e3;
+    border-radius: 13px;
+    padding: 14px;
+    margin-bottom: 20px;
+}
+
+.user-label {
+    font-size: 11px;
+    color: #818c86;
+    margin-bottom: 4px;
+}
+
+.user-name {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* PAYMENT */
+.payment-title {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.payment-method {
+    border: 1px solid #dbe4de;
+    border-radius: 13px;
+    padding: 15px;
+    margin-bottom: 12px;
+}
+
+.payment-method strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.payment-method span {
+    color: #727d77;
+    font-size: 13px;
+}
+
+/* INPUT */
+.form-group {
+    margin-top: 17px;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #dbe4de;
+    border-radius: 11px;
+    padding: 0 14px;
+    font-size: 15px;
+    outline: none;
+    background: #fbfcfb;
+}
+
+input:focus {
+    border-color: #0a8f55;
+    background: white;
+}
+
+/* BUTTON */
+.pay-button {
+    width: 100%;
+    height: 53px;
+    border: none;
+    border-radius: 12px;
+    margin-top: 22px;
+    background: #0a8f55;
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.pay-button:hover {
+    background: #087a49;
+}
+
+.secure {
+    text-align: center;
+    color: #8a948e;
+    font-size: 12px;
+    margin-top: 16px;
+    line-height: 1.5;
+}
+
+.warning {
+    display: none;
+    margin-top: 15px;
+    padding: 11px;
+    border-radius: 9px;
+    background: #fff0f0;
+    color: #c62828;
+    font-size: 13px;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+
+    .main {
+        padding-top: 20px;
+    }
+
+    .card {
+        padding: 25px 18px;
+    }
+
+    .title h1 {
+        font-size: 24px;
+    }
+
+    .line {
+        width: 55px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        Chat<span>Pesa</span>
+    </div>
+
+    <a href="register.html" class="back">
+        ← Back
+    </a>
+
+</header>
+
+
+<main class="main">
+
+    <!-- PROGRESS -->
+
+    <div class="progress">
+
+        <div class="circle done">
+            ✓
+        </div>
+
+        <div class="line"></div>
+
+        <div class="circle active">
+            2
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="title">
+
+            <h1>Complete Registration</h1>
+
+            <p>
+                Pay the registration fee to continue.
+            </p>
+
+        </div>
+
+
+        <!-- PRICE -->
+
+        <div class="price-box">
+
+            <div class="price-label">
+                Registration Fee
+            </div>
+
+            <div class="price">
+                KSh 100
+            </div>
+
+        </div>
+
+
+        <!-- REGISTERED USER -->
+
+        <div class="user-box">
+
+            <div class="user-label">
+                ACCOUNT BEING REGISTERED
+            </div>
+
+            <div class="user-name" id="userName">
+                Loading...
+            </div>
+
+        </div>
+
+
+        <div class="payment-title">
+            Payment Method
+        </div>
+
+
+        <!-- M-PESA -->
+
+        <div class="payment-method">
+
+            <strong>📱 M-Pesa</strong>
+
+            <span>
+                Pay the KSh 100 registration fee using M-Pesa.
+            </span>
+
+        </div>
+
+
+        <div class="warning" id="warning"></div>
+
+
+        <!-- PHONE -->
+
+        <div class="form-group">
+
+            <label for="mpesaPhone">
+                M-Pesa Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="mpesaPhone"
+                placeholder="e.g. 0712345678"
+                required
+            >
+
+        </div>
+
+
+        <button
+            class="pay-button"
+            id="payButton"
+        >
+            Pay KSh 100
+        </button>
+
+
+        <p class="secure">
+            🔒 Your payment should be completed through the official
+            payment process. Do not share your M-Pesa PIN with anyone.
+        </p>
+
+    </div>
+
+</main>
+
+
+<script>
+
+/* Get registration information */
+
+const savedUser =
+    localStorage.getItem("chatpesaRegistration");
+
+if (!savedUser) {
+
+    window.location.href = "register.html";
+
+} else {
+
+    const user =
+        JSON.parse(savedUser);
+
+    document.getElementById("userName").textContent =
+        user.fullName;
+
+}
+
+
+/* Payment button */
+
+document.getElementById("payButton")
+.addEventListener("click", function() {
+
+    const phone =
+        document.getElementById("mpesaPhone")
+        .value.trim();
+
+    const warning =
+        document.getElementById("warning");
+
+
+    warning.style.display = "none";
+
+
+    if (phone === "") {
+
+        warning.textContent =
+            "Please enter your M-Pesa phone number.";
+
+        warning.style.display = "block";
+
+        return;
+    }
+
+
+    /*
+       PAYMENT INTEGRATION GOES HERE.
+
+       We will connect this button to the
+       actual payment provider/API next.
+
+       Do NOT mark the user as paid here.
+    */
+
+    alert(
+        "Payment integration is the next step. No payment has been processed yet."
+    );
+
+});
+
+</script>
+
+</body>
+</html>
