@@ -1,1 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | ChatPesa</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f4fff8, #ffffff);
+      display: flex;
+      justify-content: center;
+      padding: 25px 18px;
+      color: #17251d;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo h1 {
+      color: #087f3f;
+      font-size: 34px;
+      font-weight: 800;
+    }
+
+    .logo p {
+      color: #69746d;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 28px 23px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+      border: 1px solid #e7eee9;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 25px;
+      margin-bottom: 7px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #707a74;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d6dfd9;
+      border-radius: 12px;
+      font-size: 15px;
+      background: #fbfdfb;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #087f3f;
+      box-shadow: 0 0 0 3px rgba(8,127,63,0.10);
+      background: #fff;
+    }
+
+    .checkbox {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 18px 0;
+      font-size: 13px;
+      color: #5f6963;
+      line-height: 1.5;
+    }
+
+    .checkbox input {
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      accent-color: #087f3f;
+      flex-shrink: 0;
+    }
+
+    .fee-box {
+      background: #f1faf4;
+      border: 1px solid #cfe8d7;
+      border-radius: 13px;
+      padding: 13px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .fee-box strong {
+      display: block;
+      color: #087f3f;
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .fee-box span {
+      font-size: 12px;
+      color: #68746c;
+    }
+
+    .register-btn {
+      width: 100%;
+      border: none;
+      padding: 15px;
+      border-radius: 13px;
+      background: #087f3f;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .register-btn:hover {
+      background: #066b35;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 21px;
+      font-size: 14px;
+      color: #68736c;
+    }
+
+    .login-link a {
+      color: #087f3f;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .error {
+      display: none;
+      background: #fff1f1;
+      color: #c62828;
+      padding: 11px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .security {
+      text-align: center;
+      color: #8b948e;
+      font-size: 12px;
+      margin-top: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">
+      <h1>ChatPesa</h1>
+      <p>Connect. Chat. Earn.</p>
+    </div>
+
+    <div class="card">
+
+      <h2>Create Account</h2>
+      <p class="subtitle">
+        Join ChatPesa and create your client account
+      </p>
+
+      <div class="error" id="errorMessage"></div>
+
+      <form id="registerForm">
+
+        <div class="input-group">
+          <label for="fullName">Full Name</label>
+          <input
+            type="text"
+            id="fullName"
+            placeholder="Enter your full name"
+            required
+          >
+        </div>
+
+        <div class="input-group">
+          <label for="phone">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            placeholder="e.g. 0712345678"
+            required
+          >
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          >
+        </div>
+
+        <div class="input-group">
+          <label for="country">Country</label>
+          <select id="country" required>
+            <option value="">Select your country</option>
+            <option value="Kenya">Kenya</option>
+            <option value="Uganda">Uganda</option>
+            <option value="Tanzania">Tanzania</option>
+            <option value="Rwanda">Rwanda</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="language">Preferred Language</label>
+          <select id="language" required>
+            <option value="">Select language</option>
+            <option value="English">English</option>
+            <option value="Swahili">Swahili</option>
+            <option value="Both">English & Swahili</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Create Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Create a password"
+            required
+          >
+        </div>
+
+        <div class="input-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm your password"
+            required
+          >
+        </div>
+
+        <label class="checkbox">
+          <input type="checkbox" id="ageConfirm" required>
+          <span>I confirm that I am 18 years old or above.</span>
+        </label>
+
+        <div class="fee-box">
+          <strong>Registration Fee: KSh 100</strong>
+          <span>Payment will be required after submitting your details.</span>
+        </div>
+
+        <button type="submit" class="register-btn">
+          Continue to Payment
+        </button>
+
+      </form>
+
+      <div class="login-link">
+        Already have an account?
+        <a href="login.html">Login</a>
+      </div>
+
+    </div>
+
+    <div class="security">
+      🔒 Your information should be kept secure.
+    </div>
+
+  </div>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const fullName = document.getElementById("fullName").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const country = document.getElementById("country").value;
+      const language = document.getElementById("language").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const ageConfirm = document.getElementById("ageConfirm").checked;
+      const error = document.getElementById("errorMessage");
+
+      if (password.length < 8) {
+        error.textContent = "Password must contain at least 8 characters.";
+        error.style.display = "block";
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        error.textContent = "Passwords do not match.";
+        error.style.display = "block";
+        return;
+      }
+
+      if (!ageConfirm) {
+        error.textContent = "You must confirm that you are 18 or older.";
+        error.style.display = "block";
+        return;
+      }
+
+      error.style.display = "none";
+
+      /*
+        The registration details will be sent to the
+        secure ChatPesa backend here.
+
+        After successful registration, the user will
+        be redirected to payment.html.
+
+        Do NOT store passwords directly in this HTML file.
+      */
+
+      window.location.href = "payment.html";
+    });
+  </script>
+
+</body>
+</html>
