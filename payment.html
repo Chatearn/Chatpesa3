@@ -1,10 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ChatPesa Payment</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.payment-container {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    border-radius: 15px;
+    padding: 30px 22px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+    text-align: center;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.logo span {
+    color: #16a34a;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.payment-box {
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.amount {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.phone-label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.phone {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    background: #16a34a;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #12823a;
+}
+
+button:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+#status {
+    display: none;
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #f1f1f1;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.security {
+    margin-top: 20px;
+    color: #777;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="payment-container">
+
+    <div class="logo">
+        Chat<span>Pesa</span>
+    </div>
+
+    <h1>Complete Registration</h1>
+
+    <p class="subtitle">
+        Make your one-time registration payment
+    </p>
+
+    <div class="payment-box">
+
+        <div class="amount">
+            KSh 100
+        </div>
+
+        <div class="phone-label">
+            M-PESA Phone Number
+        </div>
+
+        <div
+            class="phone"
+            id="phoneDisplay">
+            Loading...
+        </div>
+
+    </div>
+
+    <button
+        id="payButton"
+        onclick="payNow()">
+
+        Pay KSh 100 with M-PESA
+
+    </button>
+
+    <div id="status"></div>
+
+    <div class="security">
+        🔐 Secure M-PESA payment
+    </div>
+
+</div>
+
+
 <script>
 
-const backend = "https://chatpesa-backend.onrender.com";
+const backend =
+    "https://chatpesa-backend.onrender.com";
 
-const phoneDisplay = document.getElementById("phoneDisplay");
-const status = document.getElementById("status");
-const button = document.getElementById("payButton");
+const phoneDisplay =
+    document.getElementById("phoneDisplay");
+
+const status =
+    document.getElementById("status");
+
+const button =
+    document.getElementById("payButton");
 
 
 function showStatus(message) {
@@ -24,10 +197,15 @@ let registration = null;
 try {
 
     const saved =
-        localStorage.getItem("chatpesaRegistration");
+        localStorage.getItem(
+            "chatpesaRegistration"
+        );
 
     if (saved) {
-        registration = JSON.parse(saved);
+
+        registration =
+            JSON.parse(saved);
+
     }
 
 } catch (error) {
@@ -41,7 +219,7 @@ try {
 
 
 /* =========================================
-   CHECK PHONE
+   FORMAT PHONE
 ========================================= */
 
 function formatPhone(phone) {
@@ -123,10 +301,6 @@ if (
 
 async function payNow() {
 
-    console.log(
-        "CHATPESA: Continue button pressed"
-    );
-
     if (
         !registration ||
         !registration.phone
@@ -140,12 +314,10 @@ async function payNow() {
 
     }
 
-
     const phone =
         formatPhone(
             registration.phone
         );
-
 
     if (!/^2547\d{8}$/.test(phone)) {
 
@@ -157,18 +329,18 @@ async function payNow() {
 
     }
 
-
     button.disabled = true;
+
+    button.innerText =
+        "Connecting...";
 
     showStatus(
         "⏳ Connecting to ChatPesa payment server..."
     );
 
-
     const reference =
         "CHATPESA-" +
         Date.now();
-
 
     const requestData = {
 
@@ -180,9 +352,8 @@ async function payNow() {
 
     };
 
-
     console.log(
-        "CHATPESA: Sending request",
+        "CHATPESA REQUEST:",
         requestData
     );
 
@@ -218,7 +389,7 @@ async function payNow() {
 
 
         console.log(
-            "CHATPESA: HTTP status",
+            "HTTP STATUS:",
             response.status
         );
 
@@ -228,7 +399,7 @@ async function payNow() {
 
 
         console.log(
-            "CHATPESA: Server response",
+            "SERVER RESPONSE:",
             text
         );
 
@@ -243,8 +414,11 @@ async function payNow() {
         } catch {
 
             data = {
+
                 success: false,
+
                 error: text
+
             };
 
         }
@@ -263,6 +437,9 @@ async function payNow() {
 
             button.disabled = false;
 
+            button.innerText =
+                "Pay KSh 100 with M-PESA";
+
             return;
 
         }
@@ -271,14 +448,37 @@ async function payNow() {
         if (data.success === true) {
 
             showStatus(
-                "📲 STK Push sent successfully.<br><br>" +
+                "📲 <strong>STK Push sent!</strong><br><br>" +
                 "Check your phone and enter your M-PESA PIN."
             );
 
-            console.log(
-                "CHATPESA: STK accepted",
-                data
+            button.innerText =
+                "STK Push Sent";
+
+            return;
+
+        }
+
+
+        /*
+        Some backends return a successful
+        response using different fields.
+        */
+
+        if (
+            data.ResponseCode === "0" ||
+            data.response_code === "0" ||
+            data.ResponseCode === 0 ||
+            data.response_code === 0
+        ) {
+
+            showStatus(
+                "📲 <strong>STK Push sent!</strong><br><br>" +
+                "Check your phone and enter your M-PESA PIN."
             );
+
+            button.innerText =
+                "STK Push Sent";
 
             return;
 
@@ -286,15 +486,18 @@ async function payNow() {
 
 
         showStatus(
-            "⚠️ Server responded, but payment could not be confirmed."
+            "⚠️ Server responded, but the payment could not be confirmed."
         );
 
         console.log(
-            "CHATPESA: Unexpected response",
+            "UNEXPECTED RESPONSE:",
             data
         );
 
         button.disabled = false;
+
+        button.innerText =
+            "Pay KSh 100 with M-PESA";
 
 
     } catch (error) {
@@ -304,17 +507,21 @@ async function payNow() {
             error
         );
 
-
         showStatus(
             "❌ Connection error:<br>" +
             error.message
         );
 
-
         button.disabled = false;
+
+        button.innerText =
+            "Pay KSh 100 with M-PESA";
 
     }
 
 }
 
 </script>
+
+</body>
+</html>
