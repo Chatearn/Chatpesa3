@@ -16,7 +16,7 @@
 }
 
 body{
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     min-height:100vh;
     display:flex;
     justify-content:center;
@@ -65,20 +65,25 @@ h1{
     color:#ff5ab5;
 }
 
-label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:bold;
-}
-
-input{
+.phone-box{
     width:100%;
     padding:15px;
-    border:none;
+    margin-bottom:20px;
     border-radius:12px;
-    font-size:16px;
-    margin-bottom:18px;
-    outline:none;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.12);
+    color:#fff;
+}
+
+.phone-label{
+    font-size:12px;
+    color:#bbb;
+    margin-bottom:6px;
+}
+
+.phone-number{
+    font-size:18px;
+    font-weight:bold;
 }
 
 button{
@@ -95,6 +100,7 @@ button{
 
 button:disabled{
     opacity:0.6;
+    cursor:not-allowed;
 }
 
 #status{
@@ -105,6 +111,15 @@ button:disabled{
     text-align:center;
     line-height:1.5;
     background:rgba(255,255,255,0.08);
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:18px;
+    color:#ddd;
+    text-decoration:none;
+    font-size:13px;
 }
 
 .footer{
@@ -130,27 +145,50 @@ button:disabled{
     </p>
 
     <div class="price">
+
         <p>Registration Fee</p>
+
         <h2>KSh 100</h2>
+
         <p>One-time registration payment</p>
+
     </div>
 
-    <label for="phone">
-        M-PESA Phone Number
-    </label>
 
-    <input
-        type="tel"
-        id="phone"
-        placeholder="0712345678"
-        maxlength="13"
+    <div class="phone-box">
+
+        <div class="phone-label">
+            M-PESA Phone Number
+        </div>
+
+        <div
+            class="phone-number"
+            id="phoneDisplay"
+        >
+            Loading...
+        </div>
+
+    </div>
+
+
+    <button
+        id="payButton"
+        onclick="payNow()"
     >
-
-    <button id="payButton" onclick="payNow()">
         Continue
     </button>
 
+
     <div id="status"></div>
+
+
+    <a
+        href="register.html"
+        class="back"
+    >
+        ← Back to registration
+    </a>
+
 
     <div class="footer">
         🔐 Secure payment<br>
@@ -162,287 +200,346 @@ button:disabled{
 
 <script>
 
-/*
-==================================================
-CHATPESA BACKEND URL
-DO NOT CHANGE THIS
-==================================================
-*/
+/* =========================================
+   CHATPESA BACKEND
+   DO NOT CHANGE THIS URL
+========================================= */
 
-const backend = "https://chatpesa-backend.onrender.com";
-
-
-async function payNow(){
-
-    const phoneInput = document.getElementById("phone");
-    const status = document.getElementById("status");
-    const button = document.getElementById("payButton");
-
-    let phone = phoneInput.value.trim();
-
-    if(phone === ""){
-
-        status.style.display = "block";
-        status.innerHTML =
-            "❌ Please enter your M-PESA phone number.";
-
-        return;
-    }
+const backend =
+    "https://chatpesa-backend.onrender.com";
 
 
-    /*
-    Convert 07XXXXXXXX to 2547XXXXXXXX
-    */
+const phoneDisplay =
+    document.getElementById("phoneDisplay");
 
-    if(phone.startsWith("07")){
-        phone = "254" + phone.substring(1);
-    }
+const status =
+    document.getElementById("status");
 
-    if(phone.startsWith("+254")){
-        phone = phone.substring(1);
-    }
+const button =
+    document.getElementById("payButton");
 
 
-    if(!/^2547\d{8}$/.test(phone)){
+/* =========================================
+   SHOW STATUS
+========================================= */
 
-        status.style.display = "block";
-        status.innerHTML =
-            "❌ Please enter a valid Kenyan M-PESA number.";
-
-        return;
-    }
-
+function showStatus(message){
 
     status.style.display = "block";
 
-    status.innerHTML =
-        "⏳ Connecting to ChatPesa payment server...";
+    status.innerHTML = message;
+
+}
+
+
+/* =========================================
+   GET REGISTRATION DATA
+========================================= */
+
+let registration = null;
+
+try{
+
+    registration =
+        JSON.parse(
+            localStorage.getItem(
+                "chatpesaRegistration"
+            )
+        );
+
+}catch(error){
+
+    registration = null;
+
+}
+
+
+/* =========================================
+   CHECK REGISTRATION
+========================================= */
+
+if(
+    !registration ||
+    !registration.phone
+){
+
+    phoneDisplay.innerHTML =
+        "No phone number found.";
 
     button.disabled = true;
 
+    showStatus(
+        "❌ Please go back and complete registration first."
+    );
 
-    try{
+}else{
 
-        /*
-        IMPORTANT:
-        ChatPesa uses /stk-push
-        */
+    let phone =
+        registration.phone
+        .trim()
+        .replace(/\s+/g,"");
 
-        const response = await fetch(
-            backend + "/stk-push",
-            {
-                method:"POST",
 
-                headers:{
-                    "Content-Type":"application/json"
-                },
+    /* Convert 07XXXXXXXX */
 
-                body:JSON.stringify({
+    if(phone.startsWith("07")){
 
-                    phone:phone,
+        phone =
+            "254" +
+            phone.substring(1);
 
-                    amount:100,
+    }
 
-                    reference:
-                        "CHATPESA-" + Date.now()
 
-                })
-            }
+    /* Convert +254XXXXXXXXX */
+
+    if(phone.startsWith("+254")){
+
+        phone =
+            phone.substring(1);
+
+    }
+
+
+    /* Validate */
+
+    if(!/^2547\d{8}$/.test(phone)){
+
+        phoneDisplay.innerHTML =
+            "Invalid phone number.";
+
+        button.disabled = true;
+
+        showStatus(
+            "❌ The phone number entered during registration is invalid."
         );
 
+    }else{
 
-        /*
-        Check whether backend actually responded
-        */
+        phoneDisplay.innerHTML =
+            phone;
 
-        if(!response.ok){
-
-            const text = await response.text();
-
-            console.log(
-                "Backend error:",
-                response.status,
-                text
-            );
-
-            throw new Error(
-                "Server returned " + response.status
-            );
-        }
-
-
-        const data = await response.json();
-
-        console.log(
-            "ChatPesa response:",
-            data
-        );
-
-
-        if(!data.success){
-
-            status.innerHTML =
-                "❌ " +
-                (data.message ||
-                "Unable to send STK Push.");
-
-            button.disabled = false;
-
-            return;
-        }
-
-
-        /*
-        STK PUSH SUCCESS
-        */
-
-        status.innerHTML =
-            "📲 STK Push sent successfully.<br><br>" +
-            "Please check your phone and enter your M-PESA PIN.";
-
-
-        /*
-        If backend returns a reference,
-        begin checking payment status.
-        */
-
-        if(data.reference){
-
-            pollPayment(data.reference);
-
-        }
-
-
-    }catch(error){
-
-        console.log(
-            "ChatPesa connection error:",
-            error
-        );
-
-        status.innerHTML =
-            "❌ Unable to connect to ChatPesa payment server.";
-
-        button.disabled = false;
     }
 
 }
 
 
-/*
-==================================================
-PAYMENT STATUS CHECK
-==================================================
-*/
+/* =========================================
+   START PAYMENT
+========================================= */
 
-function pollPayment(reference){
+async function payNow(){
 
-    const status =
-        document.getElementById("status");
+    if(
+        !registration ||
+        !registration.phone
+    ){
+
+        showStatus(
+            "❌ Please complete registration first."
+        );
+
+        return;
+
+    }
 
 
-    const interval = setInterval(async()=>{
+    let phone =
+        registration.phone
+        .trim()
+        .replace(/\s+/g,"");
+
+
+    /* Convert Kenyan format */
+
+    if(phone.startsWith("07")){
+
+        phone =
+            "254" +
+            phone.substring(1);
+
+    }
+
+
+    if(phone.startsWith("+254")){
+
+        phone =
+            phone.substring(1);
+
+    }
+
+
+    /* Validate */
+
+    if(!/^2547\d{8}$/.test(phone)){
+
+        showStatus(
+            "❌ Invalid Kenyan M-PESA number."
+        );
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    showStatus(
+        "⏳ Connecting to ChatPesa payment server..."
+    );
+
+
+    const reference =
+        "CHATPESA-" +
+        Date.now();
+
+
+    try{
+
+        const response =
+            await fetch(
+                backend + "/stk-push",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        phone:phone,
+
+                        amount:100,
+
+                        reference:reference
+
+                    })
+                }
+            );
+
+
+        const responseText =
+            await response.text();
+
+
+        console.log(
+            "Backend HTTP status:",
+            response.status
+        );
+
+        console.log(
+            "Backend response:",
+            responseText
+        );
+
+
+        let data;
+
 
         try{
 
-            const response = await fetch(
-
-                backend +
-                "/payment-status/" +
-                encodeURIComponent(reference)
-
-            );
-
-
-            if(!response.ok){
-                return;
-            }
-
-
-            const result =
-                await response.json();
-
-
-            console.log(
-                "Payment status:",
-                result
-            );
-
-
-            if(!result.success){
-                return;
-            }
-
-
-            const payment =
-                result.payment;
-
-
-            if(!payment){
-                return;
-            }
-
-
-            if(payment.status === "completed"){
-
-                clearInterval(interval);
-
-                status.innerHTML =
-                    "✅ Payment successful!";
-
-                /*
-                Change this later to your
-                actual ChatPesa destination.
-                */
-
-                setTimeout(()=>{
-
-                    window.location.href =
-                        "dashboard.html";
-
-                },2000);
-
-            }
-
-
-            else if(payment.status === "failed"){
-
-                clearInterval(interval);
-
-                status.innerHTML =
-                    "❌ Payment failed.";
-
-                document.getElementById(
-                    "payButton"
-                ).disabled = false;
-
-            }
-
-
-            else if(payment.status === "cancelled"){
-
-                clearInterval(interval);
-
-                status.innerHTML =
-                    "⚠️ Payment cancelled.";
-
-                document.getElementById(
-                    "payButton"
-                ).disabled = false;
-
-            }
-
+            data =
+                JSON.parse(
+                    responseText
+                );
 
         }catch(error){
 
-            console.log(
-                "Payment status error:",
-                error
-            );
+            data = {
+                success:false,
+                error:
+                    responseText ||
+                    "Invalid server response."
+            };
 
         }
 
-    },5000);
+
+        /* =================================
+           BACKEND ERROR
+        ================================= */
+
+        if(!response.ok){
+
+            const errorMessage =
+                data.error ||
+                data.message ||
+                "Payment server returned an error.";
+
+            showStatus(
+                "❌ " +
+                errorMessage
+            );
+
+            button.disabled = false;
+
+            return;
+
+        }
+
+
+        /* =================================
+           STK REQUEST ACCEPTED
+        ================================= */
+
+        if(data.success === true){
+
+            showStatus(
+                "📲 STK Push sent successfully.<br><br>" +
+                "Check your phone and enter your M-PESA PIN."
+            );
+
+            /*
+             * We keep the reference we created.
+             * Payment-status checking will be connected
+             * once the backend status endpoint exists.
+             */
+
+            console.log(
+                "ChatPesa reference:",
+                reference
+            );
+
+            return;
+
+        }
+
+
+        /* =================================
+           UNKNOWN RESPONSE
+        ================================= */
+
+        showStatus(
+            "⚠️ Payment server responded, " +
+            "but the payment status could not be confirmed."
+        );
+
+        console.log(
+            "Unexpected payment response:",
+            data
+        );
+
+        button.disabled = false;
+
+
+    }catch(error){
+
+        console.error(
+            "ChatPesa connection error:",
+            error
+        );
+
+
+        showStatus(
+            "❌ Unable to connect to ChatPesa payment server."
+        );
+
+
+        button.disabled = false;
+
+    }
 
 }
 
