@@ -30,32 +30,17 @@ body {
 .payment-container {
     width: 100%;
     max-width: 430px;
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba(255,255,255,.97);
     color: #222;
     border-radius: 28px;
     padding: 30px 24px;
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Top decorative line */
-.payment-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: linear-gradient(90deg, #6d28d9, #9333ea, #c026d3);
+    box-shadow: 0 25px 70px rgba(0,0,0,.45);
 }
 
 .logo {
     text-align: center;
-    margin-top: 5px;
     font-size: 32px;
     font-weight: 900;
-    letter-spacing: -1px;
     color: #5b21b6;
 }
 
@@ -67,13 +52,11 @@ body {
     text-align: center;
     color: #777;
     font-size: 14px;
-    margin-top: 7px;
-    margin-bottom: 25px;
+    margin: 7px 0 25px;
 }
 
-/* Payment summary */
 .payment-box {
-    background: linear-gradient(135deg, #f5edff, #faf5ff);
+    background: linear-gradient(135deg,#f5edff,#faf5ff);
     border: 1px solid #e7d5ff;
     border-radius: 20px;
     padding: 24px 18px;
@@ -86,19 +69,16 @@ body {
     height: 58px;
     margin: 0 auto 12px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #6d28d9, #9333ea);
+    background: linear-gradient(135deg,#6d28d9,#9333ea);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     font-size: 27px;
-    box-shadow: 0 8px 20px rgba(109, 40, 217, 0.3);
 }
 
 .payment-box h2 {
     color: #24113d;
     font-size: 20px;
-    margin-bottom: 8px;
 }
 
 .amount {
@@ -114,7 +94,6 @@ body {
     line-height: 1.5;
 }
 
-/* Label */
 label {
     display: block;
     font-size: 14px;
@@ -123,7 +102,6 @@ label {
     margin-bottom: 8px;
 }
 
-/* Phone input */
 .input-wrapper {
     position: relative;
 }
@@ -132,7 +110,6 @@ label {
     position: absolute;
     left: 15px;
     top: 16px;
-    font-size: 17px;
 }
 
 input {
@@ -142,44 +119,32 @@ input {
     border-radius: 13px;
     font-size: 16px;
     outline: none;
-    transition: 0.2s;
     margin-bottom: 18px;
 }
 
 input:focus {
     border-color: #7c3aed;
-    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.10);
+    box-shadow: 0 0 0 4px rgba(124,58,237,.10);
 }
 
-/* Pay button */
 .pay-btn {
     width: 100%;
     padding: 17px;
     border: none;
     border-radius: 14px;
-    background: linear-gradient(135deg, #5b21b6, #7c3aed, #9333ea);
+    background: linear-gradient(135deg,#5b21b6,#7c3aed,#9333ea);
     color: white;
     font-size: 17px;
     font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(91, 33, 182, 0.30);
-    transition: 0.2s;
 }
 
-.pay-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 14px 30px rgba(91, 33, 182, 0.38);
+.pay-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
 }
 
-.pay-btn:active {
-    transform: scale(0.98);
-}
-
-/* Information */
 .note {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
     background: #faf7ff;
     border: 1px solid #eadcff;
     border-radius: 13px;
@@ -190,11 +155,6 @@ input:focus {
     line-height: 1.5;
 }
 
-.note-icon {
-    font-size: 16px;
-}
-
-/* Security */
 .secure {
     text-align: center;
     margin-top: 20px;
@@ -202,11 +162,6 @@ input:focus {
     font-size: 12px;
 }
 
-.secure strong {
-    color: #6d28d9;
-}
-
-/* Footer */
 .footer {
     text-align: center;
     margin-top: 10px;
@@ -230,9 +185,7 @@ input:focus {
 
     <div class="payment-box">
 
-        <div class="payment-icon">
-            💳
-        </div>
+        <div class="payment-icon">💳</div>
 
         <h2>Registration Fee</h2>
 
@@ -255,40 +208,32 @@ input:focus {
 
         <div class="input-wrapper">
 
-            <div class="input-icon">
-                📱
-            </div>
+            <div class="input-icon">📱</div>
 
             <input
                 type="tel"
                 id="phone"
                 placeholder="07XXXXXXXX"
                 maxlength="10"
+                inputmode="numeric"
                 required
             >
 
         </div>
 
-        <button type="submit" class="pay-btn">
-            Pay KSh 100
+        <button type="submit" class="pay-btn" id="payButton">
+            Continue
         </button>
 
     </form>
 
     <div class="note">
-
-        <div class="note-icon">🔐</div>
-
-        <div>
-            <strong>Secure payment</strong><br>
-            Enter your M-Pesa number and continue.
-            You will receive a payment prompt on your phone.
-        </div>
-
+        🔐 <strong>Secure payment</strong><br>
+        Your payment information is handled securely.
     </div>
 
     <div class="secure">
-        🔒 Your payment is processed securely
+        🔒 ChatPesa secure payment
     </div>
 
     <div class="footer">
@@ -299,29 +244,74 @@ input:focus {
 
 <script>
 
-document.getElementById("paymentForm").addEventListener("submit", function(e) {
+const form = document.getElementById("paymentForm");
+const phoneInput = document.getElementById("phone");
+const payButton = document.getElementById("payButton");
+
+form.addEventListener("submit", async function(e) {
 
     e.preventDefault();
 
-    const phone = document.getElementById("phone").value.trim();
+    const phone = phoneInput.value.trim();
 
     if (!/^07\d{8}$/.test(phone)) {
-        alert("Please enter a valid M-Pesa number, e.g. 0712345678.");
+        alert("Please enter a valid Kenyan M-Pesa number, e.g. 0712345678.");
         return;
     }
 
     /*
-       PAYMENT GATEWAY WILL BE CONNECTED HERE.
+      TEST CONNECTION ONLY
 
-       The backend will:
-       1. Receive the phone number.
-       2. Initiate the KSh 100 payment.
-       3. Send an M-Pesa STK Push.
-       4. Confirm the transaction.
-       5. Activate the user's account.
+      This sends the request to your ChatPesa backend.
+      Your Paylor API key remains on the server.
     */
 
-    alert("Payment gateway connection will be added next.");
+    payButton.disabled = true;
+    payButton.textContent = "Connecting...";
+
+    try {
+
+        const response = await fetch(
+            "https://chatpesa-backend.onrender.com/stk-push",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    phone: phone,
+                    amount: 100,
+                    reference: "CHATPESA-REGISTRATION"
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        console.log("Backend response:", data);
+
+        if (!response.ok) {
+            throw new Error(
+                data.error || "The payment request could not be processed."
+            );
+        }
+
+        alert("The request was received successfully.");
+
+    } catch (error) {
+
+        console.error("Connection error:", error);
+
+        alert(
+            "Unable to connect to the ChatPesa payment server. Please try again later."
+        );
+
+    } finally {
+
+        payButton.disabled = false;
+        payButton.textContent = "Continue";
+
+    }
 
 });
 
@@ -329,4 +319,3 @@ document.getElementById("paymentForm").addEventListener("submit", function(e) {
 
 </body>
 </html>
-``
