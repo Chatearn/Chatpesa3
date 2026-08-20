@@ -1,232 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ChatPesa - Activate Account</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial,sans-serif;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background:linear-gradient(135deg,#090214,#18042e,#26063d);
-    color:white;
-}
-
-.card{
-    width:100%;
-    max-width:420px;
-    padding:30px;
-    border-radius:25px;
-    background:rgba(255,255,255,0.07);
-    border:1px solid rgba(255,255,255,0.12);
-    box-shadow:0 20px 50px rgba(0,0,0,0.4);
-}
-
-h1{
-    font-size:30px;
-    margin-bottom:10px;
-}
-
-.subtitle{
-    color:#ddd;
-    line-height:1.6;
-    margin-bottom:25px;
-}
-
-.price{
-    text-align:center;
-    padding:20px;
-    margin-bottom:25px;
-    border-radius:18px;
-    background:rgba(255,255,255,0.08);
-}
-
-.price p{
-    color:#ddd;
-    margin-bottom:5px;
-}
-
-.price h2{
-    font-size:38px;
-    color:#ff5ab5;
-}
-
-.phone-box{
-    width:100%;
-    padding:15px;
-    margin-bottom:20px;
-    border-radius:12px;
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.12);
-    color:#fff;
-}
-
-.phone-label{
-    font-size:12px;
-    color:#bbb;
-    margin-bottom:6px;
-}
-
-.phone-number{
-    font-size:18px;
-    font-weight:bold;
-}
-
-button{
-    width:100%;
-    padding:16px;
-    border:none;
-    border-radius:40px;
-    background:linear-gradient(90deg,#ff2f92,#ff5ab5);
-    color:white;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-button:disabled{
-    opacity:0.6;
-    cursor:not-allowed;
-}
-
-#status{
-    display:none;
-    margin-top:20px;
-    padding:15px;
-    border-radius:12px;
-    text-align:center;
-    line-height:1.5;
-    background:rgba(255,255,255,0.08);
-}
-
-.back{
-    display:block;
-    text-align:center;
-    margin-top:18px;
-    color:#ddd;
-    text-decoration:none;
-    font-size:13px;
-}
-
-.footer{
-    margin-top:25px;
-    text-align:center;
-    color:#bbb;
-    font-size:13px;
-    line-height:1.8;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="card">
-
-    <h1>ChatPesa</h1>
-
-    <p class="subtitle">
-        Complete your registration securely.
-    </p>
-
-    <div class="price">
-
-        <p>Registration Fee</p>
-
-        <h2>KSh 100</h2>
-
-        <p>One-time registration payment</p>
-
-    </div>
-
-
-    <div class="phone-box">
-
-        <div class="phone-label">
-            M-PESA Phone Number
-        </div>
-
-        <div
-            class="phone-number"
-            id="phoneDisplay"
-        >
-            Loading...
-        </div>
-
-    </div>
-
-
-    <button
-        id="payButton"
-        onclick="payNow()"
-    >
-        Continue
-    </button>
-
-
-    <div id="status"></div>
-
-
-    <a
-        href="register.html"
-        class="back"
-    >
-        ← Back to registration
-    </a>
-
-
-    <div class="footer">
-        🔐 Secure payment<br>
-        Your payment information is handled securely.
-    </div>
-
-</div>
-
-
 <script>
 
-/* =========================================
-   CHATPESA BACKEND
-   DO NOT CHANGE THIS URL
-========================================= */
+const backend = "https://chatpesa-backend.onrender.com";
 
-const backend =
-    "https://chatpesa-backend.onrender.com";
+const phoneDisplay = document.getElementById("phoneDisplay");
+const status = document.getElementById("status");
+const button = document.getElementById("payButton");
 
 
-const phoneDisplay =
-    document.getElementById("phoneDisplay");
-
-const status =
-    document.getElementById("status");
-
-const button =
-    document.getElementById("payButton");
-
-
-/* =========================================
-   SHOW STATUS
-========================================= */
-
-function showStatus(message){
+function showStatus(message) {
 
     status.style.display = "block";
-
     status.innerHTML = message;
 
 }
@@ -238,30 +21,64 @@ function showStatus(message){
 
 let registration = null;
 
-try{
+try {
 
-    registration =
-        JSON.parse(
-            localStorage.getItem(
-                "chatpesaRegistration"
-            )
-        );
+    const saved =
+        localStorage.getItem("chatpesaRegistration");
 
-}catch(error){
+    if (saved) {
+        registration = JSON.parse(saved);
+    }
 
-    registration = null;
+} catch (error) {
+
+    console.error(
+        "Registration data error:",
+        error
+    );
 
 }
 
 
 /* =========================================
-   CHECK REGISTRATION
+   CHECK PHONE
 ========================================= */
 
-if(
+function formatPhone(phone) {
+
+    let number =
+        String(phone)
+            .trim()
+            .replace(/\s+/g, "");
+
+    if (number.startsWith("07")) {
+
+        number =
+            "254" +
+            number.substring(1);
+
+    }
+
+    if (number.startsWith("+254")) {
+
+        number =
+            number.substring(1);
+
+    }
+
+    return number;
+
+}
+
+
+/* =========================================
+   LOAD PHONE
+========================================= */
+
+if (
     !registration ||
     !registration.phone
-){
+) {
 
     phoneDisplay.innerHTML =
         "No phone number found.";
@@ -272,38 +89,14 @@ if(
         "❌ Please go back and complete registration first."
     );
 
-}else{
+} else {
 
-    let phone =
-        registration.phone
-        .trim()
-        .replace(/\s+/g,"");
+    const phone =
+        formatPhone(
+            registration.phone
+        );
 
-
-    /* Convert 07XXXXXXXX */
-
-    if(phone.startsWith("07")){
-
-        phone =
-            "254" +
-            phone.substring(1);
-
-    }
-
-
-    /* Convert +254XXXXXXXXX */
-
-    if(phone.startsWith("+254")){
-
-        phone =
-            phone.substring(1);
-
-    }
-
-
-    /* Validate */
-
-    if(!/^2547\d{8}$/.test(phone)){
+    if (!/^2547\d{8}$/.test(phone)) {
 
         phoneDisplay.innerHTML =
             "Invalid phone number.";
@@ -311,10 +104,10 @@ if(
         button.disabled = true;
 
         showStatus(
-            "❌ The phone number entered during registration is invalid."
+            "❌ Invalid Kenyan M-PESA number."
         );
 
-    }else{
+    } else {
 
         phoneDisplay.innerHTML =
             phone;
@@ -325,15 +118,19 @@ if(
 
 
 /* =========================================
-   START PAYMENT
+   PAYMENT
 ========================================= */
 
-async function payNow(){
+async function payNow() {
 
-    if(
+    console.log(
+        "CHATPESA: Continue button pressed"
+    );
+
+    if (
         !registration ||
         !registration.phone
-    ){
+    ) {
 
         showStatus(
             "❌ Please complete registration first."
@@ -344,34 +141,13 @@ async function payNow(){
     }
 
 
-    let phone =
-        registration.phone
-        .trim()
-        .replace(/\s+/g,"");
+    const phone =
+        formatPhone(
+            registration.phone
+        );
 
 
-    /* Convert Kenyan format */
-
-    if(phone.startsWith("07")){
-
-        phone =
-            "254" +
-            phone.substring(1);
-
-    }
-
-
-    if(phone.startsWith("+254")){
-
-        phone =
-            phone.substring(1);
-
-    }
-
-
-    /* Validate */
-
-    if(!/^2547\d{8}$/.test(phone)){
+    if (!/^2547\d{8}$/.test(phone)) {
 
         showStatus(
             "❌ Invalid Kenyan M-PESA number."
@@ -394,83 +170,95 @@ async function payNow(){
         Date.now();
 
 
-    try{
+    const requestData = {
+
+        phone: phone,
+
+        amount: 100,
+
+        reference: reference
+
+    };
+
+
+    console.log(
+        "CHATPESA: Sending request",
+        requestData
+    );
+
+
+    try {
 
         const response =
             await fetch(
                 backend + "/stk-push",
                 {
-                    method:"POST",
 
-                    headers:{
+                    method: "POST",
+
+                    mode: "cors",
+
+                    headers: {
+
                         "Content-Type":
+                            "application/json",
+
+                        "Accept":
                             "application/json"
+
                     },
 
-                    body:JSON.stringify({
+                    body:
+                        JSON.stringify(
+                            requestData
+                        )
 
-                        phone:phone,
-
-                        amount:100,
-
-                        reference:reference
-
-                    })
                 }
             );
 
 
-        const responseText =
+        console.log(
+            "CHATPESA: HTTP status",
+            response.status
+        );
+
+
+        const text =
             await response.text();
 
 
         console.log(
-            "Backend HTTP status:",
-            response.status
-        );
-
-        console.log(
-            "Backend response:",
-            responseText
+            "CHATPESA: Server response",
+            text
         );
 
 
         let data;
 
-
-        try{
+        try {
 
             data =
-                JSON.parse(
-                    responseText
-                );
+                JSON.parse(text);
 
-        }catch(error){
+        } catch {
 
             data = {
-                success:false,
-                error:
-                    responseText ||
-                    "Invalid server response."
+                success: false,
+                error: text
             };
 
         }
 
 
-        /* =================================
-           BACKEND ERROR
-        ================================= */
-
-        if(!response.ok){
-
-            const errorMessage =
-                data.error ||
-                data.message ||
-                "Payment server returned an error.";
+        if (!response.ok) {
 
             showStatus(
                 "❌ " +
-                errorMessage
+                (
+                    data.error ||
+                    data.message ||
+                    "Payment request failed."
+                )
             );
 
             button.disabled = false;
@@ -480,26 +268,16 @@ async function payNow(){
         }
 
 
-        /* =================================
-           STK REQUEST ACCEPTED
-        ================================= */
-
-        if(data.success === true){
+        if (data.success === true) {
 
             showStatus(
                 "📲 STK Push sent successfully.<br><br>" +
                 "Check your phone and enter your M-PESA PIN."
             );
 
-            /*
-             * We keep the reference we created.
-             * Payment-status checking will be connected
-             * once the backend status endpoint exists.
-             */
-
             console.log(
-                "ChatPesa reference:",
-                reference
+                "CHATPESA: STK accepted",
+                data
             );
 
             return;
@@ -507,39 +285,36 @@ async function payNow(){
         }
 
 
-        /* =================================
-           UNKNOWN RESPONSE
-        ================================= */
-
         showStatus(
-            "⚠️ Payment server responded, " +
-            "but the payment status could not be confirmed."
+            "⚠️ Server responded, but payment could not be confirmed."
         );
 
         console.log(
-            "Unexpected payment response:",
+            "CHATPESA: Unexpected response",
             data
         );
 
         button.disabled = false;
 
 
-    }catch(error){
+    } catch (error) {
 
-    console.error("ChatPesa connection error:", error);
+        console.error(
+            "CHATPESA CONNECTION ERROR:",
+            error
+        );
 
-    showStatus(
-        "❌ Connection error: " + error.message
-    );
 
-    button.disabled = false;
-}
+        showStatus(
+            "❌ Connection error:<br>" +
+            error.message
+        );
+
+
+        button.disabled = false;
 
     }
 
 }
 
 </script>
-
-</body>
-</html>
