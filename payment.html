@@ -108,6 +108,18 @@ button:disabled {
     line-height: 1.5;
 }
 
+.success {
+    background: #dcfce7 !important;
+    color: #166534;
+    font-weight: bold;
+    font-size: 17px !important;
+}
+
+.failed {
+    background: #fee2e2 !important;
+    color: #991b1b;
+}
+
 .security {
     margin-top: 20px;
     color: #777;
@@ -140,20 +152,14 @@ button:disabled {
             M-PESA Phone Number
         </div>
 
-        <div
-            class="phone"
-            id="phoneDisplay">
+        <div class="phone" id="phoneDisplay">
             Loading...
         </div>
 
     </div>
 
-    <button
-        id="payButton"
-        onclick="payNow()">
-
+    <button id="payButton" onclick="payNow()">
         Pay KSh 100 with M-PESA
-
     </button>
 
     <div id="status"></div>
@@ -180,9 +186,12 @@ const button =
     document.getElementById("payButton");
 
 
-function showStatus(message) {
+function showStatus(message, type = "") {
 
     status.style.display = "block";
+
+    status.className = type;
+
     status.innerHTML = message;
 
 }
@@ -264,7 +273,8 @@ if (
     button.disabled = true;
 
     showStatus(
-        "❌ Please go back and complete registration first."
+        "❌ Please go back and complete registration first.",
+        "failed"
     );
 
 } else {
@@ -282,7 +292,8 @@ if (
         button.disabled = true;
 
         showStatus(
-            "❌ Invalid Kenyan M-PESA number."
+            "❌ Invalid Kenyan M-PESA number.",
+            "failed"
         );
 
     } else {
@@ -291,6 +302,148 @@ if (
             phone;
 
     }
+
+}
+
+
+/* =========================================
+   CHECK PAYMENT STATUS
+========================================= */
+
+async function checkPaymentStatus(reference) {
+
+    console.log(
+        "Checking payment status:",
+        reference
+    );
+
+    try {
+
+        const response =
+            await fetch(
+                backend +
+                "/payment-status/" +
+                encodeURIComponent(reference)
+            );
+
+        const data =
+            await response.json();
+
+        console.log(
+            "PAYMENT STATUS:",
+            data
+        );
+
+
+        /* ================================
+           PAYMENT SUCCESS
+        ================================= */
+
+        if (
+            data.status === "SUCCESS"
+        ) {
+
+            showStatus(
+                "✅ You have successfully registered!",
+                "success"
+            );
+
+            button.innerText =
+                "Registration Successful";
+
+            button.disabled = true;
+
+            return true;
+        }
+
+
+        /* ================================
+           PAYMENT FAILED
+        ================================= */
+
+        if (
+            data.status === "FAILED"
+        ) {
+
+            showStatus(
+                "❌ Payment was not completed. Please try again.",
+                "failed"
+            );
+
+            button.disabled = false;
+
+            button.innerText =
+                "Pay KSh 100 with M-PESA";
+
+            return true;
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "STATUS CHECK ERROR:",
+            error
+        );
+
+    }
+
+    return false;
+}
+
+
+/* =========================================
+   START PAYMENT MONITORING
+========================================= */
+
+async function monitorPayment(reference) {
+
+    let attempts = 0;
+
+    const maxAttempts = 30;
+
+    while (attempts < maxAttempts) {
+
+        attempts++;
+
+        console.log(
+            "Payment check:",
+            attempts,
+            "/",
+            maxAttempts
+        );
+
+        const finished =
+            await checkPaymentStatus(
+                reference
+            );
+
+        if (finished) {
+
+            return;
+
+        }
+
+        await new Promise(
+            resolve =>
+                setTimeout(
+                    resolve,
+                    3000
+                )
+        );
+
+    }
+
+
+    showStatus(
+        "⚠️ Payment confirmation is taking longer than expected. If you completed the M-PESA payment, please wait a moment and refresh.",
+        ""
+    );
+
+    button.disabled = false;
+
+    button.innerText =
+        "Check Payment Again";
 
 }
 
@@ -307,7 +460,8 @@ async function payNow() {
     ) {
 
         showStatus(
-            "❌ Please complete registration first."
+            "❌ Please complete registration first.",
+            "failed"
         );
 
         return;
@@ -322,7 +476,8 @@ async function payNow() {
     if (!/^2547\d{8}$/.test(phone)) {
 
         showStatus(
-            "❌ Invalid Kenyan M-PESA number."
+            "❌ Invalid Kenyan M-PESA number.",
+            "failed"
         );
 
         return;
@@ -338,9 +493,11 @@ async function payNow() {
         "⏳ Connecting to ChatPesa payment server..."
     );
 
+
     const reference =
         "CHATPESA-" +
         Date.now();
+
 
     const requestData = {
 
@@ -351,6 +508,7 @@ async function payNow() {
         reference: reference
 
     };
+
 
     console.log(
         "CHATPESA REQUEST:",
@@ -432,7 +590,8 @@ async function payNow() {
                     data.error ||
                     data.message ||
                     "Payment request failed."
-                )
+                ),
+                "failed"
             );
 
             button.disabled = false;
@@ -449,36 +608,23 @@ async function payNow() {
 
             showStatus(
                 "📲 <strong>STK Push sent!</strong><br><br>" +
-                "Check your phone and enter your M-PESA PIN."
+                "Check your phone and enter your M-PESA PIN.<br><br>" +
+                "⏳ Waiting for payment confirmation..."
             );
 
             button.innerText =
-                "STK Push Sent";
-
-            return;
-
-        }
+                "Waiting for Payment...";
 
 
-        /*
-        Some backends return a successful
-        response using different fields.
-        */
+            /*
+             * IMPORTANT:
+             * Start checking the backend
+             * for the payment result.
+             */
 
-        if (
-            data.ResponseCode === "0" ||
-            data.response_code === "0" ||
-            data.ResponseCode === 0 ||
-            data.response_code === 0
-        ) {
-
-            showStatus(
-                "📲 <strong>STK Push sent!</strong><br><br>" +
-                "Check your phone and enter your M-PESA PIN."
+            monitorPayment(
+                reference
             );
-
-            button.innerText =
-                "STK Push Sent";
 
             return;
 
@@ -487,11 +633,6 @@ async function payNow() {
 
         showStatus(
             "⚠️ Server responded, but the payment could not be confirmed."
-        );
-
-        console.log(
-            "UNEXPECTED RESPONSE:",
-            data
         );
 
         button.disabled = false;
@@ -509,7 +650,8 @@ async function payNow() {
 
         showStatus(
             "❌ Connection error:<br>" +
-            error.message
+            error.message,
+            "failed"
         );
 
         button.disabled = false;
