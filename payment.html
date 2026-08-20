@@ -526,18 +526,14 @@ async function payNow(){
 
     }catch(error){
 
-        console.error(
-            "ChatPesa connection error:",
-            error
-        );
+    console.error("ChatPesa connection error:", error);
 
+    showStatus(
+        "❌ Connection error: " + error.message
+    );
 
-        showStatus(
-            "❌ Unable to connect to ChatPesa payment server."
-        );
-
-
-        button.disabled = false;
+    button.disabled = false;
+}
 
     }
 
