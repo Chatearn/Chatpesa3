@@ -1,376 +1,450 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Payment | ChatPesa</title>
+<title>ChatPesa - Activate Account</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    min-height: 100vh;
-    background:
-        radial-gradient(circle at top left, #5b21b6 0%, transparent 35%),
-        radial-gradient(circle at bottom right, #7e22ce 0%, transparent 30%),
-        #16052b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    color: #fff;
+body{
+    font-family:Arial, sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:linear-gradient(135deg,#090214,#18042e,#26063d);
+    color:white;
 }
 
-.payment-container {
-    width: 100%;
-    max-width: 430px;
-    background: rgba(255,255,255,.97);
-    color: #222;
-    border-radius: 28px;
-    padding: 30px 24px;
-    box-shadow: 0 25px 70px rgba(0,0,0,.45);
+.card{
+    width:100%;
+    max-width:420px;
+    padding:30px;
+    border-radius:25px;
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.12);
+    box-shadow:0 20px 50px rgba(0,0,0,0.4);
 }
 
-.logo {
-    text-align: center;
-    font-size: 32px;
-    font-weight: 900;
-    color: #5b21b6;
+h1{
+    font-size:30px;
+    margin-bottom:10px;
 }
 
-.logo span {
-    color: #9333ea;
+.subtitle{
+    color:#ddd;
+    line-height:1.6;
+    margin-bottom:25px;
 }
 
-.subtitle {
-    text-align: center;
-    color: #777;
-    font-size: 14px;
-    margin: 7px 0 25px;
+.price{
+    text-align:center;
+    padding:20px;
+    margin-bottom:25px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.08);
 }
 
-.payment-box {
-    background: linear-gradient(135deg,#f5edff,#faf5ff);
-    border: 1px solid #e7d5ff;
-    border-radius: 20px;
-    padding: 24px 18px;
-    text-align: center;
-    margin-bottom: 25px;
+.price p{
+    color:#ddd;
+    margin-bottom:5px;
 }
 
-.payment-icon {
-    width: 58px;
-    height: 58px;
-    margin: 0 auto 12px;
-    border-radius: 50%;
-    background: linear-gradient(135deg,#6d28d9,#9333ea);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 27px;
+.price h2{
+    font-size:38px;
+    color:#ff5ab5;
 }
 
-.payment-box h2 {
-    color: #24113d;
-    font-size: 20px;
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
 }
 
-.amount {
-    font-size: 42px;
-    font-weight: 900;
-    color: #6d28d9;
-    margin: 7px 0;
+input{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    margin-bottom:18px;
+    outline:none;
 }
 
-.payment-box p {
-    color: #666;
-    font-size: 13px;
-    line-height: 1.5;
+button{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:40px;
+    background:linear-gradient(90deg,#ff2f92,#ff5ab5);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-label {
-    display: block;
-    font-size: 14px;
-    font-weight: 700;
-    color: #292033;
-    margin-bottom: 8px;
+button:disabled{
+    opacity:0.6;
 }
 
-.input-wrapper {
-    position: relative;
+#status{
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    border-radius:12px;
+    text-align:center;
+    line-height:1.5;
+    background:rgba(255,255,255,0.08);
 }
 
-.input-icon {
-    position: absolute;
-    left: 15px;
-    top: 16px;
+.footer{
+    margin-top:25px;
+    text-align:center;
+    color:#bbb;
+    font-size:13px;
+    line-height:1.8;
 }
 
-input {
-    width: 100%;
-    padding: 15px 15px 15px 45px;
-    border: 1px solid #ddd;
-    border-radius: 13px;
-    font-size: 16px;
-    outline: none;
-    margin-bottom: 18px;
-}
-
-input:focus {
-    border-color: #7c3aed;
-    box-shadow: 0 0 0 4px rgba(124,58,237,.10);
-}
-
-.pay-btn {
-    width: 100%;
-    padding: 17px;
-    border: none;
-    border-radius: 14px;
-    background: linear-gradient(135deg,#5b21b6,#7c3aed,#9333ea);
-    color: white;
-    font-size: 17px;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.pay-btn:disabled {
-    opacity: .6;
-    cursor: not-allowed;
-}
-
-.status {
-    display: none;
-    margin-top: 18px;
-    padding: 14px;
-    border-radius: 13px;
-    background: #faf7ff;
-    border: 1px solid #eadcff;
-    color: #5b5265;
-    font-size: 13px;
-    line-height: 1.5;
-    text-align: center;
-}
-
-.note {
-    background: #faf7ff;
-    border: 1px solid #eadcff;
-    border-radius: 13px;
-    padding: 13px;
-    margin-top: 18px;
-    color: #5b5265;
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-.secure {
-    text-align: center;
-    margin-top: 20px;
-    color: #777;
-    font-size: 12px;
-}
-
-.footer {
-    text-align: center;
-    margin-top: 10px;
-    color: #aaa;
-    font-size: 11px;
-}
 </style>
+
 </head>
 
 <body>
 
-<div class="payment-container">
+<div class="card">
 
-    <div class="logo">
-        Chat<span>Pesa</span>
+    <h1>ChatPesa</h1>
+
+    <p class="subtitle">
+        Complete your registration securely.
+    </p>
+
+    <div class="price">
+        <p>Registration Fee</p>
+        <h2>KSh 100</h2>
+        <p>One-time registration payment</p>
     </div>
 
-    <div class="subtitle">
-        Complete your registration securely
-    </div>
+    <label for="phone">
+        M-PESA Phone Number
+    </label>
 
-    <div class="payment-box">
+    <input
+        type="tel"
+        id="phone"
+        placeholder="0712345678"
+        maxlength="13"
+    >
 
-        <div class="payment-icon">💳</div>
+    <button id="payButton" onclick="payNow()">
+        Continue
+    </button>
 
-        <h2>Registration Fee</h2>
-
-        <div class="amount">
-            KSh 100
-        </div>
-
-        <p>
-            One-time registration payment to activate
-            your ChatPesa account.
-        </p>
-
-    </div>
-
-    <form id="paymentForm">
-
-        <label for="phone">
-            M-Pesa Phone Number
-        </label>
-
-        <div class="input-wrapper">
-
-            <div class="input-icon">📱</div>
-
-            <input
-                type="tel"
-                id="phone"
-                placeholder="07XXXXXXXX"
-                maxlength="10"
-                inputmode="numeric"
-                required
-            >
-
-        </div>
-
-        <button type="submit" class="pay-btn" id="payButton">
-            Continue
-        </button>
-
-    </form>
-
-    <div id="status" class="status"></div>
-
-    <div class="note">
-        🔐 <strong>Secure payment</strong><br>
-        Your payment information is handled securely.
-    </div>
-
-    <div class="secure">
-        🔒 ChatPesa secure payment
-    </div>
+    <div id="status"></div>
 
     <div class="footer">
-        © 2026 ChatPesa. All rights reserved.
+        🔐 Secure payment<br>
+        Your payment information is handled securely.
     </div>
 
 </div>
 
+
 <script>
 
-const BACKEND_URL =
-    "https://chatpesa-backend.onrender.com";
+/*
+==================================================
+CHATPESA BACKEND URL
+DO NOT CHANGE THIS
+==================================================
+*/
 
-const form =
-    document.getElementById("paymentForm");
-
-const phoneInput =
-    document.getElementById("phone");
-
-const payButton =
-    document.getElementById("payButton");
-
-const statusBox =
-    document.getElementById("status");
+const backend = "https://chatpesa-backend.onrender.com";
 
 
-form.addEventListener("submit", async function(e) {
+async function payNow(){
 
-    e.preventDefault();
+    const phoneInput = document.getElementById("phone");
+    const status = document.getElementById("status");
+    const button = document.getElementById("payButton");
 
-    const phone =
-        phoneInput.value.trim();
+    let phone = phoneInput.value.trim();
 
-    if (!/^07\d{8}$/.test(phone)) {
+    if(phone === ""){
 
-        statusBox.style.display = "block";
-
-        statusBox.innerHTML =
-            "❌ Please enter a valid Kenyan M-Pesa number.";
+        status.style.display = "block";
+        status.innerHTML =
+            "❌ Please enter your M-PESA phone number.";
 
         return;
     }
 
-    payButton.disabled = true;
 
-    payButton.textContent =
-        "Sending STK Push...";
+    /*
+    Convert 07XXXXXXXX to 2547XXXXXXXX
+    */
 
-    statusBox.style.display = "block";
+    if(phone.startsWith("07")){
+        phone = "254" + phone.substring(1);
+    }
 
-    statusBox.innerHTML =
+    if(phone.startsWith("+254")){
+        phone = phone.substring(1);
+    }
+
+
+    if(!/^2547\d{8}$/.test(phone)){
+
+        status.style.display = "block";
+        status.innerHTML =
+            "❌ Please enter a valid Kenyan M-PESA number.";
+
+        return;
+    }
+
+
+    status.style.display = "block";
+
+    status.innerHTML =
         "⏳ Connecting to ChatPesa payment server...";
 
-    const reference =
-        "CHATPESA-" + Date.now();
+    button.disabled = true;
 
-    try {
+
+    try{
+
+        /*
+        IMPORTANT:
+        ChatPesa uses /stk-push
+        */
 
         const response = await fetch(
-            BACKEND_URL + "/stk-push",
+            backend + "/stk-push",
             {
-                method: "POST",
+                method:"POST",
 
-                headers: {
-                    "Content-Type": "application/json"
+                headers:{
+                    "Content-Type":"application/json"
                 },
 
-                body: JSON.stringify({
+                body:JSON.stringify({
 
-                    phone: phone,
+                    phone:phone,
 
-                    amount: 100,
+                    amount:100,
 
-                    reference: reference
+                    reference:
+                        "CHATPESA-" + Date.now()
 
                 })
             }
         );
 
-        const data =
-            await response.json();
+
+        /*
+        Check whether backend actually responded
+        */
+
+        if(!response.ok){
+
+            const text = await response.text();
+
+            console.log(
+                "Backend error:",
+                response.status,
+                text
+            );
+
+            throw new Error(
+                "Server returned " + response.status
+            );
+        }
+
+
+        const data = await response.json();
 
         console.log(
-            "ChatPesa backend response:",
+            "ChatPesa response:",
             data
         );
 
-        if (!response.ok || !data.success) {
 
-            statusBox.innerHTML =
-                "❌ STK Push could not be sent.<br>" +
-                (
-                    data.error ||
-                    "Please try again."
-                );
+        if(!data.success){
+
+            status.innerHTML =
+                "❌ " +
+                (data.message ||
+                "Unable to send STK Push.");
+
+            button.disabled = false;
 
             return;
         }
 
-        statusBox.innerHTML =
-            "📲 STK Push sent successfully!<br>" +
-            "Check your M-Pesa phone and enter your PIN.";
 
-    } catch (error) {
+        /*
+        STK PUSH SUCCESS
+        */
 
-        console.error(
+        status.innerHTML =
+            "📲 STK Push sent successfully.<br><br>" +
+            "Please check your phone and enter your M-PESA PIN.";
+
+
+        /*
+        If backend returns a reference,
+        begin checking payment status.
+        */
+
+        if(data.reference){
+
+            pollPayment(data.reference);
+
+        }
+
+
+    }catch(error){
+
+        console.log(
             "ChatPesa connection error:",
             error
         );
 
-        statusBox.innerHTML =
+        status.innerHTML =
             "❌ Unable to connect to ChatPesa payment server.";
 
-    } finally {
-
-        payButton.disabled = false;
-
-        payButton.textContent =
-            "Continue";
+        button.disabled = false;
     }
 
-});
+}
+
+
+/*
+==================================================
+PAYMENT STATUS CHECK
+==================================================
+*/
+
+function pollPayment(reference){
+
+    const status =
+        document.getElementById("status");
+
+
+    const interval = setInterval(async()=>{
+
+        try{
+
+            const response = await fetch(
+
+                backend +
+                "/payment-status/" +
+                encodeURIComponent(reference)
+
+            );
+
+
+            if(!response.ok){
+                return;
+            }
+
+
+            const result =
+                await response.json();
+
+
+            console.log(
+                "Payment status:",
+                result
+            );
+
+
+            if(!result.success){
+                return;
+            }
+
+
+            const payment =
+                result.payment;
+
+
+            if(!payment){
+                return;
+            }
+
+
+            if(payment.status === "completed"){
+
+                clearInterval(interval);
+
+                status.innerHTML =
+                    "✅ Payment successful!";
+
+                /*
+                Change this later to your
+                actual ChatPesa destination.
+                */
+
+                setTimeout(()=>{
+
+                    window.location.href =
+                        "dashboard.html";
+
+                },2000);
+
+            }
+
+
+            else if(payment.status === "failed"){
+
+                clearInterval(interval);
+
+                status.innerHTML =
+                    "❌ Payment failed.";
+
+                document.getElementById(
+                    "payButton"
+                ).disabled = false;
+
+            }
+
+
+            else if(payment.status === "cancelled"){
+
+                clearInterval(interval);
+
+                status.innerHTML =
+                    "⚠️ Payment cancelled.";
+
+                document.getElementById(
+                    "payButton"
+                ).disabled = false;
+
+            }
+
+
+        }catch(error){
+
+            console.log(
+                "Payment status error:",
+                error
+            );
+
+        }
+
+    },5000);
+
+}
 
 </script>
 
