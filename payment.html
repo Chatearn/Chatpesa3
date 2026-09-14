@@ -145,7 +145,7 @@ button:disabled {
     <div class="payment-box">
 
         <div class="amount">
-            KSh 100
+            KSh 1
         </div>
 
         <div class="phone-label">
@@ -159,7 +159,7 @@ button:disabled {
     </div>
 
     <button id="payButton" onclick="payNow()">
-        Pay KSh 100 with M-PESA
+        Pay KSh 1 with M-PESA
     </button>
 
     <div id="status"></div>
@@ -503,7 +503,7 @@ async function payNow() {
 
         phone: phone,
 
-        amount: 100,
+        amount: 1,
 
         reference: reference
 
@@ -667,3 +667,10 @@ async function payNow() {
 
 </body>
 </html>
+
+Changed only these payment values:
+
+- "KSh 100" → "KSh 1"
+- "amount: 100" → "amount: 1"
+
+Everything else remains unchanged.
