@@ -1,1 +1,393 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chat | ChatPesa</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    background: #faf9ff;
+    color: #21152f;
+}
+
+.chat-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+
+.chat-header {
+    background: linear-gradient(135deg, #3b0764, #7c3aed);
+    color: white;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(59, 7, 100, 0.20);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #e9d5ff;
+}
+
+.country-info {
+    text-align: right;
+}
+
+.country-name {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.status {
+    font-size: 12px;
+    opacity: 0.85;
+    margin-top: 3px;
+}
+
+/* CHAT AREA */
+
+.chat-area {
+    flex: 1;
+    padding: 25px 18px;
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+}
+
+.welcome {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(59, 7, 100, 0.07);
+    border: 1px solid rgba(80, 35, 120, 0.08);
+}
+
+.welcome-icon {
+    font-size: 50px;
+    margin-bottom: 12px;
+}
+
+.welcome h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #3b0764;
+}
+
+.welcome p {
+    color: #756c80;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* MESSAGE AREA */
+
+.messages {
+    margin-top: 20px;
+    min-height: 280px;
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    border: 1px solid rgba(80, 35, 120, 0.08);
+    box-shadow: 0 8px 25px rgba(59, 7, 100, 0.05);
+}
+
+.empty-chat {
+    height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #756c80;
+    font-size: 14px;
+}
+
+/* INPUT */
+
+.message-box {
+    position: sticky;
+    bottom: 0;
+    background: #faf9ff;
+    padding: 15px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.message-input {
+    flex: 1;
+    border: 1px solid #ddd3eb;
+    background: white;
+    border-radius: 13px;
+    padding: 15px;
+    font-size: 15px;
+    outline: none;
+}
+
+.message-input:focus {
+    border-color: #7c3aed;
+}
+
+.send-btn {
+    border: none;
+    border-radius: 13px;
+    padding: 0 22px;
+    background: linear-gradient(135deg, #3b0764, #7c3aed);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* NOTICE */
+
+.notice {
+    margin-top: 15px;
+    padding: 13px;
+    border-radius: 12px;
+    background: #f5f3ff;
+    border: 1px solid #ddd6fe;
+    color: #5b21b6;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .chat-header {
+        padding: 16px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .chat-area {
+        padding: 18px 12px;
+    }
+
+    .welcome {
+        padding: 20px;
+    }
+
+    .message-box {
+        padding: 12px 0;
+    }
+
+    .send-btn {
+        padding: 0 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <header class="chat-header">
+
+        <div class="logo">
+            Chat<span>Pesa</span>
+        </div>
+
+        <div class="country-info">
+
+            <div
+                class="country-name"
+                id="countryName">
+                Chat
+            </div>
+
+            <div class="status">
+                Ready
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="chat-area">
+
+        <section class="welcome">
+
+            <div class="welcome-icon">
+                💬
+            </div>
+
+            <h1>
+                Welcome to ChatPesa
+            </h1>
+
+            <p>
+                Your country has been unlocked.
+                Your chat space is ready.
+            </p>
+
+        </section>
+
+
+        <section class="messages">
+
+            <div class="empty-chat">
+
+                <div>
+
+                    <div style="font-size:35px; margin-bottom:10px;">
+                        👋
+                    </div>
+
+                    <strong>
+                        Your conversation will appear here.
+                    </strong>
+
+                    <br>
+
+                    <span>
+                        Chat matching will be added next.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="notice" id="backendStatus">
+            Connecting to ChatPesa...
+        </div>
+
+
+        <div class="message-box">
+
+            <input
+                type="text"
+                class="message-input"
+                id="messageInput"
+                placeholder="Type a message..."
+                disabled
+            >
+
+            <button
+                class="send-btn"
+                id="sendButton"
+                disabled>
+                Send
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+const BACKEND_URL =
+    "https://chatpesa-backend.onrender.com";
+
+
+/*
+    Get the country passed from countries.html
+*/
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const country =
+    params.get("country");
+
+
+if (country) {
+
+    document.getElementById(
+        "countryName"
+    ).innerText =
+        country + " Chat";
+
+}
+
+
+/*
+    Call ChatPesa backend
+*/
+
+async function connectBackend() {
+
+    const status =
+        document.getElementById(
+            "backendStatus"
+        );
+
+    try {
+
+        const response =
+            await fetch(
+                BACKEND_URL + "/"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (response.ok) {
+
+            status.innerText =
+                "✓ ChatPesa connection is ready.";
+
+        } else {
+
+            status.innerText =
+                "Backend connection unavailable.";
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        status.innerText =
+            "Backend is temporarily unavailable.";
+
+    }
+
+}
+
+
+connectBackend();
+
+</script>
+
+</body>
+</html>
