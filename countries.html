@@ -104,15 +104,18 @@ body {
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .unlock-btn:hover {
-    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(59, 7, 100, 0.20);
 }
 
 .unlock-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    transform: none;
 }
 
 .status {
@@ -123,6 +126,7 @@ body {
     text-align: center;
     display: none;
     font-size: 14px;
+    line-height: 1.5;
 }
 
 .status.info {
@@ -168,11 +172,13 @@ body {
             Chat<span>Pesa</span>
         </div>
 
-        <h1>Choose a Country</h1>
+        <h1>
+            Choose a Country
+        </h1>
 
         <p>
-            Your registration is complete.
-            Choose the country you want to unlock and start connecting.
+            Select the country you want to unlock.
+            A small M-PESA payment is required before chatting.
         </p>
 
     </div>
@@ -181,6 +187,7 @@ body {
     <div class="countries">
 
         <!-- CHINA -->
+
         <div class="country-card">
 
             <div class="flag">🇨🇳</div>
@@ -195,8 +202,7 @@ body {
 
             <button
                 class="unlock-btn"
-                onclick="unlockCountry('China', 2, this)"
-            >
+                onclick="unlockCountry('China', 2, this)">
                 Unlock China
             </button>
 
@@ -204,6 +210,7 @@ body {
 
 
         <!-- CANADA -->
+
         <div class="country-card">
 
             <div class="flag">🇨🇦</div>
@@ -218,8 +225,7 @@ body {
 
             <button
                 class="unlock-btn"
-                onclick="unlockCountry('Canada', 3, this)"
-            >
+                onclick="unlockCountry('Canada', 3, this)">
                 Unlock Canada
             </button>
 
@@ -227,6 +233,7 @@ body {
 
 
         <!-- AUSTRALIA -->
+
         <div class="country-card">
 
             <div class="flag">🇦🇺</div>
@@ -241,8 +248,7 @@ body {
 
             <button
                 class="unlock-btn"
-                onclick="unlockCountry('Australia', 4, this)"
-            >
+                onclick="unlockCountry('Australia', 4, this)">
                 Unlock Australia
             </button>
 
@@ -250,6 +256,7 @@ body {
 
 
         <!-- UK -->
+
         <div class="country-card">
 
             <div class="flag">🇬🇧</div>
@@ -264,8 +271,7 @@ body {
 
             <button
                 class="unlock-btn"
-                onclick="unlockCountry('UK', 5, this)"
-            >
+                onclick="unlockCountry('UK', 5, this)">
                 Unlock UK
             </button>
 
@@ -273,6 +279,7 @@ body {
 
 
         <!-- USA -->
+
         <div class="country-card">
 
             <div class="flag">🇺🇸</div>
@@ -287,8 +294,7 @@ body {
 
             <button
                 class="unlock-btn"
-                onclick="unlockCountry('USA', 6, this)"
-            >
+                onclick="unlockCountry('USA', 6, this)">
                 Unlock USA
             </button>
 
@@ -296,6 +302,7 @@ body {
 
 
         <!-- OTHERS -->
+
         <div class="country-card">
 
             <div class="flag">🌍</div>
@@ -310,8 +317,7 @@ body {
 
             <button
                 class="unlock-btn"
-                onclick="unlockCountry('Others', 1, this)"
-            >
+                onclick="unlockCountry('Others', 1, this)">
                 Unlock Others
             </button>
 
@@ -343,14 +349,35 @@ function showStatus(message, type) {
 }
 
 
-async function unlockCountry(country, amount, button) {
+async function unlockCountry(
+    country,
+    amount,
+    button
+) {
 
-    const phone =
-        prompt(
-            "Enter your M-PESA phone number:"
-        );
+    const phone = prompt(
+        "Enter your M-PESA phone number:"
+    );
+
 
     if (!phone) {
+        return;
+    }
+
+
+    const cleanPhone =
+        phone.replace(/\s+/g, "");
+
+
+    if (
+        !/^2547\d{8}$/.test(cleanPhone)
+    ) {
+
+        showStatus(
+            "Please enter a valid M-PESA number in the format 2547XXXXXXXX.",
+            "error"
+        );
+
         return;
     }
 
@@ -358,13 +385,15 @@ async function unlockCountry(country, amount, button) {
     button.disabled = true;
 
     button.innerText =
-        "Processing...";
+        "Sending STK Push...";
 
 
     showStatus(
-        "Sending M-PESA payment request for " +
+        "Sending KSh " +
+        amount +
+        " M-PESA payment request for " +
         country +
-        ". Please wait...",
+        ".",
         "info"
     );
 
@@ -380,7 +409,8 @@ async function unlockCountry(country, amount, button) {
 
         const response =
             await fetch(
-                BACKEND_URL + "/stk-push",
+                BACKEND_URL +
+                "/stk-push",
                 {
                     method: "POST",
 
@@ -391,7 +421,7 @@ async function unlockCountry(country, amount, button) {
 
                     body: JSON.stringify({
 
-                        phone: phone,
+                        phone: cleanPhone,
 
                         amount: amount,
 
@@ -414,14 +444,14 @@ async function unlockCountry(country, amount, button) {
 
             throw new Error(
                 data.message ||
-                "Payment request failed."
+                "STK Push request failed."
             );
 
         }
 
 
         showStatus(
-            "📱 Check your phone and enter your M-PESA PIN to unlock " +
+            "📱 STK Push sent. Check your phone and enter your M-PESA PIN to unlock " +
             country +
             ".",
             "info"
@@ -446,7 +476,7 @@ async function unlockCountry(country, amount, button) {
 
         showStatus(
             error.message ||
-            "Something went wrong. Please try again.",
+            "Unable to send payment request.",
             "error"
         );
 
@@ -456,7 +486,6 @@ async function unlockCountry(country, amount, button) {
         button.innerText =
             "Unlock " + country;
     }
-
 }
 
 
@@ -502,9 +531,9 @@ function checkPaymentStatus(
 
 
                     showStatus(
-                        "✅ " +
+                        "✅ Payment successful! " +
                         country +
-                        " has been successfully unlocked!",
+                        " has been unlocked.",
                         "success"
                     );
 
@@ -540,4 +569,52 @@ function checkPaymentStatus(
 
 
                     showStatus(
-                        "❌ Payment
+                        "❌ Payment failed. Please try again.",
+                        "error"
+                    );
+
+
+                    button.disabled = false;
+
+                    button.innerText =
+                        "Unlock " + country;
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Payment status error:",
+                    error
+                );
+
+            }
+
+
+            if (
+                attempts >= maxAttempts
+            ) {
+
+                clearInterval(interval);
+
+
+                button.disabled = false;
+
+                button.innerText =
+                    "Unlock " + country;
+
+
+                showStatus(
+                    "Payment confirmation is taking longer than expected. Please check your M-PESA messages.",
+                    "info"
+                );
+
+            }
+
+        }, 3000);
+}
+
+</script>
+
+</body>
+</html>
