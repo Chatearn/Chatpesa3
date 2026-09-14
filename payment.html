@@ -13,24 +13,32 @@
     padding: 0;
 }
 
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
 body {
     font-family: Arial, sans-serif;
     background: #f5f5f5;
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 20px;
+    align-items: stretch;
 }
 
 .payment-container {
     width: 100%;
-    max-width: 420px;
+    min-height: 100vh;
     background: white;
-    border-radius: 15px;
-    padding: 30px 22px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+    border-radius: 0;
+    padding: 35px 22px 30px;
+    box-shadow: none;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .logo {
@@ -58,6 +66,7 @@ h1 {
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .amount {
@@ -616,12 +625,6 @@ async function payNow() {
                 "Waiting for Payment...";
 
 
-            /*
-             * IMPORTANT:
-             * Start checking the backend
-             * for the payment result.
-             */
-
             monitorPayment(
                 reference
             );
@@ -667,10 +670,3 @@ async function payNow() {
 
 </body>
 </html>
-
-Changed only these payment values:
-
-- "KSh 100" → "KSh 1"
-- "amount: 100" → "amount: 1"
-
-Everything else remains unchanged.
