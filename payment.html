@@ -194,9 +194,9 @@ button:disabled {
     <input
         type="tel"
         id="phone"
-        value="254742072287"
-        placeholder="2547XXXXXXXX"
+        placeholder="07XXXXXXXX or 2547XXXXXXXX"
         autocomplete="tel"
+        inputmode="numeric"
     >
 
     <button id="payButton" onclick="startPayment()">
@@ -213,113 +213,277 @@ button:disabled {
 
 <script>
 
-const BACKEND_URL = "https://chatpesa-backend.onrender.com";
+const BACKEND_URL =
+    "https://chatpesa-backend.onrender.com";
+
+const REGISTRATION_AMOUNT = 1;
+
+
+// =====================================================
+// SHOW STATUS
+// =====================================================
 
 function showStatus(message, type) {
-    const status = document.getElementById("status");
+
+    const status =
+        document.getElementById("status");
 
     status.innerText = message;
-    status.className = "status " + type;
+
+    status.className =
+        "status " + type;
 }
+
+
+// =====================================================
+// FORMAT M-PESA NUMBER
+// =====================================================
+
+function formatPhone(phone) {
+
+    let clean =
+        String(phone)
+        .replace(/\s+/g, "")
+        .replace(/-/g, "");
+
+
+    // 07XXXXXXXX
+    if (
+        /^07\d{8}$/.test(clean)
+    ) {
+
+        return "254" +
+            clean.substring(1);
+
+    }
+
+
+    // 01XXXXXXXX
+    if (
+        /^01\d{8}$/.test(clean)
+    ) {
+
+        return "254" +
+            clean.substring(1);
+
+    }
+
+
+    // +2547XXXXXXXX
+    if (
+        /^\+2547\d{8}$/.test(clean)
+    ) {
+
+        return clean.substring(1);
+
+    }
+
+
+    // +2541XXXXXXXX
+    if (
+        /^\+2541\d{8}$/.test(clean)
+    ) {
+
+        return clean.substring(1);
+
+    }
+
+
+    // 2547XXXXXXXX
+    if (
+        /^2547\d{8}$/.test(clean)
+    ) {
+
+        return clean;
+
+    }
+
+
+    // 2541XXXXXXXX
+    if (
+        /^2541\d{8}$/.test(clean)
+    ) {
+
+        return clean;
+
+    }
+
+
+    return null;
+}
+
+
+// =====================================================
+// START PAYMENT
+// =====================================================
 
 async function startPayment() {
 
-    const phone = document
+    const phoneInput =
+        document
         .getElementById("phone")
         .value
         .trim();
 
-    const button = document.getElementById("payButton");
 
-    if (!phone) {
+    const button =
+        document.getElementById("payButton");
+
+
+    if (!phoneInput) {
+
         showStatus(
             "Please enter your M-PESA phone number.",
             "error"
         );
+
         return;
     }
 
+
+    const phone =
+        formatPhone(phoneInput);
+
+
+    if (!phone) {
+
+        showStatus(
+            "Please enter a valid M-PESA number, for example 0700000000.",
+            "error"
+        );
+
+        return;
+    }
+
+
     button.disabled = true;
-    button.innerText = "Sending M-PESA Request...";
+
+    button.innerText =
+        "Sending M-PESA Request...";
+
 
     showStatus(
-        "Please check your phone and enter your M-PESA PIN.",
+        "Sending your M-PESA payment request...",
         "info"
     );
+
 
     const reference =
         "CP-" +
         Date.now();
 
+
     try {
 
-        const response = await fetch(
-            BACKEND_URL + "/stk-push",
-            {
-                method: "POST",
+        const response =
+            await fetch(
+                BACKEND_URL +
+                "/stk-push",
+                {
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                    method: "POST",
 
-                body: JSON.stringify({
-                    phone: phone,
-                    amount: 1,
-                    reference: reference,
-                    type: "registration"
-                })
-            }
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Accept":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            phone: phone,
+
+                            // IMPORTANT:
+                            // Registration fee is KSh 1.
+
+                            amount:
+                                REGISTRATION_AMOUNT,
+
+                            reference:
+                                reference,
+
+                            type:
+                                "registration"
+
+                        })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "ChatPesa payment response:",
+            data
         );
 
-        const data = await response.json();
 
         if (!response.ok) {
 
             throw new Error(
+
+                data.error ||
+
                 data.message ||
+
                 "Payment request failed."
+
             );
 
         }
+
+
+        // =================================================
+        // PAYMENT ALREADY SUCCESSFUL
+        // =================================================
 
         if (
             data.status === "SUCCESS"
         ) {
 
-            showStatus(
-                "✅ You have successfully registered!",
-                "success"
+            registrationSuccessful(
+                button
             );
 
-            button.innerText =
-                "Registration Successful";
+            return;
 
-            button.disabled = true;
-
-            setTimeout(() => {
-
-                window.location.href =
-                    "countries.html";
-
-            }, 1500);
-
-            return true;
         }
 
+
+        // =================================================
+        // STK SENT
+        // =================================================
+
         showStatus(
-            data.message ||
-            "M-PESA payment request sent. Please complete the payment.",
+            "📱 M-PESA request sent. Please check your phone and enter your M-PESA PIN.",
             "info"
         );
+
 
         button.innerText =
             "Waiting for Payment...";
 
-        checkPaymentStatus(reference);
+
+        checkPaymentStatus(
+            reference
+        );
+
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Payment error:",
+            error
+        );
+
 
         showStatus(
             error.message ||
@@ -327,124 +491,179 @@ async function startPayment() {
             "error"
         );
 
-        button.disabled = false;
+
+        button.disabled =
+            false;
+
 
         button.innerText =
             "Pay KSh 1 with M-PESA";
+
     }
+
 }
 
 
-async function checkPaymentStatus(reference) {
+// =====================================================
+// CHECK PAYMENT STATUS
+// =====================================================
+
+async function checkPaymentStatus(
+    reference
+) {
 
     let attempts = 0;
 
-    const maxAttempts = 30;
+    const maxAttempts = 40;
+
 
     const interval =
-        setInterval(async () => {
+        setInterval(
+            async () => {
 
-            attempts++;
+                attempts++;
 
-            try {
 
-                const response =
-                    await fetch(
-                        BACKEND_URL +
-                        "/payment-status/" +
-                        encodeURIComponent(reference)
+                try {
+
+                    const response =
+                        await fetch(
+
+                            BACKEND_URL +
+                            "/payment-status/" +
+                            encodeURIComponent(
+                                reference
+                            )
+
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    console.log(
+                        "Payment status:",
+                        data
                     );
 
-                const data =
-                    await response.json();
+
+                    // =========================================
+                    // SUCCESS
+                    // =========================================
+
+                    if (
+                        data.status ===
+                        "SUCCESS"
+                    ) {
+
+                        clearInterval(
+                            interval
+                        );
+
+
+                        const button =
+                            document
+                            .getElementById(
+                                "payButton"
+                            );
+
+
+                        registrationSuccessful(
+                            button
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    // =========================================
+                    // FAILED
+                    // =========================================
+
+                    if (
+                        data.status ===
+                        "FAILED"
+                    ) {
+
+                        clearInterval(
+                            interval
+                        );
+
+
+                        let message =
+                            "❌ Payment was not completed. Please try again.";
+
+
+                        if (
+                            data.error
+                        ) {
+
+                            message =
+                                "❌ " +
+                                data.error;
+
+                        }
+
+
+                        showStatus(
+                            message,
+                            "error"
+                        );
+
+
+                        const button =
+                            document
+                            .getElementById(
+                                "payButton"
+                            );
+
+
+                        button.disabled =
+                            false;
+
+
+                        button.innerText =
+                            "Pay KSh 1 with M-PESA";
+
+
+                        return;
+
+                    }
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Status check error:",
+                        error
+                    );
+
+                }
+
+
+                // =========================================
+                // TIMEOUT
+                // =========================================
 
                 if (
-                    data.status === "SUCCESS"
+                    attempts >=
+                    maxAttempts
                 ) {
 
-                    clearInterval(interval);
-
-                    showStatus(
-                        "✅ You have successfully registered!",
-                        "success"
+                    clearInterval(
+                        interval
                     );
 
+
                     const button =
-                        document.getElementById(
+                        document
+                        .getElementById(
                             "payButton"
                         );
 
-                    button.innerText =
-                        "Registration Successful";
 
-                    button.disabled = true;
-
-                    setTimeout(() => {
-
-                        window.location.href =
-                            "countries.html";
-
-                    }, 1500);
-
-                }
-
-                else if (
-                    data.status === "FAILED"
-                ) {
-
-                    clearInterval(interval);
-
-                    showStatus(
-                        "❌ Payment failed. Please try again.",
-                        "error"
-                    );
-
-                    const button =
-                        document.getElementById(
-                            "payButton"
-                        );
-
-                    button.disabled = false;
-
-                    button.innerText =
-                        "Pay KSh 1 with M-PESA";
-                }
-
-            } catch (error) {
-
-                console.error(
-                    "Status check error:",
-                    error
-                );
-
-            }
-
-            if (
-                attempts >= maxAttempts
-            ) {
-
-                clearInterval(interval);
-
-                const button =
-                    document.getElementById(
-                        "payButton"
-                    );
-
-                button.disabled = false;
-
-                button.innerText =
-                    "Pay KSh 1 with M-PESA";
-
-                showStatus(
-                    "Payment confirmation is taking longer than expected. Please check your M-PESA messages.",
-                    "info"
-                );
-            }
-
-        }, 3000);
-}
-
-</script>
-
-</body>
-</html>
+                    button.disabled =
+                       
