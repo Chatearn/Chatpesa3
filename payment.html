@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Payment | ChatPesa</title>
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -14,180 +21,306 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     min-height: 100vh;
+
     background:
-        radial-gradient(circle at top left, #ede9fe, transparent 35%),
-        linear-gradient(135deg, #faf9ff, #f4efff);
+        radial-gradient(
+            circle at top left,
+            #ede9fe,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #faf9ff,
+            #f4efff
+        );
+
     color: #21152f;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     padding: 20px;
 }
 
 .container {
+
     width: 100%;
+
     max-width: 460px;
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.96);
+
+    background:
+        rgba(255,255,255,0.97);
+
     border-radius: 26px;
+
     padding: 34px 28px;
-    box-shadow: 0 20px 60px rgba(59, 7, 100, 0.15);
-    border: 1px solid rgba(109, 40, 217, 0.08);
+
+    box-shadow:
+        0 20px 60px
+        rgba(59,7,100,0.15);
+
+    border:
+        1px solid
+        rgba(109,40,217,0.08);
 }
 
 .logo {
+
     text-align: center;
+
     font-size: 30px;
+
     font-weight: 800;
+
     margin-bottom: 8px;
+
     color: #21152f;
 }
 
 .logo span {
+
     color: #6d28d9;
 }
 
 .subtitle {
+
     text-align: center;
+
     color: #756c80;
+
     font-size: 14px;
+
     margin-bottom: 28px;
 }
 
 .payment-box {
-    background: linear-gradient(135deg, #f5f0ff, #eee7ff);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5f0ff,
+            #eee7ff
+        );
+
     border-radius: 20px;
+
     padding: 24px;
+
     text-align: center;
+
     margin-bottom: 24px;
 }
 
 .payment-box .label {
+
     color: #756c80;
+
     font-size: 13px;
+
     margin-bottom: 7px;
 }
 
 .amount {
+
     color: #3b0764;
+
     font-size: 38px;
+
     font-weight: 800;
 }
 
 .amount small {
+
     font-size: 18px;
+
     font-weight: 700;
 }
 
 .form-group {
+
     margin-bottom: 20px;
 }
 
 label {
+
     display: block;
+
     font-size: 14px;
+
     font-weight: 700;
+
     margin-bottom: 8px;
 }
 
 input {
+
     width: 100%;
+
     padding: 15px 16px;
-    border: 1px solid #ddd3eb;
+
+    border:
+        1px solid
+        #ddd3eb;
+
     border-radius: 13px;
+
     font-size: 16px;
+
     outline: none;
+
     background: #fff;
+
     color: #21152f;
-    transition: 0.2s;
 }
 
 input:focus {
+
     border-color: #7c3aed;
-    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.10);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(124,58,237,0.10);
 }
 
 .pay-button {
-    width: 100%;
-    border: none;
-    border-radius: 14px;
-    padding: 16px;
-    font-size: 16px;
-    font-weight: 700;
-    color: white;
-    cursor: pointer;
-    background: linear-gradient(135deg, #3b0764, #7c3aed);
-    box-shadow: 0 10px 25px rgba(59, 7, 100, 0.22);
-    transition: 0.2s;
-}
 
-.pay-button:hover {
-    transform: translateY(-1px);
+    width: 100%;
+
+    border: none;
+
+    border-radius: 14px;
+
+    padding: 16px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    color: white;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #3b0764,
+            #7c3aed
+        );
+
+    box-shadow:
+        0 10px 25px
+        rgba(59,7,100,0.22);
 }
 
 .pay-button:disabled {
+
     opacity: 0.65;
+
     cursor: not-allowed;
-    transform: none;
 }
 
 .status {
+
     display: none;
+
     margin-top: 20px;
+
     padding: 15px;
+
     border-radius: 13px;
+
     text-align: center;
+
     font-size: 14px;
+
     line-height: 1.5;
 }
 
 .status.info {
+
     display: block;
+
     background: #f0eaff;
+
     color: #4c1d95;
 }
 
 .status.success {
+
     display: block;
+
     background: #ecfdf5;
+
     color: #047857;
 }
 
 .status.error {
+
     display: block;
+
     background: #fef2f2;
+
     color: #b91c1c;
 }
 
 .note {
+
     text-align: center;
+
     color: #756c80;
+
     font-size: 12px;
+
     margin-top: 18px;
+
     line-height: 1.5;
 }
 
 .processing-spinner {
+
     width: 30px;
+
     height: 30px;
-    border: 3px solid rgba(109, 40, 217, 0.18);
-    border-top-color: #6d28d9;
+
+    border:
+        3px solid
+        rgba(109,40,217,0.18);
+
+    border-top-color:
+        #6d28d9;
+
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 0 auto 10px;
+
+    animation:
+        spin 0.8s linear infinite;
+
+    margin:
+        0 auto 10px;
 }
 
 @keyframes spin {
+
     to {
-        transform: rotate(360deg);
+        transform:
+            rotate(360deg);
     }
 }
 
 @media (max-width: 480px) {
+
     .card {
         padding: 28px 20px;
     }
@@ -196,68 +329,84 @@ input:focus {
         font-size: 34px;
     }
 }
+
 </style>
+
 </head>
+
 
 <body>
 
 <div class="container">
 
-    <div class="card">
+<div class="card">
 
-        <div class="logo">
-            Chat<span>Pesa</span>
+    <div class="logo">
+        Chat<span>Pesa</span>
+    </div>
+
+    <div class="subtitle">
+        Complete your registration
+    </div>
+
+
+    <div class="payment-box">
+
+        <div class="label">
+            Registration Fee
         </div>
 
-        <div class="subtitle">
-            Complete your registration
-        </div>
-
-        <div class="payment-box">
-            <div class="label">
-                Registration Fee
-            </div>
-
-            <div class="amount">
-                <small>KSh</small> 1
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="phone">
-                M-PESA Phone Number
-            </label>
-
-            <input
-                type="tel"
-                id="phone"
-                placeholder="e.g. 0712345678"
-                inputmode="numeric"
-                autocomplete="tel"
-            >
-        </div>
-
-        <button
-            class="pay-button"
-            id="payButton"
-            onclick="startPayment()"
-        >
-            Pay KSh 1
-        </button>
-
-        <div
-            class="status"
-            id="status"
-        ></div>
-
-        <div class="note">
-            You will receive an M-PESA prompt on your phone.
-            Enter your M-PESA PIN to complete the payment.
+        <div class="amount">
+            <small>KSh</small> 1
         </div>
 
     </div>
 
+
+    <div class="form-group">
+
+        <label for="phone">
+            M-PESA Phone Number
+        </label>
+
+        <input
+            type="tel"
+            id="phone"
+            placeholder="e.g. 0712345678"
+            inputmode="numeric"
+            autocomplete="tel"
+        >
+
+    </div>
+
+
+    <button
+        class="pay-button"
+        id="payButton"
+        onclick="startPayment()"
+    >
+        Pay KSh 1
+    </button>
+
+
+    <div
+        class="status"
+        id="status"
+    ></div>
+
+
+    <div class="note">
+
+        You will receive an M-PESA prompt
+        on your phone. Enter your M-PESA
+        PIN to complete the payment.
+
+    </div>
+
 </div>
+
+</div>
+
 
 <script>
 
@@ -266,51 +415,86 @@ const BACKEND_URL =
 
 let pollingTimer = null;
 
+let paymentFinished = false;
+
+
+/* =====================================================
+   STATUS MESSAGE
+===================================================== */
+
 function showStatus(message, type) {
 
     const status =
         document.getElementById("status");
 
-    status.innerHTML = message;
+    status.innerHTML =
+        message;
 
     status.className =
         "status " + type;
 }
 
 
+/* =====================================================
+   PHONE NORMALIZATION
+===================================================== */
+
 function normalizePhone(phone) {
 
-    phone = phone.replace(/\D/g, "");
+    phone =
+        phone.replace(
+            /\D/g,
+            ""
+        );
 
-    if (phone.startsWith("0")) {
+    if (
+        phone.startsWith("0")
+    ) {
 
         phone =
-            "254" + phone.substring(1);
+            "254" +
+            phone.substring(1);
 
-    } else if (phone.startsWith("7") ||
-               phone.startsWith("1")) {
+    } else if (
+        phone.startsWith("7") ||
+        phone.startsWith("1")
+    ) {
 
         phone =
-            "254" + phone;
-
+            "254" +
+            phone;
     }
 
     return phone;
 }
 
 
+/* =====================================================
+   START PAYMENT
+===================================================== */
+
 async function startPayment() {
 
     const payButton =
-        document.getElementById("payButton");
+        document.getElementById(
+            "payButton"
+        );
 
     const phoneInput =
-        document.getElementById("phone");
+        document.getElementById(
+            "phone"
+        );
+
 
     let phone =
-        normalizePhone(phoneInput.value);
+        normalizePhone(
+            phoneInput.value
+        );
 
-    if (!/^254(7|1)\d{8}$/.test(phone)) {
+
+    if (
+        !/^254(7|1)\d{8}$/.test(phone)
+    ) {
 
         showStatus(
             "Please enter a valid Kenyan M-PESA number.",
@@ -320,25 +504,33 @@ async function startPayment() {
         return;
     }
 
-    payButton.disabled = true;
+
+    payButton.disabled =
+        true;
 
     payButton.innerHTML =
         "Sending M-PESA Prompt...";
+
 
     showStatus(
         "Please check your phone and enter your M-PESA PIN.",
         "info"
     );
 
+
     const reference =
-        "CHATPESA-" + Date.now();
+        "CHATPESA-" +
+        Date.now();
+
 
     try {
 
         const response =
             await fetch(
-                BACKEND_URL + "/stk-push",
+                BACKEND_URL +
+                "/stk-push",
                 {
+
                     method: "POST",
 
                     headers: {
@@ -346,32 +538,44 @@ async function startPayment() {
                             "application/json"
                     },
 
-                    body: JSON.stringify({
+                    body:
+                        JSON.stringify({
 
-                        phone: phone,
+                            phone:
+                                phone,
 
-                        amount: 1,
+                            amount:
+                                1,
 
-                        reference: reference,
+                            reference:
+                                reference,
 
-                        type: "registration"
+                            type:
+                                "registration"
 
-                    })
+                        })
                 }
             );
 
+
         const data =
             await response.json();
+
+
+        console.log(
+            "STK RESPONSE:",
+            data
+        );
+
 
         if (!response.ok) {
 
             throw new Error(
                 data.message ||
-                data.error ||
                 "Unable to start payment."
             );
-
         }
+
 
         showStatus(
             "M-PESA prompt sent successfully.<br><br>" +
@@ -379,152 +583,239 @@ async function startPayment() {
             "info"
         );
 
+
         payButton.innerHTML =
             "Waiting for Payment...";
 
-        checkPaymentStatus(reference);
+
+        checkPaymentStatus(
+            reference
+        );
+
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "PAYMENT ERROR:",
+            error
+        );
 
-        payButton.disabled = false;
+
+        payButton.disabled =
+            false;
 
         payButton.innerHTML =
             "Pay KSh 1";
 
+
         showStatus(
             "❌ " +
-            (error.message ||
-            "Unable to start payment. Please try again."),
+            error.message,
             "error"
         );
     }
 }
 
 
-function checkPaymentStatus(reference) {
+/* =====================================================
+   CHECK PAYMENT STATUS
+===================================================== */
+
+function checkPaymentStatus(
+    reference
+) {
 
     let attempts = 0;
 
-    const maxAttempts = 60;
+    const maxAttempts =
+        100;
+
 
     async function check() {
 
+        if (paymentFinished) {
+            return;
+        }
+
+
         attempts++;
+
 
         try {
 
             const response =
                 await fetch(
+
                     BACKEND_URL +
                     "/payment-status/" +
-                    encodeURIComponent(reference)
+                    encodeURIComponent(
+                        reference
+                    ) +
+                    "?t=" +
+                    Date.now(),
+
+                    {
+                        cache:
+                            "no-store"
+                    }
                 );
+
 
             const data =
                 await response.json();
 
+
             console.log(
-                "Payment status:",
+                "PAYMENT STATUS:",
                 data
             );
 
 
-            /*
-             * PAYMENT SUCCESS
-             */
+            /* -----------------------------------------
+               SUCCESS
+            ----------------------------------------- */
 
             if (
-                data.status === "SUCCESS" ||
-                data.status === "COMPLETED"
+                data.status ===
+                    "SUCCESS" ||
+
+                data.status ===
+                    "COMPLETED"
             ) {
 
-                clearTimeout(pollingTimer);
+                paymentFinished =
+                    true;
+
+                clearTimeout(
+                    pollingTimer
+                );
+
+
+                const payButton =
+                    document.getElementById(
+                        "payButton"
+                    );
+
 
                 showStatus(
+
                     "✅ <strong>Payment Successful!</strong><br><br>" +
+
                     "Your registration payment has been confirmed.",
+
                     "success"
                 );
 
-                const payButton =
-                    document.getElementById("payButton");
 
                 payButton.innerHTML =
                     "Payment Successful ✓";
 
-                payButton.disabled = true;
+                payButton.disabled =
+                    true;
 
 
-                /*
-                 * PROCESS ACCOUNT
-                 */
+                /* -------------------------------------
+                   PROCESSING
+                ------------------------------------- */
 
-                setTimeout(function() {
+                setTimeout(
+                    function() {
 
-                    showStatus(
-                        '<div class="processing-spinner"></div>' +
-                        '<strong>Processing your account...</strong><br><br>' +
-                        'Please wait while we prepare your ChatPesa account.',
-                        "info"
-                    );
+                        showStatus(
 
-                    payButton.innerHTML =
-                        "Processing...";
+                            '<div class="processing-spinner"></div>' +
+
+                            '<strong>Processing your account...</strong><br><br>' +
+
+                            'Please wait while we prepare your ChatPesa account.',
+
+                            "info"
+                        );
 
 
-                    /*
-                     * REDIRECT TO COUNTRIES
-                     */
+                        payButton.innerHTML =
+                            "Processing...";
 
-                    setTimeout(function() {
 
-                        window.location.href =
-                            "countries.html";
+                        /* -----------------------------
+                           REDIRECT
+                        ----------------------------- */
 
-                    }, 4000);
+                        setTimeout(
+                            function() {
 
-                }, 1000);
+                                window.location.replace(
+                                    "countries.html"
+                                );
+
+                            },
+                            3000
+                        );
+
+                    },
+                    1000
+                );
+
 
                 return;
             }
 
 
-            /*
-             * PAYMENT FAILED
-             */
+            /* -----------------------------------------
+               FAILED
+            ----------------------------------------- */
 
             if (
-                data.status === "FAILED" ||
-                data.status === "CANCELLED"
+                data.status ===
+                    "FAILED" ||
+
+                data.status ===
+                    "CANCELLED"
             ) {
 
-                clearTimeout(pollingTimer);
+                clearTimeout(
+                    pollingTimer
+                );
+
 
                 const payButton =
-                    document.getElementById("payButton");
+                    document.getElementById(
+                        "payButton"
+                    );
 
-                payButton.disabled = false;
+
+                payButton.disabled =
+                    false;
 
                 payButton.innerHTML =
                     "Pay KSh 1";
 
+
                 showStatus(
+
                     "❌ Payment was not completed.<br><br>" +
-                    "Please try again.",
+
+                    (
+                        data.failureReason ||
+                        "Please try again."
+                    ),
+
                     "error"
                 );
+
 
                 return;
             }
 
 
-            /*
-             * KEEP CHECKING
-             */
+            /* -----------------------------------------
+               KEEP POLLING
+            ----------------------------------------- */
 
-            if (attempts < maxAttempts) {
+            if (
+                attempts <
+                maxAttempts
+            ) {
 
                 pollingTimer =
                     setTimeout(
@@ -534,31 +825,42 @@ function checkPaymentStatus(reference) {
 
             } else {
 
-                clearTimeout(pollingTimer);
-
                 const payButton =
-                    document.getElementById("payButton");
+                    document.getElementById(
+                        "payButton"
+                    );
 
-                payButton.disabled = false;
+
+                payButton.disabled =
+                    false;
 
                 payButton.innerHTML =
-                    "Check Payment Again";
+                    "Pay KSh 1";
+
 
                 showStatus(
+
                     "We could not confirm the payment yet.<br><br>" +
-                    "If you completed the M-PESA payment, please wait a moment and try again.",
+
+                    "Please try the payment again.",
+
                     "error"
                 );
             }
 
+
         } catch (error) {
 
             console.error(
-                "Status check error:",
+                "STATUS CHECK ERROR:",
                 error
             );
 
-            if (attempts < maxAttempts) {
+
+            if (
+                attempts <
+                maxAttempts
+            ) {
 
                 pollingTimer =
                     setTimeout(
@@ -569,20 +871,28 @@ function checkPaymentStatus(reference) {
             } else {
 
                 const payButton =
-                    document.getElementById("payButton");
+                    document.getElementById(
+                        "payButton"
+                    );
 
-                payButton.disabled = false;
+
+                payButton.disabled =
+                    false;
 
                 payButton.innerHTML =
-                    "Check Payment Again";
+                    "Pay KSh 1";
+
 
                 showStatus(
+
                     "Unable to confirm payment status. Please try again.",
+
                     "error"
                 );
             }
         }
     }
+
 
     check();
 }
@@ -590,4 +900,5 @@ function checkPaymentStatus(reference) {
 </script>
 
 </body>
-</html>
+
+    </html>
