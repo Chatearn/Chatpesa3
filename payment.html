@@ -193,6 +193,17 @@ button:disabled {
     animation: spin 0.8s linear infinite;
 }
 
+.processing-spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid rgba(109,40,217,0.18);
+    border-top-color: #6d28d9;
+    border-radius: 50%;
+    display: inline-block;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 10px;
+}
+
 @keyframes spin {
     to {
         transform: rotate(360deg);
@@ -295,81 +306,66 @@ button:disabled {
 
 <script>
 
-/*
-=========================================================
-CHATPESA PAYMENT CONFIGURATION
-=========================================================
-*/
-
-const BACKEND_URL = "https://chatpesa-backend.onrender.com";
+const BACKEND_URL =
+    "https://chatpesa-backend.onrender.com";
 
 const REGISTRATION_AMOUNT = 1;
 
+const phoneInput =
+    document.getElementById("phone");
 
-/*
-=========================================================
-ELEMENTS
-=========================================================
-*/
+const payButton =
+    document.getElementById("payButton");
 
-const phoneInput = document.getElementById("phone");
-const payButton = document.getElementById("payButton");
-const statusBox = document.getElementById("status");
+const statusBox =
+    document.getElementById("status");
 
-
-/*
-=========================================================
-SHOW STATUS
-=========================================================
-*/
 
 function showStatus(message, type) {
 
-    statusBox.className = "status " + type;
-    statusBox.innerHTML = message;
+    statusBox.className =
+        "status " + type;
+
+    statusBox.innerHTML =
+        message;
 }
 
-
-/*
-=========================================================
-NORMALIZE KENYAN PHONE NUMBER
-=========================================================
-*/
 
 function normalizePhone(phone) {
 
     phone = phone.replace(/\s+/g, "");
 
-    // 07XXXXXXXX or 01XXXXXXXX
     if (/^0[17]\d{8}$/.test(phone)) {
-        return "254" + phone.substring(1);
+
+        return "254" +
+            phone.substring(1);
+
     }
 
-    // +2547XXXXXXXX / +2541XXXXXXXX
     if (/^\+254[17]\d{8}$/.test(phone)) {
+
         return phone.substring(1);
+
     }
 
-    // 2547XXXXXXXX / 2541XXXXXXXX
     if (/^254[17]\d{8}$/.test(phone)) {
+
         return phone;
+
     }
 
     return null;
 }
 
 
-/*
-=========================================================
-PAYMENT BUTTON
-=========================================================
-*/
-
 payButton.addEventListener("click", async function () {
 
-    const enteredPhone = phoneInput.value.trim();
+    const enteredPhone =
+        phoneInput.value.trim();
 
-    const phone = normalizePhone(enteredPhone);
+    const phone =
+        normalizePhone(enteredPhone);
+
 
     if (!phone) {
 
@@ -384,12 +380,6 @@ payButton.addEventListener("click", async function () {
     }
 
 
-    /*
-    -----------------------------------------------------
-    DISABLE BUTTON
-    -----------------------------------------------------
-    */
-
     payButton.disabled = true;
 
     payButton.innerHTML =
@@ -402,33 +392,15 @@ payButton.addEventListener("click", async function () {
     );
 
 
-    /*
-    -----------------------------------------------------
-    CREATE UNIQUE PAYMENT REFERENCE
-    -----------------------------------------------------
-    */
-
     const reference =
         "CHATPESA-" +
         Date.now() +
         "-" +
-        Math.random().toString(36).substring(2, 8).toUpperCase();
+        Math.random()
+            .toString(36)
+            .substring(2, 8)
+            .toUpperCase();
 
-
-    /*
-    -----------------------------------------------------
-    SEND PAYMENT REQUEST TO CHATPESA BACKEND
-    -----------------------------------------------------
-    
-    IMPORTANT:
-    The Paylor API key is NOT placed here.
-    
-    Your backend is responsible for calling:
-    
-    https://api.paylorke.com/api/v1/merchants/payments/stk-push
-    
-    -----------------------------------------------------
-    */
 
     try {
 
@@ -456,29 +428,21 @@ payButton.addEventListener("click", async function () {
         );
 
 
-        /*
-        -------------------------------------------------
-        READ SERVER RESPONSE
-        -------------------------------------------------
-        */
-
         let data;
 
         try {
-            data = await response.json();
+
+            data =
+                await response.json();
+
         } catch (jsonError) {
 
             throw new Error(
                 "The payment server returned an invalid response."
             );
+
         }
 
-
-        /*
-        -------------------------------------------------
-        SERVER ERROR
-        -------------------------------------------------
-        */
 
         if (!response.ok) {
 
@@ -487,18 +451,13 @@ payButton.addEventListener("click", async function () {
                 data.message ||
                 "Unable to start M-PESA payment."
             );
+
         }
 
 
-        /*
-        -------------------------------------------------
-        STK PUSH ACCEPTED
-        -------------------------------------------------
-        */
-
         showStatus(
-            "STK Push sent successfully.<br><br>" +
-            "📱 Check your M-PESA phone and enter your M-PESA PIN to complete the payment.",
+            "📱 STK Push sent successfully.<br><br>" +
+            "Check your M-PESA phone and enter your M-PESA PIN to complete the payment.",
             "info"
         );
 
@@ -507,25 +466,26 @@ payButton.addEventListener("click", async function () {
             '<span class="spinner"></span>Waiting for payment...';
 
 
-        /*
-        -------------------------------------------------
-        START CHECKING PAYMENT STATUS
-        -------------------------------------------------
-        */
-
         checkPaymentStatus(reference);
 
 
     } catch (error) {
 
-        console.error("ChatPesa payment error:", error);
+        console.error(
+            "ChatPesa payment error:",
+            error
+        );
+
 
         showStatus(
             "❌ " +
-            (error.message ||
-            "Unable to start the payment. Please try again."),
+            (
+                error.message ||
+                "Unable to start the payment. Please try again."
+            ),
             "error"
         );
+
 
         payButton.disabled = false;
 
@@ -535,12 +495,6 @@ payButton.addEventListener("click", async function () {
 
 });
 
-
-/*
-=========================================================
-CHECK PAYMENT STATUS
-=========================================================
-*/
 
 let pollingTimer = null;
 
@@ -557,7 +511,9 @@ function checkPaymentStatus(reference) {
 
 
     if (pollingTimer) {
+
         clearTimeout(pollingTimer);
+
     }
 
 
@@ -569,6 +525,7 @@ function checkPaymentStatus(reference) {
         try {
 
             const response = await fetch(
+
                 BACKEND_URL +
                 "/payment-status/" +
                 encodeURIComponent(reference),
@@ -577,6 +534,7 @@ function checkPaymentStatus(reference) {
                     method: "GET",
                     cache: "no-store"
                 }
+
             );
 
 
@@ -585,10 +543,12 @@ function checkPaymentStatus(reference) {
                 throw new Error(
                     "Unable to check payment status."
                 );
+
             }
 
 
-            const data = await response.json();
+            const data =
+                await response.json();
 
 
             console.log(
@@ -598,9 +558,9 @@ function checkPaymentStatus(reference) {
 
 
             /*
-            -------------------------------------------------
+            =============================================
             PAYMENT SUCCESS
-            -------------------------------------------------
+            =============================================
             */
 
             if (
@@ -610,181 +570,13 @@ function checkPaymentStatus(reference) {
 
                 clearTimeout(pollingTimer);
 
-                showStatus(
-                    "✅ Payment successful!<br><br>" +
-                    "Redirecting you to ChatPesa...",
-                    "success"
-                );
-
-
-                payButton.innerHTML =
-                    "Payment Successful ✓";
-
-
-                payButton.disabled = true;
-
 
                 /*
-                ---------------------------------------------
-                REDIRECT AFTER SUCCESS
-                ---------------------------------------------
+                -----------------------------------------
+                FIRST: SHOW SUCCESS
+                -----------------------------------------
                 */
 
-                setTimeout(function () {
-
-                    window.location.href =
-                        "countries.html";
-
-                }, 1200);
-
-
-                return;
-            }
-
-
-            /*
-            -------------------------------------------------
-            PAYMENT FAILED
-            -------------------------------------------------
-            */
-
-            if (
-                data.status === "FAILED" ||
-                data.status === "CANCELLED"
-            ) {
-
-                clearTimeout(pollingTimer);
-
-
                 showStatus(
-                    "❌ Payment was not completed.<br><br>" +
-                    "Please try again and approve the M-PESA STK Push on your phone.",
-                    "error"
-                );
 
-
-                payButton.disabled = false;
-
-                payButton.innerHTML =
-                    "Pay KSh 1 with M-PESA";
-
-
-                return;
-            }
-
-
-            /*
-            -------------------------------------------------
-            STILL PENDING
-            -------------------------------------------------
-            */
-
-            if (pollingAttempts < MAX_POLLING_ATTEMPTS) {
-
-                showStatus(
-                    "📱 STK Push sent.<br><br>" +
-                    "Please check your phone and enter your M-PESA PIN.<br><br>" +
-                    "Waiting for payment confirmation...",
-                    "info"
-                );
-
-
-                pollingTimer =
-                    setTimeout(
-                        check,
-                        POLLING_INTERVAL
-                    );
-
-
-            } else {
-
-                clearTimeout(pollingTimer);
-
-
-                showStatus(
-                    "The payment is taking longer than expected. " +
-                    "Please check your M-PESA messages before trying again.",
-                    "error"
-                );
-
-
-                payButton.disabled = false;
-
-                payButton.innerHTML =
-                    "Try Payment Again";
-            }
-
-
-        } catch (error) {
-
-            console.error(
-                "Payment status error:",
-                error
-            );
-
-
-            /*
-            -------------------------------------------------
-            TEMPORARY NETWORK ERROR
-            -------------------------------------------------
-            
-            Keep checking instead of immediately declaring
-            the payment failed.
-            -------------------------------------------------
-            */
-
-            if (pollingAttempts < MAX_POLLING_ATTEMPTS) {
-
-                pollingTimer =
-                    setTimeout(
-                        check,
-                        POLLING_INTERVAL
-                    );
-
-            } else {
-
-                showStatus(
-                    "We could not confirm the payment status. " +
-                    "Please check your M-PESA messages before trying again.",
-                    "error"
-                );
-
-
-                payButton.disabled = false;
-
-                payButton.innerHTML =
-                    "Try Payment Again";
-            }
-
-        }
-
-    }
-
-
-    check();
-
-}
-
-
-/*
-=========================================================
-PREVENT ENTER KEY FROM SUBMITTING ANYTHING
-=========================================================
-*/
-
-phoneInput.addEventListener("keydown", function(event) {
-
-    if (event.key === "Enter") {
-
-        event.preventDefault();
-
-        payButton.click();
-
-    }
-
-});
-
-</script>
-
-</body>
-</html>
+                    "✅ <strong
