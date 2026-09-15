@@ -203,8 +203,83 @@ h1 {
     margin-top: 20px;  
     font-size: 12px;  
     color: #756c80;  
-}  
-  
+}
+
+
+/* ================= LIVE ACTIVITY ================= */
+
+.live-activity {
+    margin-top: 28px;
+    padding: 17px;
+    background: #faf8ff;
+    border: 1px solid #e5d5ff;
+    border-radius: 16px;
+}
+
+.live-activity-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.live-title {
+    color: #3b0764;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #047857;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 4px rgba(16,185,129,0.12);
+}
+
+.activity-message {
+    min-height: 78px;
+    padding: 13px;
+    background: #ffffff;
+    border: 1px solid #eee7f7;
+    border-radius: 12px;
+    color: #3b0764;
+    font-size: 13px;
+    line-height: 1.55;
+    transition: opacity 0.3s ease;
+}
+
+.activity-message strong {
+    font-weight: 800;
+}
+
+.activity-message .activity-text {
+    display: block;
+    margin-top: 3px;
+}
+
+.activity-message .sample-label {
+    display: block;
+    margin-top: 7px;
+    color: #9a8da7;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+}
+
+
+/* ================= MOBILE ================= */
+
 @media (max-width: 480px) {  
     .payment-container {  
         padding: 30px 20px;  
@@ -264,7 +339,33 @@ h1 {
     Pay KSh 100  
 </button>  
 
-<div id="status" class="status"></div>  
+<div id="status" class="status"></div>
+
+
+<!-- ================= LIVE ACTIVITY ================= -->
+
+<div class="live-activity">
+
+    <div class="live-activity-header">
+
+        <div class="live-title">
+            Recent Activity
+        </div>
+
+        <div class="live-indicator">
+            <span class="live-dot"></span>
+            LIVE
+        </div>
+
+    </div>
+
+    <div
+        id="activityMessage"
+        class="activity-message"
+    ></div>
+
+</div>
+
 
 <div class="security">  
     🔒 Secure M-PESA payment  
@@ -605,6 +706,235 @@ async function checkPaymentStatus(reference) {
             );
     }
 }
+
+
+/* ================= RANDOM LIVE ACTIVITY ================= */
+
+const kenyanNames = [
+
+    "Brian Kiptoo",
+    "Faith Wanjiku",
+    "Kevin Otieno",
+    "Mercy Achieng",
+    "Dennis Mwangi",
+    "Sharon Chebet",
+    "Collins Ochieng",
+    "Purity Wambui",
+    "Victor Kamau",
+    "Cynthia Jepchirchir",
+    "Ian Mutua",
+    "Brenda Nyambura",
+    "Allan Kipchumba",
+    "Maureen Atieno",
+    "Sammy Kiplagat",
+    "Diana Njeri",
+    "Felix Odhiambo",
+    "Sheila Wairimu",
+    "Edwin Barasa",
+    "Lilian Akinyi",
+    "Mark Njoroge",
+    "Anne Chepkoech",
+    "Joseph Maina",
+    "Irene Muthoni",
+    "Peter Onyango",
+    "Caroline Wanjiru",
+    "Alex Kiprotich",
+    "Janet Moraa",
+    "Moses Kariuki",
+    "Stella Adhiambo",
+    "James Kibet",
+    "Esther Nyokabi",
+    "George Omondi",
+    "Judy Wangari",
+    "Samuel Bett",
+    "Rose Akoth",
+    "Emmanuel Wekesa",
+    "Nancy Jepkosgei",
+    "Daniel Kamotho",
+    "Grace Naliaka",
+    "Bramwel Kibet"
+
+];
+
+const countries = [
+
+    "USA 🇺🇸",
+    "Canada 🇨🇦",
+    "UK 🇬🇧"
+
+];
+
+const activityTypes = [
+
+    "connection",
+    "scholarship",
+    "job",
+    "companion"
+
+];
+
+let lastName = "";
+let lastActivity = "";
+
+function randomItem(array) {
+
+    return array[
+        Math.floor(
+            Math.random() * array.length
+        )
+    ];
+
+}
+
+function getRandomName() {
+
+    let name;
+
+    do {
+
+        name =
+            randomItem(
+                kenyanNames
+            );
+
+    } while (
+        name === lastName &&
+        kenyanNames.length > 1
+    );
+
+    lastName = name;
+
+    return name;
+}
+
+function getRandomActivity() {
+
+    let activity;
+
+    do {
+
+        activity =
+            randomItem(
+                activityTypes
+            );
+
+    } while (
+        activity === lastActivity &&
+        activityTypes.length > 1
+    );
+
+    lastActivity = activity;
+
+    return activity;
+}
+
+function createActivityMessage() {
+
+    const name =
+        getRandomName();
+
+    const country =
+        randomItem(
+            countries
+        );
+
+    const activity =
+        getRandomActivity();
+
+    let message = "";
+
+    if (activity === "connection") {
+
+        message =
+            "🎊🎉 <strong>Congratulations!</strong>" +
+            '<span class="activity-text">' +
+            name +
+            " just got connected with someone in " +
+            country +
+            "</span>";
+
+    }
+
+    if (activity === "scholarship") {
+
+        message =
+            "🎊🎉 <strong>Congratulations!</strong>" +
+            '<span class="activity-text">' +
+            name +
+            " just got an education scholarship 🎓 from " +
+            country +
+            "</span>";
+
+    }
+
+    if (activity === "job") {
+
+        message =
+            "🎊🎉 <strong>Congratulations!</strong>" +
+            '<span class="activity-text">' +
+            name +
+            " just got a job opportunity 💼 from " +
+            country +
+            "</span>";
+
+    }
+
+    if (activity === "companion") {
+
+        message =
+            "🎊🎉 <strong>Congratulations!</strong>" +
+            '<span class="activity-text">' +
+            name +
+            " just found a companion ❤️ in " +
+            country +
+            "</span>";
+
+    }
+
+    message +=
+        '<span class="sample-label">' +
+        "Sample activity" +
+        "</span>";
+
+    return message;
+
+}
+
+function updateLiveActivity() {
+
+    const activityBox =
+        document.getElementById(
+            "activityMessage"
+        );
+
+    activityBox.style.opacity = "0";
+
+    setTimeout(
+        function () {
+
+            activityBox.innerHTML =
+                createActivityMessage();
+
+            activityBox.style.opacity = "1";
+
+        },
+        300
+    );
+
+}
+
+
+/* First message */
+
+updateLiveActivity();
+
+
+/* New random message every 5 seconds */
+
+setInterval(
+    updateLiveActivity,
+    5000
+);
 
 </script>  
 
