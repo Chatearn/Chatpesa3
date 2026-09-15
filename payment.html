@@ -1,284 +1,273 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
 
-<title>Payment | ChatPesa</title>
+<title>Payment | ChatPesa</title>  
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<style>  
+* {  
+    margin: 0;  
+    padding: 0;  
+    box-sizing: border-box;  
+}  
+  
+body {  
+    font-family: Arial, Helvetica, sans-serif;  
+    min-height: 100vh;  
+    background: linear-gradient(135deg, #180629, #3b0764, #6d28d9);  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+    padding: 20px;  
+    color: #21152f;  
+}  
+  
+.payment-container {  
+    width: 100%;  
+    max-width: 450px;  
+    background: #ffffff;  
+    border-radius: 24px;  
+    padding: 35px 25px;  
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);  
+}  
+  
+.logo {  
+    text-align: center;  
+    font-size: 30px;  
+    font-weight: 800;  
+    color: #3b0764;  
+    margin-bottom: 8px;  
+}  
+  
+.logo span {  
+    color: #7c3aed;  
+}  
+  
+.subtitle {  
+    text-align: center;  
+    color: #756c80;  
+    font-size: 14px;  
+    margin-bottom: 30px;  
+}  
+  
+.payment-icon {  
+    width: 75px;  
+    height: 75px;  
+    margin: 0 auto 20px;  
+    border-radius: 50%;  
+    background: linear-gradient(135deg, #3b0764, #7c3aed);  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+    color: white;  
+    font-size: 32px;  
+}  
+  
+h1 {  
+    text-align: center;  
+    color: #3b0764;  
+    font-size: 25px;  
+    margin-bottom: 10px;  
+}  
+  
+.description {  
+    text-align: center;  
+    color: #756c80;  
+    font-size: 14px;  
+    line-height: 1.6;  
+    margin-bottom: 25px;  
+}  
+  
+.fee-box {  
+    background: #f2eaff;  
+    border: 1px solid #e5d5ff;  
+    border-radius: 16px;  
+    padding: 18px;  
+    text-align: center;  
+    margin-bottom: 25px;  
+}  
+  
+.fee-label {  
+    font-size: 13px;  
+    color: #756c80;  
+    margin-bottom: 5px;  
+}  
+  
+.fee {  
+    font-size: 30px;  
+    font-weight: 800;  
+    color: #5b21b6;  
+}  
+  
+.input-group {  
+    margin-bottom: 20px;  
+}  
+  
+.input-group label {  
+    display: block;  
+    font-size: 14px;  
+    font-weight: 700;  
+    color: #3b0764;  
+    margin-bottom: 8px;  
+}  
+  
+.input-group input {  
+    width: 100%;  
+    padding: 15px;  
+    border: 1px solid #ddd2ea;  
+    border-radius: 12px;  
+    font-size: 16px;  
+    outline: none;  
+    transition: 0.3s;  
+}  
+  
+.input-group input:focus {  
+    border-color: #7c3aed;  
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.12);  
+}  
+  
+.pay-button {  
+    width: 100%;  
+    padding: 16px;  
+    border: none;  
+    border-radius: 13px;  
+    background: linear-gradient(135deg, #3b0764, #7c3aed);  
+    color: white;  
+    font-size: 16px;  
+    font-weight: 700;  
+    cursor: pointer;  
+    transition: 0.3s;  
+}  
+  
+.pay-button:hover {  
+    transform: translateY(-2px);  
+    box-shadow: 0 10px 25px rgba(91,33,182,0.3);  
+}  
+  
+.pay-button:disabled {  
+    opacity: 0.7;  
+    cursor: not-allowed;  
+    transform: none;  
+}  
+  
+.status {  
+    display: none;  
+    margin-top: 20px;  
+    padding: 15px;  
+    border-radius: 12px;  
+    text-align: center;  
+    font-size: 14px;  
+    line-height: 1.5;  
+}  
+  
+.status.info {  
+    display: block;  
+    background: #f2eaff;  
+    color: #5b21b6;  
+}  
+  
+.status.success {  
+    display: block;  
+    background: #ecfdf5;  
+    color: #047857;  
+    border: 1px solid #a7f3d0;  
+}  
+  
+.status.error {  
+    display: block;  
+    background: #fef2f2;  
+    color: #b91c1c;  
+    border: 1px solid #fecaca;  
+}  
+  
+.spinner {  
+    width: 22px;  
+    height: 22px;  
+    border: 3px solid rgba(91,33,182,0.2);  
+    border-top-color: #5b21b6;  
+    border-radius: 50%;  
+    animation: spin 0.8s linear infinite;  
+    margin: 10px auto;  
+}  
+  
+@keyframes spin {  
+    to {  
+        transform: rotate(360deg);  
+    }  
+}  
+  
+.security {  
+    text-align: center;  
+    margin-top: 20px;  
+    font-size: 12px;  
+    color: #756c80;  
+}  
+  
+@media (max-width: 480px) {  
+    .payment-container {  
+        padding: 30px 20px;  
+    }  
+  
+    h1 {  
+        font-size: 23px;  
+    }  
+}  
+</style>  
+</head>  
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #180629, #3b0764, #6d28d9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    color: #21152f;
-}
+<body>  
 
-.payment-container {
-    width: 100%;
-    max-width: 450px;
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 35px 25px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-}
+<div class="payment-container">  
 
-.logo {
-    text-align: center;
-    font-size: 30px;
-    font-weight: 800;
-    color: #3b0764;
-    margin-bottom: 8px;
-}
+<div class="logo">  
+    Chat<span>Pesa</span>  
+</div>  
 
-.logo span {
-    color: #7c3aed;
-}
+<div class="subtitle">  
+    Connect. Chat. Earn.  
+</div>  
 
-.subtitle {
-    text-align: center;
-    color: #756c80;
-    font-size: 14px;
-    margin-bottom: 30px;
-}
+<div class="payment-icon">  
+    KSh  
+</div>  
 
-.payment-icon {
-    width: 75px;
-    height: 75px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #3b0764, #7c3aed);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 32px;
-}
+<h1>Complete Your Registration</h1>  
 
-h1 {
-    text-align: center;
-    color: #3b0764;
-    font-size: 25px;
-    margin-bottom: 10px;
-}
+<p class="description">  
+    Pay the registration fee below using M-PESA to activate your ChatPesa account.  
+</p>  
 
-.description {
-    text-align: center;
-    color: #756c80;
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 25px;
-}
+<div class="fee-box">  
+    <div class="fee-label">Registration Fee</div>  
+    <div class="fee">KSh 100</div>  
+</div>  
 
-.fee-box {
-    background: #f2eaff;
-    border: 1px solid #e5d5ff;
-    border-radius: 16px;
-    padding: 18px;
-    text-align: center;
-    margin-bottom: 25px;
-}
+<div class="input-group">  
+    <label for="phone">M-PESA Phone Number</label>  
+    <input  
+        type="tel"  
+        id="phone"  
+        placeholder="07XXXXXXXX"  
+        maxlength="13"  
+        autocomplete="tel"  
+    >  
+</div>  
 
-.fee-label {
-    font-size: 13px;
-    color: #756c80;
-    margin-bottom: 5px;
-}
+<button class="pay-button" id="payButton" onclick="makePayment()">  
+    Pay KSh 100  
+</button>  
 
-.fee {
-    font-size: 30px;
-    font-weight: 800;
-    color: #5b21b6;
-}
+<div id="status" class="status"></div>  
 
-.input-group {
-    margin-bottom: 20px;
-}
-
-.input-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: 700;
-    color: #3b0764;
-    margin-bottom: 8px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ddd2ea;
-    border-radius: 12px;
-    font-size: 16px;
-    outline: none;
-    transition: 0.3s;
-}
-
-.input-group input:focus {
-    border-color: #7c3aed;
-    box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
-}
-
-.pay-button {
-    width: 100%;
-    padding: 16px;
-    border: none;
-    border-radius: 13px;
-    background: linear-gradient(135deg, #3b0764, #7c3aed);
-    color: white;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.pay-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(91,33,182,0.3);
-}
-
-.pay-button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    transform: none;
-}
-
-.status {
-    display: none;
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.status.info {
-    display: block;
-    background: #f2eaff;
-    color: #5b21b6;
-}
-
-.status.success {
-    display: block;
-    background: #ecfdf5;
-    color: #047857;
-    border: 1px solid #a7f3d0;
-}
-
-.status.error {
-    display: block;
-    background: #fef2f2;
-    color: #b91c1c;
-    border: 1px solid #fecaca;
-}
-
-.spinner {
-    width: 22px;
-    height: 22px;
-    border: 3px solid rgba(91,33,182,0.2);
-    border-top-color: #5b21b6;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 10px auto;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.security {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 12px;
-    color: #756c80;
-}
-
-@media (max-width: 480px) {
-    .payment-container {
-        padding: 30px 20px;
-    }
-
-    h1 {
-        font-size: 23px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<div class="payment-container">
-
-    <div class="logo">
-        Chat<span>Pesa</span>
-    </div>
-
-    <div class="subtitle">
-        Connect. Chat. Earn.
-    </div>
-
-    <div class="payment-icon">
-        KSh
-    </div>
-
-    <h1>Complete Your Registration</h1>
-
-    <p class="description">
-        Pay the registration fee below using M-PESA to activate your ChatPesa account.
-    </p>
-
-    <div class="fee-box">
-        <div class="fee-label">Registration Fee</div>
-        <div class="fee">KSh 100</div>
-    </div>
-
-    <div class="input-group">
-        <label for="phone">M-PESA Phone Number</label>
-        <input
-            type="tel"
-            id="phone"
-            placeholder="07XXXXXXXX"
-            maxlength="13"
-            autocomplete="tel"
-        >
-    </div>
-
-    <button class="pay-button" id="payButton" onclick="makePayment()">
-        Pay KSh 100
-    </button>
-
-    <div id="status" class="status"></div>
-
-    <div class="security">
-        🔒 Secure M-PESA payment
-    </div>
-
+<div class="security">  
+    🔒 Secure M-PESA payment  
 </div>
 
-<script>
+</div>  
 
-function showStatus(message, type) {
-    const status = document.getElementById("status");
-
-    status.className = "status " + type;
-    status.innerHTML = message;
-}
-
-async function makePayment() {
-
-    const phone = document.getElementById("phone").value.trim();
-    const payButton = document.getElementById("payButton");
-
-    if (!
+<script>  
+  
+const BACKEND_URL =  
+    "https://chatpesa-backend.onrender
