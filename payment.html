@@ -249,4 +249,36 @@ h1 {
         <input
             type="tel"
             id="phone"
-            placeholder="07XXXXXXXX
+            placeholder="07XXXXXXXX"
+            maxlength="13"
+            autocomplete="tel"
+        >
+    </div>
+
+    <button class="pay-button" id="payButton" onclick="makePayment()">
+        Pay KSh 100
+    </button>
+
+    <div id="status" class="status"></div>
+
+    <div class="security">
+        🔒 Secure M-PESA payment
+    </div>
+
+</div>
+
+<script>
+
+function showStatus(message, type) {
+    const status = document.getElementById("status");
+
+    status.className = "status " + type;
+    status.innerHTML = message;
+}
+
+async function makePayment() {
+
+    const phone = document.getElementById("phone").value.trim();
+    const payButton = document.getElementById("payButton");
+
+    if (!
