@@ -399,6 +399,27 @@ header{
 }
 
 
+/* ================= LOADING ================= */
+
+.loading-spinner{
+    width:18px;
+    height:18px;
+
+    border:3px solid rgba(255,255,255,.35);
+    border-top:3px solid white;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
 /* ================= HERO PREVIEW ================= */
 
 .preview-wrap{
@@ -1184,7 +1205,9 @@ footer p{
     </div>
 
     <a href="register.html" class="nav-link">
+
         Get Started
+
     </a>
 
 </div>
@@ -1743,6 +1766,44 @@ footer p{
 
 
 </footer>
+
+
+<script>
+
+/* ================= GET STARTED LOADING ================= */
+
+document.querySelectorAll(
+    'a[href="register.html"]'
+).forEach(function(button){
+
+    button.addEventListener("click", function(event){
+
+        event.preventDefault();
+
+        if(button.dataset.loading === "true"){
+            return;
+        }
+
+        button.dataset.loading = "true";
+
+        const originalContent = button.innerHTML;
+
+        button.innerHTML =
+            '<span class="loading-spinner"></span> Loading...';
+
+        button.style.pointerEvents = "none";
+
+        setTimeout(function(){
+
+            window.location.href = "register.html";
+
+        }, 2000);
+
+    });
+
+});
+
+</script>
 
 
 </body>
