@@ -40,8 +40,6 @@ body{
     color:var(--text);
 }
 
-/* MAIN */
-
 .wrapper{
     width:100%;
     max-width:1000px;
@@ -61,8 +59,6 @@ body{
     position:relative;
     z-index:2;
 }
-
-/* LEFT SIDE */
 
 .brand-panel{
     padding:50px 38px;
@@ -158,8 +154,6 @@ body{
     font-size:16px;
 }
 
-/* FORM SIDE */
-
 .form-panel{
     padding:42px 42px;
 }
@@ -214,8 +208,6 @@ body{
     margin-bottom:12px;
 }
 
-/* REGISTRATION FEE */
-
 .registration-fee{
     display:inline-flex;
     align-items:center;
@@ -227,8 +219,6 @@ body{
     font-size:12px;
     font-weight:800;
 }
-
-/* FORM */
 
 .form-group{
     margin-bottom:15px;
@@ -296,8 +286,6 @@ select:focus{
     margin-top:5px;
 }
 
-/* TERMS */
-
 .terms{
     display:flex;
     gap:9px;
@@ -352,6 +340,11 @@ select:focus{
         0 12px 28px rgba(91,33,182,.27);
 
     transition:.25s;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
 }
 
 .continue-btn:hover{
@@ -365,7 +358,31 @@ select:focus{
     transform:translateY(1px);
 }
 
-/* SECURITY */
+.continue-btn:disabled{
+    cursor:not-allowed;
+    opacity:.9;
+    transform:none;
+}
+
+/* LOADING CIRCLE */
+
+.loading-spinner{
+    width:18px;
+    height:18px;
+
+    border:3px solid rgba(255,255,255,.35);
+    border-top:3px solid white;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
 
 .secure{
     text-align:center;
@@ -380,8 +397,6 @@ select:focus{
 .secure strong{
     color:#5b21b6;
 }
-
-/* BACK */
 
 .back{
     display:block;
@@ -398,8 +413,6 @@ select:focus{
 
     text-decoration:none;
 }
-
-/* MOBILE */
 
 @media(max-width:760px){
 
@@ -470,8 +483,6 @@ select:focus{
 
 <div class="wrapper">
 
-    <!-- ================= LEFT BRAND PANEL ================= -->
-
     <div class="brand-panel">
 
         <div class="brand-logo">
@@ -514,12 +525,7 @@ select:focus{
 
     </div>
 
-
-    <!-- ================= FORM PANEL ================= -->
-
     <div class="form-panel">
-
-        <!-- PROGRESS -->
 
         <div class="progress">
 
@@ -545,7 +551,6 @@ select:focus{
 
         </div>
 
-
         <h1 class="title">
             Create your account
         </h1>
@@ -559,10 +564,7 @@ select:focus{
             Registration Fee: KSh 100
         </div>
 
-
         <form id="registrationForm">
-
-            <!-- FULL NAME -->
 
             <div class="form-group">
 
@@ -586,9 +588,6 @@ select:focus{
 
             </div>
 
-
-            <!-- PHONE -->
-
             <div class="form-group">
 
                 <label for="phone">
@@ -610,9 +609,6 @@ select:focus{
                 </div>
 
             </div>
-
-
-            <!-- COUNTRY -->
 
             <div class="form-group">
 
@@ -656,9 +652,6 @@ select:focus{
 
             </div>
 
-
-            <!-- PASSWORD -->
-
             <div class="form-group">
 
                 <label for="password">
@@ -686,9 +679,6 @@ select:focus{
 
             </div>
 
-
-            <!-- CONFIRM PASSWORD -->
-
             <div class="form-group">
 
                 <label for="confirmPassword">
@@ -710,9 +700,6 @@ select:focus{
                 </div>
 
             </div>
-
-
-            <!-- TERMS -->
 
             <div class="terms">
 
@@ -737,23 +724,19 @@ select:focus{
 
             </div>
 
-
-            <!-- CONTINUE -->
-
             <button
                 type="submit"
                 class="continue-btn"
+                id="createAccountBtn"
             >
-                Continue to Payment →
+                CREATE ACCOUNT
             </button>
 
         </form>
 
-
         <div class="secure">
             🔒 <strong>Your information is protected</strong>
         </div>
-
 
         <a
             href="index.html"
@@ -766,62 +749,8 @@ select:focus{
 
 </div>
 
-
 <script>
 
 document
 .getElementById("registrationForm")
-.addEventListener("submit", function(event){
-
-    event.preventDefault();
-
-    const password =
-        document.getElementById("password").value;
-
-    const confirmPassword =
-        document.getElementById("confirmPassword").value;
-
-
-    if(password !== confirmPassword){
-
-        alert(
-            "Passwords do not match. Please check your password."
-        );
-
-        return;
-    }
-
-
-    const registrationData = {
-
-        fullName:
-            document.getElementById("fullName").value,
-
-        phone:
-            document.getElementById("phone").value,
-
-        country:
-            document.getElementById("country").value
-
-    };
-
-
-    localStorage.setItem(
-        "chatpesaRegistration",
-        JSON.stringify(registrationData)
-    );
-
-
-    /*
-      The password is intentionally NOT stored
-      in localStorage.
-    */
-
-    window.location.href = "payment.html";
-
-});
-
-</script>
-
-</body>
-</html>
+.add
