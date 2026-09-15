@@ -40,8 +40,6 @@ body{
     color:var(--text);
 }
 
-/* MAIN */
-
 .wrapper{
     width:100%;
     max-width:1000px;
@@ -61,8 +59,6 @@ body{
     position:relative;
     z-index:2;
 }
-
-/* LEFT SIDE */
 
 .brand-panel{
     padding:50px 38px;
@@ -158,8 +154,6 @@ body{
     font-size:16px;
 }
 
-/* FORM SIDE */
-
 .form-panel{
     padding:42px 42px;
 }
@@ -213,22 +207,6 @@ body{
     margin-top:8px;
     margin-bottom:12px;
 }
-
-/* REGISTRATION FEE */
-
-.registration-fee{
-    display:inline-flex;
-    align-items:center;
-    padding:8px 12px;
-    margin-bottom:25px;
-    border-radius:10px;
-    background:#f3eaff;
-    color:#5b21b6;
-    font-size:12px;
-    font-weight:800;
-}
-
-/* FORM */
 
 .form-group{
     margin-bottom:15px;
@@ -296,8 +274,6 @@ select:focus{
     margin-top:5px;
 }
 
-/* TERMS */
-
 .terms{
     display:flex;
     gap:9px;
@@ -328,8 +304,6 @@ select:focus{
     font-weight:800;
     text-decoration:none;
 }
-
-/* BUTTON */
 
 .continue-btn{
     width:100%;
@@ -376,8 +350,6 @@ select:focus{
     transform:none;
 }
 
-/* LOADING */
-
 .loading-spinner{
     width:18px;
     height:18px;
@@ -396,8 +368,6 @@ select:focus{
     }
 }
 
-/* SECURITY */
-
 .secure{
     text-align:center;
 
@@ -411,8 +381,6 @@ select:focus{
 .secure strong{
     color:#5b21b6;
 }
-
-/* BACK */
 
 .back{
     display:block;
@@ -429,8 +397,6 @@ select:focus{
 
     text-decoration:none;
 }
-
-/* MOBILE */
 
 @media(max-width:760px){
 
@@ -501,8 +467,6 @@ select:focus{
 
 <div class="wrapper">
 
-    <!-- ================= LEFT BRAND PANEL ================= -->
-
     <div class="brand-panel">
 
         <div class="brand-logo">
@@ -545,12 +509,7 @@ select:focus{
 
     </div>
 
-
-    <!-- ================= FORM PANEL ================= -->
-
     <div class="form-panel">
-
-        <!-- PROGRESS -->
 
         <div class="progress">
 
@@ -576,7 +535,6 @@ select:focus{
 
         </div>
 
-
         <h1 class="title">
             Create your account
         </h1>
@@ -586,14 +544,7 @@ select:focus{
             to registration payment.
         </p>
 
-        <div class="registration-fee">
-            Registration Fee: KSh 100
-        </div>
-
-
         <form id="registrationForm">
-
-            <!-- FULL NAME -->
 
             <div class="form-group">
 
@@ -617,9 +568,6 @@ select:focus{
 
             </div>
 
-
-            <!-- PHONE -->
-
             <div class="form-group">
 
                 <label for="phone">
@@ -641,9 +589,6 @@ select:focus{
                 </div>
 
             </div>
-
-
-            <!-- COUNTRY -->
 
             <div class="form-group">
 
@@ -687,9 +632,6 @@ select:focus{
 
             </div>
 
-
-            <!-- PASSWORD -->
-
             <div class="form-group">
 
                 <label for="password">
@@ -717,34 +659,6 @@ select:focus{
 
             </div>
 
-
-            <!-- CONFIRM PASSWORD -->
-
-            <div class="form-group">
-
-                <label for="confirmPassword">
-                    Confirm Password
-                </label>
-
-                <div class="input-box">
-
-                    <span class="input-icon">🔐</span>
-
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        placeholder="Confirm your password"
-                        autocomplete="new-password"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <!-- TERMS -->
-
             <div class="terms">
 
                 <input
@@ -768,9 +682,6 @@ select:focus{
 
             </div>
 
-
-            <!-- CREATE ACCOUNT -->
-
             <button
                 type="submit"
                 class="continue-btn"
@@ -781,11 +692,9 @@ select:focus{
 
         </form>
 
-
         <div class="secure">
             🔒 <strong>Your information is protected</strong>
         </div>
-
 
         <a
             href="index.html"
@@ -797,7 +706,6 @@ select:focus{
     </div>
 
 </div>
-
 
 <script>
 
@@ -816,34 +724,12 @@ document
 
     const form = this;
 
-    /*
-      Make sure all required fields are valid
-      before starting the loading process.
-    */
-
     if(!form.checkValidity()){
 
         form.reportValidity();
 
         return;
     }
-
-    const password =
-        document.getElementById("password").value;
-
-    const confirmPassword =
-        document.getElementById("confirmPassword").value;
-
-
-    if(password !== confirmPassword){
-
-        alert(
-            "Passwords do not match. Please check your password."
-        );
-
-        return;
-    }
-
 
     const registrationData = {
 
@@ -858,18 +744,15 @@ document
 
     };
 
-
     localStorage.setItem(
         "chatpesaRegistration",
         JSON.stringify(registrationData)
     );
 
-
     /*
       The password is intentionally NOT stored
       in localStorage.
     */
-
 
     accountCreating = true;
 
@@ -881,10 +764,16 @@ document
     button.innerHTML =
         '<span class="loading-spinner"></span> Creating account...';
 
-
     setTimeout(function(){
 
-        window.location.replace("payment.html");
+        button.innerHTML =
+            "Account created successfully ✓";
+
+        setTimeout(function(){
+
+            window.location.replace("payment.html");
+
+        }, 1000);
 
     }, 3000);
 
