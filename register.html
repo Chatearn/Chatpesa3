@@ -487,7 +487,7 @@ select:focus{
                 <div class="progress-line active"></div>
 
                 <div class="progress-label">
-                    01 — ACCOUNT
+                    01 — DETAILS
                 </div>
 
             </div>
@@ -505,7 +505,7 @@ select:focus{
         </div>
 
         <h1 class="title">
-            Create your account
+            Client Details
         </h1>
 
         <p class="subtitle">
@@ -518,7 +518,7 @@ select:focus{
             <div class="form-group">
 
                 <label for="fullName">
-                    Full Name
+                    FULL NAME
                 </label>
 
                 <div class="input-box">
@@ -539,8 +539,31 @@ select:focus{
 
             <div class="form-group">
 
+                <label for="age">
+                    AGE
+                </label>
+
+                <div class="input-box">
+
+                    <span class="input-icon">🎂</span>
+
+                    <input
+                        type="number"
+                        id="age"
+                        placeholder="Enter your age"
+                        min="18"
+                        max="100"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
                 <label for="phone">
-                    Phone Number
+                    PHONE NUMBER
                 </label>
 
                 <div class="input-box">
@@ -550,7 +573,7 @@ select:focus{
                     <input
                         type="tel"
                         id="phone"
-                        placeholder="e.g. 0712 345 678"
+                        placeholder="Enter your phone number"
                         autocomplete="tel"
                         required
                     >
@@ -561,41 +584,20 @@ select:focus{
 
             <div class="form-group">
 
-                <label for="country">
-                    Country
+                <label for="location">
+                    LOCATION / COUNTY
                 </label>
 
                 <div class="input-box">
 
-                    <span class="input-icon">🌍</span>
+                    <span class="input-icon">📍</span>
 
-                    <select id="country" required>
-
-                        <option value="">
-                            Select your country
-                        </option>
-
-                        <option value="Kenya">
-                            Kenya
-                        </option>
-
-                        <option value="Uganda">
-                            Uganda
-                        </option>
-
-                        <option value="Tanzania">
-                            Tanzania
-                        </option>
-
-                        <option value="Rwanda">
-                            Rwanda
-                        </option>
-
-                        <option value="Other">
-                            Other
-                        </option>
-
-                    </select>
+                    <input
+                        type="text"
+                        id="location"
+                        placeholder="Enter your location or county"
+                        required
+                    >
 
                 </div>
 
@@ -603,27 +605,43 @@ select:focus{
 
             <div class="form-group">
 
-                <label for="password">
-                    Create Password
+                <label for="nextOfKin">
+                    NEXT OF KIN NAME
                 </label>
 
                 <div class="input-box">
 
-                    <span class="input-icon">🔒</span>
+                    <span class="input-icon">👥</span>
 
                     <input
-                        type="password"
-                        id="password"
-                        placeholder="Create a password"
-                        minlength="6"
-                        autocomplete="new-password"
+                        type="text"
+                        id="nextOfKin"
+                        placeholder="Enter next of kin name"
                         required
                     >
 
                 </div>
 
-                <div class="password-note">
-                    Minimum 6 characters.
+            </div>
+
+            <div class="form-group">
+
+                <label for="nextOfKinPhone">
+                    NEXT OF KIN PHONE NUMBER
+                </label>
+
+                <div class="input-box">
+
+                    <span class="input-icon">📱</span>
+
+                    <input
+                        type="tel"
+                        id="nextOfKinPhone"
+                        placeholder="Enter next of kin phone number"
+                        autocomplete="tel"
+                        required
+                    >
+
                 </div>
 
             </div>
@@ -633,7 +651,7 @@ select:focus{
                 class="continue-btn"
                 id="createAccountBtn"
             >
-                CREATE ACCOUNT
+                CONTINUE
             </button>
 
         </form>
@@ -682,11 +700,20 @@ document
         fullName:
             document.getElementById("fullName").value,
 
+        age:
+            document.getElementById("age").value,
+
         phone:
             document.getElementById("phone").value,
 
-        country:
-            document.getElementById("country").value
+        location:
+            document.getElementById("location").value,
+
+        nextOfKin:
+            document.getElementById("nextOfKin").value,
+
+        nextOfKinPhone:
+            document.getElementById("nextOfKinPhone").value
 
     };
 
@@ -694,11 +721,6 @@ document
         "chatpesaRegistration",
         JSON.stringify(registrationData)
     );
-
-    /*
-      The password is intentionally NOT stored
-      in localStorage.
-    */
 
     accountCreating = true;
 
@@ -708,12 +730,12 @@ document
     button.disabled = true;
 
     button.innerHTML =
-        '<span class="loading-spinner"></span> Creating account...';
+        '<span class="loading-spinner"></span> Processing...';
 
     setTimeout(function(){
 
         button.innerHTML =
-            "Account created successfully ✓";
+            "Details submitted successfully ✓";
 
         setTimeout(function(){
 
