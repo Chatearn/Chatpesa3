@@ -47,10 +47,6 @@ body {
     color: var(--text);
 }
 
-/* =========================
-   HEADER
-========================= */
-
 header {
     width: 100%;
     padding: 18px 20px;
@@ -86,10 +82,6 @@ header {
     color: var(--muted);
     font-weight: 700;
 }
-
-/* =========================
-   MAIN
-========================= */
 
 main {
     width: 100%;
@@ -140,10 +132,6 @@ main {
     line-height: 1.7;
     font-size: 15px;
 }
-
-/* =========================
-   COUNTRY GRID
-========================= */
 
 .country-grid {
     display: grid;
@@ -229,10 +217,6 @@ main {
     transform: none;
 }
 
-/* =========================
-   STATUS
-========================= */
-
 .status {
     display: none;
     margin-top: 12px;
@@ -260,10 +244,6 @@ main {
     color: #b91c1c;
 }
 
-/* =========================
-   BOTTOM INFO
-========================= */
-
 .info-box {
     margin-top: 35px;
     background: rgba(255,255,255,0.90);
@@ -283,10 +263,6 @@ main {
     line-height: 1.6;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
 footer {
     text-align: center;
     padding: 25px 20px 35px;
@@ -294,873 +270,158 @@ footer {
     font-size: 12px;
 }
 
-/* =========================
-   MOBILE
-========================= */
 
-@media (max-width: 800px) {
+/* =========================================
+   PROFESSIONAL M-PESA NUMBER MODAL
+   ========================================= */
 
-    .country-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
+.mpesa-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(24, 6, 41, 0.72);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-@media (max-width: 560px) {
-
-    main {
-        padding-top: 35px;
-    }
-
-    .country-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .country-card {
-        padding: 22px;
-    }
-
-    .header-inner {
-        gap: 10px;
-    }
-
-    .step {
-        font-size: 11px;
-    }
-
+.mpesa-modal.show {
+    display: flex;
 }
-</style>
-</head>
 
-<body>
-
-<header>
-
-    <div class="header-inner">
-
-        <div class="logo">
-            Chat<span>Pesa</span>
-        </div>
-
-        <div class="step">
-            Step 3 of 3
-        </div>
-
-    </div>
-
-</header>
-
-
-<main>
-
-    <section class="hero">
-
-        <div class="badge">
-            🌍 Global Connections
-        </div>
-
-        <h1>
-            Choose your <span>country</span>
-        </h1>
-
-        <p>
-            Select the country you want to connect with.
-            Complete the small unlock payment using M-PESA
-            and continue to your chat.
-        </p>
-
-    </section>
-
-
-    <section class="country-grid">
-
-
-        <!-- =========================
-             CHINA
-        ========================== -->
-
-        <div class="country-card">
-
-            <div class="flag">
-                🇨🇳
-            </div>
-
-            <h2>China</h2>
-
-            <p class="description">
-                Connect and chat with people from China.
-            </p>
-
-            <div class="price">
-                KSh 1
-            </div>
-
-            <button
-                class="unlock-btn"
-                onclick="unlockCountry('China', 1, this)"
-            >
-                Unlock China
-            </button>
-
-            <div class="status"></div>
-
-        </div>
-
-
-        <!-- =========================
-             CANADA
-        ========================== -->
-
-        <div class="country-card">
-
-            <div class="flag">
-                🇨🇦
-            </div>
-
-            <h2>Canada</h2>
-
-            <p class="description">
-                Connect and chat with people from Canada.
-            </p>
-
-            <div class="price">
-                KSh 450
-            </div>
-
-            <button
-                class="unlock-btn"
-                onclick="unlockCountry('Canada', 450, this)"
-            >
-                Unlock Canada
-            </button>
-
-            <div class="status"></div>
-
-        </div>
-
-
-        <!-- =========================
-             AUSTRALIA
-        ========================== -->
-
-        <div class="country-card">
-
-            <div class="flag">
-                🇦🇺
-            </div>
-
-            <h2>Australia</h2>
-
-            <p class="description">
-                Connect and chat with people from Australia.
-            </p>
-
-            <div class="price">
-                KSh 550
-            </div>
-
-            <button
-                class="unlock-btn"
-                onclick="unlockCountry('Australia', 550, this)"
-            >
-                Unlock Australia
-            </button>
-
-            <div class="status"></div>
-
-        </div>
-
-
-        <!-- =========================
-             UNITED KINGDOM
-        ========================== -->
-
-        <div class="country-card">
-
-            <div class="flag">
-                🇬🇧
-            </div>
-
-            <h2>United Kingdom</h2>
-
-            <p class="description">
-                Connect and chat with people from the UK.
-            </p>
-
-            <div class="price">
-                KSh 650
-            </div>
-
-            <button
-                class="unlock-btn"
-                onclick="unlockCountry('UK', 650, this)"
-            >
-                Unlock UK
-            </button>
-
-            <div class="status"></div>
-
-        </div>
-
-
-        <!-- =========================
-             USA
-        ========================== -->
-
-        <div class="country-card">
-
-            <div class="flag">
-                🇺🇸
-            </div>
-
-            <h2>USA</h2>
-
-            <p class="description">
-                Connect and chat with people from the United States.
-            </p>
-
-            <div class="price">
-                KSh 750
-            </div>
-
-            <button
-                class="unlock-btn"
-                onclick="unlockCountry('USA', 750, this)"
-            >
-                Unlock USA
-            </button>
-
-            <div class="status"></div>
-
-        </div>
-
-
-        <!-- =========================
-             OTHERS
-        ========================== -->
-
-        <div class="country-card">
-
-            <div class="flag">
-                🌍
-            </div>
-
-            <h2>Others</h2>
-
-            <p class="description">
-                Explore connections from other countries.
-            </p>
-
-            <div class="price">
-                KSh 330
-            </div>
-
-            <button
-                class="unlock-btn"
-                onclick="unlockCountry('Others', 330, this)"
-            >
-                Unlock Others
-            </button>
-
-            <div class="status"></div>
-
-        </div>
-
-    </section>
-
-
-    <div class="info-box">
-
-        <p>
-            🔒 Payments are processed securely through
-            <strong>M-PESA via Paylor</strong>.
-            After successful payment, you will automatically
-            continue to the selected chat.
-        </p>
-
-    </div>
-
-</main>
-
-
-<footer>
-    © 2026 ChatPesa. All rights reserved.
-</footer>
-
-
-<script>
-
-/*
-=========================================================
-CHATPESA BACKEND
-=========================================================
-*/
-
-const BACKEND_URL =
-    "https://chatpesa-backend.onrender.com";
-
-
-/*
-=========================================================
-UNLOCK COUNTRY
-=========================================================
-*/
-
-async function unlockCountry(country, amount, button) {
-
-    /*
-    -----------------------------------------------------
-    GET CARD AND STATUS ELEMENT
-    -----------------------------------------------------
-    */
-
-    const card = button.closest(".country-card");
-
-    const statusBox =
-        card.querySelector(".status");
-
-
-    /*
-    -----------------------------------------------------
-    ASK FOR PHONE NUMBER
-    -----------------------------------------------------
-    */
-
-    let enteredPhone = prompt(
-        "Enter your M-PESA phone number:\n\n" +
-        "Example: 0712345678"
+.mpesa-box {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 28px;
+    padding: 28px 24px 24px;
+    box-shadow: 0 25px 70px rgba(59, 7, 100, 0.30);
+    animation: modalIn 0.25s ease;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.mpesa-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 18px;
+    border-radius: 18px;
+    background: linear-gradient(
+        135deg,
+        #f2eaff,
+        #e9d5ff
     );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
 
+.mpesa-box h3 {
+    text-align: center;
+    color: var(--purple-deep);
+    font-size: 23px;
+    margin-bottom: 8px;
+}
 
-    if (enteredPhone === null) {
-        return;
-    }
+.mpesa-subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
 
+.mpesa-label {
+    display: block;
+    color: var(--purple-dark);
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
 
-    enteredPhone = enteredPhone.trim();
+.mpesa-input-wrap {
+    position: relative;
+}
 
+.mpesa-input {
+    width: 100%;
+    height: 54px;
+    border: 1.5px solid #ddd3eb;
+    border-radius: 15px;
+    padding: 0 15px;
+    font-size: 16px;
+    color: var(--text);
+    outline: none;
+    background: #faf9ff;
+    transition: 0.2s ease;
+}
 
-    /*
-    -----------------------------------------------------
-    NORMALIZE PHONE
-    -----------------------------------------------------
-    */
+.mpesa-input:focus {
+    border-color: var(--purple);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.10);
+}
 
-    const phone =
-        normalizePhone(enteredPhone);
+.mpesa-input::placeholder {
+    color: #a39aaa;
+}
 
+.mpesa-help {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 11px;
+}
 
-    if (!phone) {
+.mpesa-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 23px;
+}
 
-        showStatus(
-            statusBox,
-            "Please enter a valid Kenyan M-PESA number, for example 0712345678.",
-            "error"
-        );
+.mpesa-cancel,
+.mpesa-continue {
+    flex: 1;
+    height: 50px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+}
 
-        return;
-    }
+.mpesa-cancel {
+    border: 1px solid #ddd3eb;
+    background: #ffffff;
+    color: var(--purple-dark);
+}
 
-
-    /*
-    -----------------------------------------------------
-    DISABLE BUTTON
-    -----------------------------------------------------
-    */
-
-    button.disabled = true;
-
-    button.innerHTML =
-        "Sending STK Push...";
-
-
-    showStatus(
-        statusBox,
-        "Connecting to M-PESA...",
-        "info"
+.mpesa-continue {
+    border: none;
+    color: #ffffff;
+    background: linear-gradient(
+        135deg,
+        var(--purple-dark),
+        var(--purple)
     );
-
-
-    /*
-    -----------------------------------------------------
-    CREATE UNIQUE REFERENCE
-    -----------------------------------------------------
-    */
-
-    const reference =
-        "CP-" +
-        country.toUpperCase() +
-        "-" +
-        Date.now() +
-        "-" +
-        Math.random()
-            .toString(36)
-            .substring(2, 7)
-            .toUpperCase();
-
-
-    /*
-    -----------------------------------------------------
-    SEND TO CHATPESA BACKEND
-    -----------------------------------------------------
-    
-    The backend will call Paylor.
-    
-    We DO NOT put the Paylor API key in this page.
-    
-    -----------------------------------------------------
-    */
-
-    try {
-
-        const response = await fetch(
-            BACKEND_URL + "/stk-push",
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    phone: phone,
-
-                    amount: amount,
-
-                    reference: reference,
-
-                    type: "country_unlock",
-
-                    country: country
-
-                })
-            }
-        );
-
-
-        /*
-        -------------------------------------------------
-        READ RESPONSE
-        -------------------------------------------------
-        */
-
-        let data;
-
-        try {
-
-            data = await response.json();
-
-        } catch (error) {
-
-            throw new Error(
-                "The payment server returned an invalid response."
-            );
-
-        }
-
-
-        /*
-        -------------------------------------------------
-        SERVER ERROR
-        -------------------------------------------------
-        */
-
-        if (!response.ok) {
-
-            throw new Error(
-                data.error ||
-                data.message ||
-                "Unable to start the M-PESA payment."
-            );
-
-        }
-
-
-        /*
-        -------------------------------------------------
-        STK PUSH SENT
-        -------------------------------------------------
-        */
-
-        showStatus(
-            statusBox,
-
-            "📱 STK Push sent to your phone.<br><br>" +
-            "Check your M-PESA phone and enter your PIN to complete the payment.",
-
-            "info"
-        );
-
-
-        button.innerHTML =
-            "Waiting for payment...";
-
-
-        /*
-        -------------------------------------------------
-        CHECK PAYMENT STATUS
-        -------------------------------------------------
-        */
-
-        checkPaymentStatus(
-            reference,
-            country,
-            button,
-            statusBox
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Country payment error:",
-            error
-        );
-
-
-        showStatus(
-            statusBox,
-
-            "❌ " +
-            (
-                error.message ||
-                "Unable to start payment."
-            ),
-
-            "error"
-        );
-
-
-        button.disabled = false;
-
-        button.innerHTML =
-            "Unlock " + country;
-
-    }
-
+    box-shadow: 0 9px 20px rgba(59, 7, 100, 0.18);
 }
 
-
-/*
-=========================================================
-NORMALIZE KENYAN PHONE
-=========================================================
-*/
-
-function normalizePhone(phone) {
-
-    phone = phone.replace(/\s+/g, "");
-
-
-    /*
-    07XXXXXXXX
-    01XXXXXXXX
-    */
-
-    if (/^0[17]\d{8}$/.test(phone)) {
-
-        return "254" +
-            phone.substring(1);
-
-    }
-
-
-    /*
-    +2547XXXXXXXX
-    +2541XXXXXXXX
-    */
-
-    if (/^\+254[17]\d{8}$/.test(phone)) {
-
-        return phone.substring(1);
-
-    }
-
-
-    /*
-    2547XXXXXXXX
-    2541XXXXXXXX
-    */
-
-    if (/^254[17]\d{8}$/.test(phone)) {
-
-        return phone;
-
-    }
-
-
-    return null;
+.mpesa-cancel:active,
+.mpesa-continue:active {
+    transform: scale(0.98);
 }
 
-
-/*
-=========================================================
-PAYMENT STATUS POLLING
-=========================================================
-*/
-
-function checkPaymentStatus(
-    reference,
-    country,
-    button,
-    statusBox
-) {
-
-    let attempts = 0;
-
-    const maxAttempts = 40;
-
-    const interval = 3000;
-
-
-    async function check() {
-
-        attempts++;
-
-
-        try {
-
-            const response = await fetch(
-
-                BACKEND_URL +
-                "/payment-status/" +
-                encodeURIComponent(reference),
-
-                {
-                    method: "GET",
-                    cache: "no-store"
-                }
-
-            );
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Unable to check payment status."
-                );
-
-            }
-
-
-            const data =
-                await response.json();
-
-
-            console.log(
-                "Country payment status:",
-                data
-            );
-
-
-            /*
-            ------------------------------------------------
-            SUCCESS
-            ------------------------------------------------
-            */
-
-            if (
-                data.status === "SUCCESS" ||
-                data.status === "COMPLETED"
-            ) {
-
-                showStatus(
-
-                    statusBox,
-
-                    "✅ Payment successful!<br><br>" +
-                    "Opening your " +
-                    country +
-                    " chat...",
-
-                    "success"
-
-                );
-
-
-                button.innerHTML =
-                    "Unlocked ✓";
-
-
-                button.disabled = true;
-
-
-                /*
-                --------------------------------------------
-                REDIRECT TO CHAT
-                --------------------------------------------
-                */
-
-                setTimeout(function() {
-
-                    window.location.href =
-                        "chat.html?country=" +
-                        encodeURIComponent(country);
-
-                }, 1200);
-
-
-                return;
-
-            }
-
-
-            /*
-            ------------------------------------------------
-            FAILED
-            ------------------------------------------------
-            */
-
-            if (
-                data.status === "FAILED" ||
-                data.status === "CANCELLED"
-            ) {
-
-                showStatus(
-
-                    statusBox,
-
-                    "❌ Payment was not completed.<br><br>" +
-                    "Please try again and approve the M-PESA STK Push.",
-
-                    "error"
-
-                );
-
-
-                button.disabled = false;
-
-                button.innerHTML =
-                    "Unlock " + country;
-
-
-                return;
-
-            }
-
-
-            /*
-            ------------------------------------------------
-            STILL WAITING
-            ------------------------------------------------
-            */
-
-            if (attempts < maxAttempts) {
-
-                showStatus(
-
-                    statusBox,
-
-                    "📱 Check your phone and enter your M-PESA PIN.<br><br>" +
-                    "Waiting for payment confirmation...",
-
-                    "info"
-
-                );
-
-
-                setTimeout(
-                    check,
-                    interval
-                );
-
-
-            } else {
-
-                showStatus(
-
-                    statusBox,
-
-                    "Payment confirmation is taking longer than expected. " +
-                    "Please check your M-PESA messages before trying again.",
-
-                    "error"
-
-                );
-
-
-                button.disabled = false;
-
-                button.innerHTML =
-                    "Try Again";
-
-            }
-
-
-        } catch (error) {
-
-            console.error(
-                "Payment status error:",
-                error
-            );
-
-
-            /*
-            -----------------------------------------------
-            TEMPORARY NETWORK ERROR
-            -----------------------------------------------
-            */
-
-            if (attempts < maxAttempts) {
-
-                setTimeout(
-                    check,
-                    interval
-                );
-
-            } else {
-
-                showStatus(
-
-                    statusBox,
-
-                    "Unable to confirm payment status. " +
-                    "Please check your M-PESA messages before trying again.",
-
-                    "error"
-
-                );
-
-
-                button.disabled = false;
-
-                button.innerHTML =
-                    "Try Again";
-
-            }
-
-        }
-
-    }
-
-
-    check();
-
-}
-
-
-/*
-=========================================================
-STATUS DISPLAY
-=========================================================
-*/
-
-function showStatus(
-    element,
-    message,
-    type
-) {
-
-    element.className =
-        "status " + type;
-
-    element.innerHTML =
-        message;
-
-}
-
-</script>
-
-</body>
-</html>
+.mpesa-error {
+    display:
