@@ -424,4 +424,804 @@ footer {
 }
 
 .mpesa-error {
-    display:
+    display: none;
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #fef2f2;
+    color: #b91c1c;
+    font-size: 12px;
+}
+
+.mpesa-error.show {
+    display: block;
+}
+
+
+@media (max-width: 800px) {
+    .country-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    main {
+        padding-top: 35px;
+    }
+
+    .country-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .country-card {
+        padding: 22px;
+    }
+
+    .header-inner {
+        gap: 10px;
+    }
+
+    .step {
+        font-size: 11px;
+    }
+
+    .mpesa-box {
+        padding: 25px 20px 20px;
+        border-radius: 24px;
+    }
+
+    .mpesa-box h3 {
+        font-size: 21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="logo">
+            Chat<span>Pesa</span>
+        </div>
+
+        <div class="step">
+            Step 3 of 3
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <section class="hero">
+        <div class="badge">
+            🌍 Global Connections
+        </div>
+
+        <h1>
+            Choose your <span>country</span>
+        </h1>
+
+        <p>
+            Select the country you want to connect with.
+            Complete the small unlock payment using M-PESA
+            and continue to your chat.
+        </p>
+    </section>
+
+    <section class="country-grid">
+
+        <div class="country-card">
+            <div class="flag">🇨🇳</div>
+            <h2>China</h2>
+            <p class="description">
+                Connect and chat with people from China.
+            </p>
+            <div class="price">KSh 1</div>
+            <button
+                class="unlock-btn"
+                onclick="unlockCountry('China', 1, this)"
+            >
+                Unlock China
+            </button>
+            <div class="status"></div>
+        </div>
+
+        <div class="country-card">
+            <div class="flag">🇨🇦</div>
+            <h2>Canada</h2>
+            <p class="description">
+                Connect and chat with people from Canada.
+            </p>
+            <div class="price">KSh 450</div>
+            <button
+                class="unlock-btn"
+                onclick="unlockCountry('Canada', 450, this)"
+            >
+                Unlock Canada
+            </button>
+            <div class="status"></div>
+        </div>
+
+        <div class="country-card">
+            <div class="flag">🇦🇺</div>
+            <h2>Australia</h2>
+            <p class="description">
+                Connect and chat with people from Australia.
+            </p>
+            <div class="price">KSh 550</div>
+            <button
+                class="unlock-btn"
+                onclick="unlockCountry('Australia', 550, this)"
+            >
+                Unlock Australia
+            </button>
+            <div class="status"></div>
+        </div>
+
+        <div class="country-card">
+            <div class="flag">🇬🇧</div>
+            <h2>United Kingdom</h2>
+            <p class="description">
+                Connect and chat with people from the UK.
+            </p>
+            <div class="price">KSh 650</div>
+            <button
+                class="unlock-btn"
+                onclick="unlockCountry('UK', 650, this)"
+            >
+                Unlock UK
+            </button>
+            <div class="status"></div>
+        </div>
+
+        <div class="country-card">
+            <div class="flag">🇺🇸</div>
+            <h2>USA</h2>
+            <p class="description">
+                Connect and chat with people from the United States.
+            </p>
+            <div class="price">KSh 750</div>
+            <button
+                class="unlock-btn"
+                onclick="unlockCountry('USA', 750, this)"
+            >
+                Unlock USA
+            </button>
+            <div class="status"></div>
+        </div>
+
+        <div class="country-card">
+            <div class="flag">🌍</div>
+            <h2>Others</h2>
+            <p class="description">
+                Explore connections from other countries.
+            </p>
+            <div class="price">KSh 330</div>
+            <button
+                class="unlock-btn"
+                onclick="unlockCountry('Others', 330, this)"
+            >
+                Unlock Others
+            </button>
+            <div class="status"></div>
+        </div>
+
+    </section>
+
+    <div class="info-box">
+        <p>
+            🔒 Payments are processed securely through
+            <strong>M-PESA via Paylor</strong>.
+            After successful payment, you will automatically
+            continue to the selected chat.
+        </p>
+    </div>
+
+</main>
+
+<footer>
+    © 2026 ChatPesa. All rights reserved.
+</footer>
+
+
+<!-- =========================================
+     PROFESSIONAL M-PESA NUMBER MODAL
+     ========================================= -->
+
+<div class="mpesa-modal" id="mpesaModal">
+
+    <div class="mpesa-box">
+
+        <div class="mpesa-icon">
+            📱
+        </div>
+
+        <h3>M-PESA Payment</h3>
+
+        <p class="mpesa-subtitle">
+            Enter the M-PESA number you want to use
+            for this payment.
+        </p>
+
+        <label
+            class="mpesa-label"
+            for="mpesaPhone"
+        >
+            M-PESA Phone Number
+        </label>
+
+        <div class="mpesa-input-wrap">
+
+            <input
+                type="tel"
+                id="mpesaPhone"
+                class="mpesa-input"
+                placeholder="0712 345 678"
+                maxlength="13"
+                inputmode="numeric"
+                autocomplete="tel"
+            >
+
+        </div>
+
+        <div class="mpesa-help">
+            Example: 0712345678 or 254712345678
+        </div>
+
+        <div
+            class="mpesa-error"
+            id="mpesaError"
+        ></div>
+
+        <div class="mpesa-actions">
+
+            <button
+                type="button"
+                class="mpesa-cancel"
+                onclick="closeMpesaModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                class="mpesa-continue"
+                onclick="confirmMpesaNumber()"
+            >
+                Continue
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const BACKEND_URL =
+    "https://chatpesa-backend.onrender.com";
+
+
+function unlockCountry(country, amount, button) {
+
+    const card =
+        button.closest(".country-card");
+
+    const statusBox =
+        card.querySelector(".status");
+
+    openMpesaModal(function(enteredPhone) {
+
+        const phone =
+            normalizePhone(enteredPhone);
+
+        if (!phone) {
+
+            showStatus(
+                statusBox,
+                "Please enter a valid Kenyan M-PESA number, for example 0712345678.",
+                "error"
+            );
+
+            return;
+        }
+
+        startCountryPayment(
+            country,
+            amount,
+            button,
+            statusBox,
+            phone
+        );
+
+    });
+
+}
+
+
+function openMpesaModal(callback) {
+
+    const modal =
+        document.getElementById("mpesaModal");
+
+    const input =
+        document.getElementById("mpesaPhone");
+
+    const error =
+        document.getElementById("mpesaError");
+
+    input.value = "";
+
+    error.textContent = "";
+
+    error.classList.remove("show");
+
+    modal.classList.add("show");
+
+    setTimeout(function() {
+
+        input.focus();
+
+    }, 150);
+
+    window.mpesaCallback =
+        callback;
+}
+
+
+function closeMpesaModal() {
+
+    const modal =
+        document.getElementById("mpesaModal");
+
+    modal.classList.remove("show");
+
+    window.mpesaCallback = null;
+}
+
+
+function confirmMpesaNumber() {
+
+    const input =
+        document.getElementById("mpesaPhone");
+
+    const error =
+        document.getElementById("mpesaError");
+
+    const enteredPhone =
+        input.value.trim();
+
+    const phone =
+        normalizePhone(enteredPhone);
+
+    if (!phone) {
+
+        error.textContent =
+            "Please enter a valid Kenyan M-PESA number.";
+
+        error.classList.add("show");
+
+        input.focus();
+
+        return;
+    }
+
+    error.classList.remove("show");
+
+    const callback =
+        window.mpesaCallback;
+
+    closeMpesaModal();
+
+    if (callback) {
+
+        callback(enteredPhone);
+
+    }
+
+}
+
+
+async function startCountryPayment(
+    country,
+    amount,
+    button,
+    statusBox,
+    phone
+) {
+
+    button.disabled = true;
+
+    button.innerHTML =
+        "Sending STK Push...";
+
+    showStatus(
+        statusBox,
+        "Connecting to M-PESA...",
+        "info"
+    );
+
+    const reference =
+        "CP-" +
+        country.toUpperCase() +
+        "-" +
+        Date.now() +
+        "-" +
+        Math.random()
+            .toString(36)
+            .substring(2, 7)
+            .toUpperCase();
+
+    try {
+
+        const response = await fetch(
+            BACKEND_URL + "/stk-push",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    phone: phone,
+
+                    amount: amount,
+
+                    reference: reference,
+
+                    type: "country_unlock",
+
+                    country: country
+
+                })
+            }
+        );
+
+        let data;
+
+        try {
+
+            data = await response.json();
+
+        } catch (error) {
+
+            throw new Error(
+                "The payment server returned an invalid response."
+            );
+
+        }
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                data.message ||
+                "Unable to start the M-PESA payment."
+            );
+
+        }
+
+        showStatus(
+            statusBox,
+
+            "📱 STK Push sent to your phone.<br><br>" +
+            "Check your M-PESA phone and enter your PIN to complete the payment.",
+
+            "info"
+        );
+
+        button.innerHTML =
+            "Waiting for payment...";
+
+        checkPaymentStatus(
+            reference,
+            country,
+            button,
+            statusBox
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Country payment error:",
+            error
+        );
+
+        showStatus(
+            statusBox,
+
+            "❌ " +
+            (
+                error.message ||
+                "Unable to start payment."
+            ),
+
+            "error"
+        );
+
+        button.disabled = false;
+
+        button.innerHTML =
+            "Unlock " + country;
+
+    }
+
+}
+
+
+function normalizePhone(phone) {
+
+    phone =
+        phone.replace(/\s+/g, "");
+
+    if (/^0[17]\d{8}$/.test(phone)) {
+
+        return "254" +
+            phone.substring(1);
+
+    }
+
+    if (/^\+254[17]\d{8}$/.test(phone)) {
+
+        return phone.substring(1);
+
+    }
+
+    if (/^254[17]\d{8}$/.test(phone)) {
+
+        return phone;
+
+    }
+
+    return null;
+}
+
+
+function checkPaymentStatus(
+    reference,
+    country,
+    button,
+    statusBox
+) {
+
+    let attempts = 0;
+
+    const maxAttempts = 40;
+
+    const interval = 3000;
+
+
+    async function check() {
+
+        attempts++;
+
+        try {
+
+            const response = await fetch(
+
+                BACKEND_URL +
+                "/payment-status/" +
+                encodeURIComponent(reference),
+
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+
+            );
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to check payment status."
+                );
+
+            }
+
+            const data =
+                await response.json();
+
+            console.log(
+                "Country payment status:",
+                data
+            );
+
+
+            if (
+                data.status === "SUCCESS" ||
+                data.status === "COMPLETED"
+            ) {
+
+                showStatus(
+
+                    statusBox,
+
+                    "✅ Payment successful!<br><br>" +
+                    "Opening your " +
+                    country +
+                    " chat...",
+
+                    "success"
+
+                );
+
+                button.innerHTML =
+                    "Unlocked ✓";
+
+                button.disabled = true;
+
+
+                setTimeout(function() {
+
+                    window.location.href =
+                        "chat.html?country=" +
+                        encodeURIComponent(country);
+
+                }, 1200);
+
+                return;
+
+            }
+
+
+            if (
+                data.status === "FAILED" ||
+                data.status === "CANCELLED"
+            ) {
+
+                showStatus(
+
+                    statusBox,
+
+                    "❌ Payment was not completed.<br><br>" +
+                    "Please try again and approve the M-PESA STK Push.",
+
+                    "error"
+
+                );
+
+                button.disabled = false;
+
+                button.innerHTML =
+                    "Unlock " + country;
+
+                return;
+
+            }
+
+
+            if (attempts < maxAttempts) {
+
+                showStatus(
+
+                    statusBox,
+
+                    "📱 Check your phone and enter your M-PESA PIN.<br><br>" +
+                    "Waiting for payment confirmation...",
+
+                    "info"
+
+                );
+
+                setTimeout(
+                    check,
+                    interval
+                );
+
+            } else {
+
+                showStatus(
+
+                    statusBox,
+
+                    "Payment confirmation is taking longer than expected. " +
+                    "Please check your M-PESA messages before trying again.",
+
+                    "error"
+
+                );
+
+                button.disabled = false;
+
+                button.innerHTML =
+                    "Try Again";
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Payment status error:",
+                error
+            );
+
+
+            if (attempts < maxAttempts) {
+
+                setTimeout(
+                    check,
+                    interval
+                );
+
+            } else {
+
+                showStatus(
+
+                    statusBox,
+
+                    "Unable to confirm payment status. " +
+                    "Please check your M-PESA messages before trying again.",
+
+                    "error"
+
+                );
+
+                button.disabled = false;
+
+                button.innerHTML =
+                    "Try Again";
+
+            }
+
+        }
+
+    }
+
+    check();
+
+}
+
+
+function showStatus(
+    element,
+    message,
+    type
+) {
+
+    element.className =
+        "status " + type;
+
+    element.innerHTML =
+        message;
+
+}
+
+
+/* Allow Enter key to continue */
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        const modal =
+            document.getElementById("mpesaModal");
+
+        if (
+            modal.classList.contains("show") &&
+            event.key === "Enter"
+        ) {
+
+            confirmMpesaNumber();
+
+        }
+
+        if (
+            modal.classList.contains("show") &&
+            event.key === "Escape"
+        ) {
+
+            closeMpesaModal();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
