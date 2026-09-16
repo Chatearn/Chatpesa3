@@ -1,1670 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ChatPesa — Connect. Chat. Earn.</title>
+<title>Chat & Earn</title>
 
-<meta name="description"
-content="ChatPesa connects people across borders through conversations and opportunities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-html{
-    scroll-behavior:smooth;
+html,
+body {
+    width: 100%;
+    min-height: 100%;
 }
 
-body{
-    font-family:Inter,Arial,Helvetica,sans-serif;
-    background:#faf9ff;
-    color:#21152f;
-    overflow-x:hidden;
+body {
+    background: #000000;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
 }
 
-:root{
-    --purple:#6d28d9;
-    --purple-dark:#3b0764;
-    --purple-deep:#180629;
-    --violet:#8b5cf6;
-    --soft:#f2eaff;
-    --muted:#756c80;
-    --white:#ffffff;
+.page {
+    width: 100%;
+    min-height: 100vh;
+    background: #000000;
+    padding: 10px;
 }
 
-
-/* ================= GLOBAL ================= */
-
-.container{
-    width:min(1160px,92%);
-    margin:auto;
-}
-
-a{
-    -webkit-tap-highlight-color:transparent;
-}
-
-button,
-a{
-    transition:.25s ease;
+.container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
 }
 
 
-/* ================= HEADER ================= */
+/* HEADER */
 
-header{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    z-index:1000;
-
-    background:rgba(255,255,255,.78);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-
-    border-bottom:1px solid rgba(80,35,120,.08);
+.header {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.nav{
-    height:76px;
+.logo {
+    width: 52px;
+    height: 52px;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    margin: 0 auto 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #00A651;
+    border-radius: 50%;
+
+    font-size: 28px;
 }
 
-.logo{
-    font-size:28px;
-    font-weight:950;
-    letter-spacing:-1.8px;
-    color:var(--purple);
+.header h1 {
+    color: #ffffff;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 28px;
+
+    font-weight: 900;
+
+    line-height: 1.1;
+
+    margin-bottom: 4px;
 }
 
-.logo span{
-    color:#20142b;
+.header h1 span {
+    color: #00A651;
 }
 
-.nav-link{
-    text-decoration:none;
-    color:#fff;
+.header p {
+    color: #dddddd;
 
-    padding:11px 20px;
+    font-family: 'Mali', cursive;
 
-    border-radius:12px;
+    font-size: 12px;
 
-    font-size:14px;
-    font-weight:850;
+    font-weight: 600;
 
-    background:linear-gradient(
-        135deg,
-        #8b5cf6,
-        #5b21b6
-    );
-
-    box-shadow:
-        0 8px 25px rgba(91,33,182,.25);
-}
-
-.nav-link:hover{
-    transform:translateY(-2px);
+    line-height: 1.3;
 }
 
 
-/* ================= HERO ================= */
+/* CARD */
 
-.hero{
-    min-height:850px;
-    padding:155px 0 130px;
+.card {
+    background: #111111;
 
-    position:relative;
-    overflow:hidden;
+    border: 1px solid #303030;
 
-    background:
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(139,92,246,.20),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 90% 12%,
-            rgba(109,40,217,.17),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #f8f4ff,
-            #fff 60%
-        );
+    border-radius: 15px;
+
+    padding: 14px 13px;
 }
 
-.hero::before{
-    content:"";
+.card h2 {
+    color: #ffffff;
 
-    position:absolute;
+    text-align: center;
 
-    width:420px;
-    height:420px;
+    font-size: 19px;
 
-    border-radius:50%;
+    font-weight: 900;
 
-    background:rgba(124,58,237,.09);
-
-    filter:blur(70px);
-
-    top:300px;
-    left:-180px;
+    margin-bottom: 2px;
 }
 
-.hero::after{
-    content:"";
+.intro {
+    color: #999999;
 
-    position:absolute;
+    text-align: center;
 
-    width:350px;
-    height:350px;
+    font-family: 'Mali', cursive;
 
-    border-radius:50%;
+    font-size: 11px;
 
-    background:rgba(168,85,247,.10);
+    font-weight: 600;
 
-    filter:blur(70px);
-
-    right:-130px;
-    bottom:80px;
+    margin-bottom: 9px;
 }
 
-.hero-content{
-    position:relative;
-    z-index:2;
 
-    text-align:center;
+/* FORM */
+
+.field {
+    margin-bottom: 7px;
 }
 
-.eyebrow{
-    display:inline-flex;
+label {
+    display: block;
 
-    align-items:center;
+    color: #ffffff;
 
-    gap:9px;
+    font-size: 12px;
 
-    padding:9px 15px;
+    font-weight: 800;
 
-    border-radius:50px;
+    margin-bottom: 3px;
+}
 
-    background:rgba(255,255,255,.75);
+input,
+select {
+    width: 100%;
 
-    border:1px solid rgba(109,40,217,.15);
+    height: 42px;
 
-    color:var(--purple);
+    padding: 0 11px;
 
-    font-size:12px;
+    background: #ffffff;
 
-    font-weight:850;
+    border: 2px solid #444444;
 
-    letter-spacing:.3px;
+    border-radius: 9px;
+
+    color: #000000;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    outline: none;
+}
+
+input::placeholder {
+    color: #777777;
+}
+
+input:focus,
+select:focus {
+    border-color: #00A651;
 
     box-shadow:
-        0 8px 25px rgba(50,20,80,.06);
-}
-
-.live-dot{
-    width:7px;
-    height:7px;
-
-    border-radius:50%;
-
-    background:#8b5cf6;
-
-    box-shadow:
-        0 0 0 5px rgba(139,92,246,.12);
-}
-
-.hero h1{
-    max-width:940px;
-
-    margin:25px auto 0;
-
-    font-size:clamp(52px,8.5vw,88px);
-
-    line-height:.94;
-
-    letter-spacing:-5px;
-
-    font-weight:950;
-
-    color:#21152f;
-}
-
-.hero h1 .gradient{
-    background:
-        linear-gradient(
-            90deg,
-            #4c1d95,
-            #7c3aed,
-            #a855f7
-        );
-
-    -webkit-background-clip:text;
-
-    background-clip:text;
-
-    color:transparent;
-}
-
-.hero-description{
-    max-width:680px;
-
-    margin:28px auto 0;
-
-    color:var(--muted);
-
-    font-size:18px;
-
-    line-height:1.7;
+        0 0 0 2px rgba(0,166,81,.2);
 }
 
 
-/* ================= WAZUNGU OPPORTUNITY BANNER ================= */
+/* CONTINUE */
 
-.opportunity-banner{
-    max-width:850px;
+.continue-btn {
+    width: 100%;
 
-    margin:25px auto 0;
+    height: 52px;
 
-    padding:18px 24px;
+    margin-top: 5px;
 
-    border-radius:18px;
+    background: #00A651;
 
-    background:
-        linear-gradient(
-            135deg,
-            #3b0764,
-            #7c3aed
-        );
+    color: #ffffff;
 
-    color:#fff;
+    border: none;
 
-    border:1px solid rgba(255,255,255,.25);
+    border-radius: 10px;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 19px;
+
+    font-weight: 900;
+
+    cursor: pointer;
 
     box-shadow:
-        0 15px 35px rgba(91,33,182,.25);
-
-    text-align:center;
-}
-
-.opportunity-banner strong{
-    display:block;
-
-    font-size:clamp(18px,3vw,27px);
-
-    font-weight:950;
-
-    letter-spacing:.3px;
-}
-
-.opportunity-banner span{
-    display:block;
-
-    margin-top:7px;
-
-    color:#f1e8ff;
-
-    font-size:clamp(11px,2vw,15px);
-
-    font-weight:800;
-
-    letter-spacing:.5px;
-
-    line-height:1.6;
-}
-
-
-.hero-actions{
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:14px;
-
-    margin-top:34px;
-
-    flex-wrap:wrap;
-}
-
-
-/* ================= BUTTONS ================= */
-
-.btn{
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:9px;
-
-    min-height:54px;
-
-    padding:15px 24px;
-
-    border-radius:15px;
-
-    text-decoration:none;
-
-    font-size:15px;
-
-    font-weight:850;
-}
-
-.btn-primary{
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #8b5cf6,
-            #5b21b6
-        );
-
-    box-shadow:
-        0 14px 35px rgba(91,33,182,.28);
-}
-
-.btn-primary:hover{
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 18px 42px rgba(91,33,182,.35);
-}
-
-.btn-secondary{
-    color:#5b21b6;
-
-    background:rgba(255,255,255,.8);
-
-    border:1px solid #dfd0ef;
-}
-
-.btn-secondary:hover{
-    transform:translateY(-3px);
-}
-
-
-/* ================= LOADING ================= */
-
-.loading-spinner{
-    width:18px;
-    height:18px;
-
-    border:3px solid rgba(255,255,255,.35);
-    border-top:3px solid white;
-
-    border-radius:50%;
-
-    animation:spin .8s linear infinite;
-}
-
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-
-/* ================= HERO PREVIEW ================= */
-
-.preview-wrap{
-    max-width:980px;
-
-    margin:70px auto 0;
-
-    position:relative;
-
-    z-index:3;
-}
-
-.preview{
-    padding:10px;
-
-    border-radius:30px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.9),
-            rgba(238,226,255,.75)
-        );
-
-    border:1px solid rgba(109,40,217,.15);
-
-    box-shadow:
-        0 35px 90px rgba(45,15,75,.16),
-        0 10px 30px rgba(45,15,75,.06);
-}
-
-.preview-window{
-    border-radius:23px;
-
-    overflow:hidden;
-
-    background:#fff;
-
-    border:1px solid #eee7f4;
-}
-
-.window-top{
-    height:48px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:7px;
-
-    padding:0 17px;
-
-    background:#faf8fc;
-
-    border-bottom:1px solid #eee8f3;
-}
-
-.window-dot{
-    width:8px;
-    height:8px;
-
-    border-radius:50%;
-
-    background:#d5cadf;
-}
-
-.window-title{
-    margin-left:9px;
-
-    font-size:11px;
-
-    color:#91869b;
-}
-
-.preview-content{
-    padding:24px;
-
-    display:grid;
-
-    grid-template-columns:
-        1.5fr .8fr .8fr;
-
-    gap:15px;
-}
-
-.preview-card{
-    min-height:155px;
-
-    padding:24px;
-
-    border-radius:20px;
-
-    background:#faf9fc;
-
-    border:1px solid #eee8f3;
-}
-
-.preview-card.primary{
-    color:white;
-
-    background:
-        radial-gradient(
-            circle at 90% 10%,
-            rgba(255,255,255,.20),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #4c1d95,
-            #7c3aed
-        );
-}
-
-.preview-card small{
-    display:block;
-
-    font-size:10px;
-
-    letter-spacing:1.4px;
-
-    font-weight:800;
-
-    opacity:.75;
-}
-
-.preview-card strong{
-    display:block;
-
-    margin-top:12px;
-
-    font-size:25px;
-}
-
-.preview-card p{
-    margin-top:6px;
-
-    color:#83798d;
-
-    font-size:12px;
-}
-
-.preview-card.primary p{
-    color:#eadfff;
-}
-
-
-/* ================= TRUST ================= */
-
-.trust{
-    position:relative;
-
-    z-index:5;
-
-    margin-top:-40px;
-}
-
-.trust-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:15px;
-}
-
-.trust-card{
-    display:flex;
-
-    align-items:center;
-
-    gap:13px;
-
-    padding:17px 20px;
-
-    border-radius:17px;
-
-    background:rgba(255,255,255,.94);
-
-    border:1px solid #ebe3f2;
-
-    box-shadow:
-        0 15px 35px rgba(35,15,55,.07);
-}
-
-.trust-icon{
-    width:42px;
-    height:42px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:13px;
-
-    background:#f0e7ff;
-
-    font-size:19px;
-}
-
-.trust-card strong{
-    display:block;
-
-    font-size:13px;
-}
-
-.trust-card span{
-    color:#8a8092;
-
-    font-size:11px;
-}
-
-
-/* ================= SECTIONS ================= */
-
-.section{
-    padding:105px 0;
-}
-
-.section-heading{
-    max-width:700px;
-
-    text-align:center;
-
-    margin:0 auto 48px;
+        0 5px 15px rgba(0,166,81,.25);
 }
 
-.section-label{
-    color:var(--purple);
-
-    font-size:11px;
-
-    font-weight:900;
-
-    text-transform:uppercase;
-
-    letter-spacing:2px;
-}
-
-.section-heading h2{
-    margin-top:11px;
-
-    font-size:clamp(36px,6vw,55px);
-
-    line-height:1.02;
-
-    letter-spacing:-2.5px;
-}
-
-.section-heading p{
-    margin-top:15px;
-
-    color:var(--muted);
-
-    font-size:16px;
-}
-
-
-/* ================= FEATURES ================= */
-
-.feature-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:20px;
-}
-
-.feature{
-    position:relative;
-
-    padding:32px;
-
-    background:#fff;
-
-    border:1px solid #ece5f2;
-
-    border-radius:25px;
-
-    overflow:hidden;
-
-    transition:.3s ease;
-}
-
-.feature::after{
-    content:"";
-
-    position:absolute;
-
-    width:120px;
-    height:120px;
-
-    border-radius:50%;
-
-    background:#f1e8ff;
-
-    right:-65px;
-    bottom:-65px;
-}
-
-.feature:hover{
-    transform:translateY(-7px);
-
-    box-shadow:
-        0 25px 55px rgba(38,15,60,.09);
-}
-
-.feature-icon{
-    width:58px;
-    height:58px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:17px;
-
-    background:#f0e7ff;
-
-    font-size:25px;
-
-    margin-bottom:24px;
-}
-
-.feature-number{
-    color:#a69cad;
-
-    font-size:11px;
-
-    font-weight:900;
-
-    letter-spacing:1px;
-
-    margin-bottom:18px;
-}
-
-.feature h3{
-    font-size:21px;
-
-    margin-bottom:9px;
-}
-
-.feature p{
-    color:var(--muted);
-
-    font-size:14px;
-
-    line-height:1.7;
-}
-
-
-/* ================= COUNTRIES ================= */
-
-.countries-section{
-    padding:105px 0;
-
-    background:#faf9ff;
-}
-
-.countries-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:20px;
-}
-
-.country-card{
-    text-align:center;
-
-    padding:38px 25px;
-
-    background:#fff;
-
-    border:1px solid #ece5f2;
-
-    border-radius:25px;
-
-    box-shadow:
-        0 15px 40px rgba(38,15,60,.06);
-
-    transition:.3s ease;
-}
-
-.country-card:hover{
-    transform:translateY(-8px);
-
-    border-color:#d9c4f2;
-
-    box-shadow:
-        0 25px 55px rgba(38,15,60,.12);
-}
-
-.country-icon{
-    width:90px;
-    height:90px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    margin:0 auto 15px;
-
-    border-radius:26px;
-
-    background:#f3eaff;
-
-    font-size:52px;
-
-    box-shadow:
-        0 10px 25px rgba(91,33,182,.10);
-}
-
-
-/* ================= FLAG BUTTON ================= */
-
-.flag-button{
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    margin:0 auto 20px;
-
-    padding:10px 18px;
-
-    border-radius:11px;
-
-    text-decoration:none;
-
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #8b5cf6,
-            #5b21b6
-        );
-
-    font-size:12px;
-
-    font-weight:850;
-
-    box-shadow:
-        0 8px 20px rgba(91,33,182,.20);
-}
-
-.flag-button:hover{
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 12px 25px rgba(91,33,182,.30);
-}
-
-.flag-button:active{
-    transform:scale(.96);
-}
-
-.country-card h3{
-    font-size:20px;
-
-    color:#21152f;
-
-    margin-bottom:9px;
-}
-
-.country-card p{
-    color:var(--muted);
-
-    font-size:13px;
-
-    line-height:1.6;
-}
-
-
-/* ================= WHY ================= */
-
-.why{
-    padding:100px 0;
-}
-
-.why-box{
-    position:relative;
-
-    overflow:hidden;
-
-    text-align:center;
-
-    padding:70px 30px;
-
-    border-radius:32px;
-
-    background:
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(139,92,246,.15),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #f3eaff,
-            #fff
-        );
-
-    border:1px solid #e4d7ef;
-}
-
-.why-box h2{
-    font-size:clamp(34px,5vw,48px);
-
-    letter-spacing:-2px;
-}
-
-.why-box p{
-    max-width:650px;
-
-    margin:14px auto 0;
-
-    color:var(--muted);
-}
-
-
-/* ================= CTA ================= */
-
-.cta{
-    margin-bottom:80px;
-
-    padding:85px 25px;
-
-    border-radius:34px;
-
-    text-align:center;
-
-    color:white;
-
-    background:
-        radial-gradient(
-            circle at 15% 15%,
-            rgba(255,255,255,.16),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(255,255,255,.10),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #3b0764,
-            #7c3aed
-        );
-
-    box-shadow:
-        0 30px 75px rgba(76,29,149,.27);
-}
-
-.cta h2{
-    font-size:clamp(38px,6vw,58px);
-
-    line-height:1;
-
-    letter-spacing:-2.5px;
+.continue-btn:active {
+    transform: scale(.98);
 }
 
-.cta p{
-    max-width:600px;
-
-    margin:17px auto 29px;
-
-    color:#e6d9f4;
-}
-
-.cta .btn-primary{
-    background:white;
-
-    color:#5b21b6;
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.15);
+.continue-btn:disabled {
+    opacity: .7;
 }
-
-
-/* ================= FOOTER ================= */
 
-footer{
-    padding:45px 20px;
 
-    text-align:center;
+/* FOOTER */
 
-    color:#9e91aa;
+.footer {
+    text-align: center;
 
-    background:#100419;
+    padding-top: 8px;
 }
 
-.footer-logo{
-    color:white;
+.footer p {
+    color: #777777;
 
-    font-size:25px;
+    font-family: 'Mali', cursive;
 
-    font-weight:900;
-
-    letter-spacing:-1px;
-
-    margin-bottom:7px;
-}
+    font-size: 10px;
 
-footer p{
-    font-size:12px;
+    font-weight: 600;
 }
 
 
-/* ================= MOBILE ================= */
+/* SMALL PHONES */
 
-@media(max-width:750px){
+@media (max-width: 360px) {
 
-    .container{
-        width:90%;
+    .page {
+        padding: 6px 8px;
     }
 
-    .nav{
-        height:68px;
+    .logo {
+        width: 45px;
+        height: 45px;
+        font-size: 24px;
     }
 
-    .logo{
-        font-size:25px;
+    .header h1 {
+        font-size: 25px;
     }
 
-    .nav-link{
-        padding:9px 14px;
-
-        font-size:12px;
+    .header p {
+        font-size: 11px;
     }
 
-    .hero{
-        min-height:auto;
-
-        padding:125px 0 80px;
+    .card {
+        padding: 11px 10px;
     }
 
-    .hero h1{
-        font-size:51px;
-
-        letter-spacing:-3px;
+    .field {
+        margin-bottom: 5px;
     }
 
-    .hero-description{
-        font-size:15px;
-
-        padding:0 8px;
+    input,
+    select {
+        height: 39px;
+        font-size: 13px;
     }
 
-    .opportunity-banner{
-        margin:22px 8px 0;
-
-        padding:16px 14px;
+    label {
+        font-size: 11px;
     }
 
-    .hero-actions{
-        flex-direction:column;
-
-        width:100%;
-
-        max-width:360px;
-
-        margin:30px auto 0;
+    .continue-btn {
+        height: 48px;
+        font-size: 18px;
     }
-
-    .btn{
-        width:100%;
-    }
-
-    .preview-wrap{
-        margin-top:50px;
-    }
-
-    .preview{
-        padding:7px;
-
-        border-radius:23px;
-    }
-
-    .preview-content{
-        grid-template-columns:1fr;
-
-        padding:14px;
-    }
-
-    .preview-card{
-        min-height:auto;
-
-        padding:20px;
-    }
-
-    .trust{
-        margin-top:-20px;
-    }
-
-    .trust-grid{
-        grid-template-columns:1fr;
-
-        gap:10px;
-    }
-
-    .section{
-        padding:75px 0;
-    }
-
-    .section-heading{
-        margin-bottom:35px;
-    }
-
-    .section-heading h2{
-        letter-spacing:-1.8px;
-    }
-
-    .feature-grid{
-        grid-template-columns:1fr;
-
-        gap:15px;
-    }
-
-    .feature{
-        padding:27px;
-    }
-
-    .countries-section{
-        padding:75px 0;
-    }
-
-    .countries-grid{
-        grid-template-columns:1fr;
-
-        gap:15px;
-    }
-
-    .country-card{
-        padding:30px 22px;
-    }
-
-    .why{
-        padding:75px 0;
-    }
-
-    .why-box{
-        padding:50px 22px;
-
-        border-radius:27px;
-    }
-
-    .cta{
-        margin-bottom:55px;
-
-        padding:65px 20px;
-
-        border-radius:27px;
-    }
-
 }
 
 </style>
-</head>
 
+</head>
 
 <body>
 
 
-<!-- ================= HEADER ================= -->
+<div class="page">
 
-<header>
+<div class="container">
 
-<div class="container nav">
 
-    <div class="logo">
-        Chat<span>Pesa</span>
-    </div>
+    <!-- HEADER -->
 
-    <a href="register.html" class="nav-link">
+    <div class="header">
 
-        Get Started
-
-    </a>
-
-</div>
-
-</header>
-
-
-<!-- ================= HERO ================= -->
-
-<section class="hero">
-
-<div class="container hero-content">
-
-    <div class="eyebrow">
-
-        <span class="live-dot"></span>
-
-        A smarter way to connect online
-
-    </div>
-
-
-    <h1>
-
-        Conversations that
-
-        <span class="gradient">
-            create possibilities.
-        </span>
-
-    </h1>
-
-
-    <p class="hero-description">
-
-        ChatPesa brings people together across borders.
-
-        Connect, communicate and discover opportunities
-
-        through meaningful conversations.
-
-    </p>
-
-
-    <div class="opportunity-banner">
-
-        <strong>
-            CHAT WITH WAZUNGU AND GET
-        </strong>
-
-        <span>
-            MONEY • JOBS • EDUCATION SCHOLARSHIPS • COMPANIONS
-        </span>
-
-    </div>
-
-
-    <div class="hero-actions">
-
-        <a href="register.html"
-           class="btn btn-primary">
-
-            GET STARTED NOW
-
-            <span>→</span>
-
-        </a>
-
-
-        <a href="#countries"
-           class="btn btn-secondary">
-
-            Explore Connections
-
-        </a>
-
-    </div>
-
-</div>
-
-
-<!-- ================= PLATFORM PREVIEW ================= -->
-
-<div class="container preview-wrap">
-
-<div class="preview">
-
-<div class="preview-window">
-
-
-    <div class="window-top">
-
-        <span class="window-dot"></span>
-
-        <span class="window-dot"></span>
-
-        <span class="window-dot"></span>
-
-        <span class="window-title">
-
-            chatpesa • your connection space
-
-        </span>
-
-    </div>
-
-
-    <div class="preview-content">
-
-
-        <div class="preview-card primary">
-
-            <small>
-                CHATPESA
-            </small>
-
-            <strong>
-                Connect globally.
-            </strong>
-
-            <p>
-                Discover people, conversations
-                and new possibilities.
-            </p>
-
-        </div>
-
-
-        <div class="preview-card">
-
-            <small>
-                CONNECTION
-            </small>
-
-            <strong>
-                🌍 Global
-            </strong>
-
-            <p>
-                Meet people beyond borders.
-            </p>
-
-        </div>
-
-
-        <div class="preview-card">
-
-            <small>
-                EXPERIENCE
-            </small>
-
-            <strong>
-                💬 Simple
-            </strong>
-
-            <p>
-                Designed for mobile.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= TRUST ================= -->
-
-<section class="trust">
-
-<div class="container trust-grid">
-
-
-    <div class="trust-card">
-
-        <div class="trust-icon">
+        <div class="logo">
             🌍
         </div>
 
-        <div>
-
-            <strong>
-                Global Connections
-            </strong>
-
-            <span>
-                Connect across borders
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <div class="trust-card">
-
-        <div class="trust-icon">
-            📱
-        </div>
-
-        <div>
-
-            <strong>
-                Mobile First
-            </strong>
-
-            <span>
-                Built for your phone
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <div class="trust-card">
-
-        <div class="trust-icon">
-            ⚡
-        </div>
-
-        <div>
-
-            <strong>
-                Simple Experience
-            </strong>
-
-            <span>
-                Easy to get started
-            </span>
-
-        </div>
-
-    </div>
-
-
-</div>
-
-</section>
-
-
-<!-- ================= FEATURES ================= -->
-
-<section class="section">
-
-<div class="container">
-
-
-<div class="section-heading">
-
-    <div class="section-label">
-        The ChatPesa Experience
-    </div>
-
-    <h2>
-        More than just a conversation.
-    </h2>
-
-    <p>
-        A modern platform designed around
-        connection, communication and opportunity.
-    </p>
-
-</div>
-
-
-<div class="feature-grid">
-
-
-    <div class="feature">
-
-        <div class="feature-number">
-            01 / CONNECT
-        </div>
-
-        <div class="feature-icon">
-            🌍
-        </div>
-
-        <h3>
-            Meet New People
-        </h3>
+        <h1>
+            Chat <span>&</span> Earn
+        </h1>
 
         <p>
-            Connect with people from different
-            countries and discover new perspectives.
+            Connect • Chat • Learn • Earn
         </p>
 
     </div>
 
 
-    <div class="feature">
+    <!-- REGISTRATION -->
 
-        <div class="feature-number">
-            02 / CHAT
-        </div>
+    <div class="card">
 
-        <div class="feature-icon">
-            💬
-        </div>
+        <h2>
+            Create Your Profile
+        </h2>
 
-        <h3>
-            Start Conversations
-        </h3>
-
-        <p>
-            Enjoy meaningful conversations and
-            build genuine connections online.
+        <p class="intro">
+            Enter your details to get started.
         </p>
 
+
+        <form id="registrationForm">
+
+
+            <div class="field">
+
+                <label for="fullname">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullname"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="age">
+                    Age
+                </label>
+
+                <input
+                    type="number"
+                    id="age"
+                    placeholder="18 - 99"
+                    min="18"
+                    max="99"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="gender">
+                    Gender
+                </label>
+
+                <select id="gender" required>
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="county">
+                    County
+                </label>
+
+                <select id="county" required>
+
+                    <option value="">
+                        Select County
+                    </option>
+
+                    <option>Nairobi</option>
+                    <option>Mombasa</option>
+                    <option>Kisumu</option>
+                    <option>Nakuru</option>
+                    <option>Uasin Gishu</option>
+                    <option>Kiambu</option>
+                    <option>Machakos</option>
+                    <option>Kakamega</option>
+                    <option>Meru</option>
+                    <option>Nyeri</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="07XXXXXXXX"
+                    inputmode="numeric"
+                    autocomplete="tel"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="continue-btn"
+                id="continueBtn"
+            >
+                CONTINUE
+            </button>
+
+
+        </form>
+
     </div>
 
 
-    <div class="feature">
-
-        <div class="feature-number">
-            03 / EXPLORE
-        </div>
-
-        <div class="feature-icon">
-            ✦
-        </div>
-
-        <h3>
-            Explore Opportunities
-        </h3>
+    <div class="footer">
 
         <p>
-            Make your time online more valuable
-            by exploring eligible opportunities.
-        </p>
-
-    </div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= COUNTRIES ================= -->
-
-<section class="countries-section"
-         id="countries">
-
-<div class="container">
-
-
-<div class="section-heading">
-
-    <div class="section-label">
-        GLOBAL CONNECTIONS
-    </div>
-
-    <h2>
-        Connect across borders.
-    </h2>
-
-    <p>
-        ChatPesa helps you connect and communicate
-        with people from different parts of the world.
-    </p>
-
-</div>
-
-
-<div class="countries-grid">
-
-
-    <!-- ================= USA ================= -->
-
-    <div class="country-card">
-
-        <div class="country-icon">
-            🇺🇸
-        </div>
-
-
-        <a href="register.html"
-           class="flag-button">
-
-            Select USA →
-
-        </a>
-
-
-        <h3>
-            United States
-        </h3>
-
-        <p>
-            Connect with people from the United States.
-        </p>
-
-    </div>
-
-
-    <!-- ================= CANADA ================= -->
-
-    <div class="country-card">
-
-        <div class="country-icon">
-            🇨🇦
-        </div>
-
-
-        <a href="register.html"
-           class="flag-button">
-
-            Select Canada →
-
-        </a>
-
-
-        <h3>
-            Canada
-        </h3>
-
-        <p>
-            Discover conversations and connections in Canada.
-        </p>
-
-    </div>
-
-
-    <!-- ================= UK ================= -->
-
-    <div class="country-card">
-
-        <div class="country-icon">
-            🇬🇧
-        </div>
-
-
-        <a href="register.html"
-           class="flag-button">
-
-            Select UK →
-
-        </a>
-
-
-        <h3>
-            United Kingdom
-        </h3>
-
-        <p>
-            Build connections with people in the UK.
+            Chat • Connect • Learn • Earn
         </p>
 
     </div>
@@ -1673,133 +478,105 @@ footer p{
 </div>
 
 </div>
-
-</section>
-
-
-<!-- ================= WHY ================= -->
-
-<section class="why">
-
-<div class="container">
-
-<div class="why-box">
-
-
-    <div class="section-label">
-        Why ChatPesa
-    </div>
-
-
-    <h2>
-        Built around people.
-    </h2>
-
-
-    <p>
-        We believe online communication should be
-        simple, accessible and rewarding. ChatPesa
-        brings connection and opportunity together
-        in one modern experience.
-    </p>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= CTA ================= -->
-
-<section class="container">
-
-<div class="cta">
-
-
-    <h2>
-        Your next connection
-        starts here.
-    </h2>
-
-
-    <p>
-        Create your ChatPesa account and
-        take the first step today.
-    </p>
-
-
-    <a href="register.html"
-       class="btn btn-primary">
-
-        Get Started
-
-        <span>→</span>
-
-    </a>
-
-
-</div>
-
-</section>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-
-    <div class="footer-logo">
-        ChatPesa
-    </div>
-
-
-    <p>
-        Connect. Chat. Earn.
-    </p>
-
-
-    <p style="margin-top:8px;">
-        © 2026 ChatPesa. All rights reserved.
-    </p>
-
-
-</footer>
 
 
 <script>
 
-/* ================= GET STARTED LOADING ================= */
+const form =
+    document.getElementById("registrationForm");
 
-document.querySelectorAll(
-    'a[href="register.html"]'
-).forEach(function(button){
+const button =
+    document.getElementById("continueBtn");
 
-    button.addEventListener("click", function(event){
 
-        event.preventDefault();
+form.addEventListener("submit", function(e) {
 
-        if(button.dataset.loading === "true"){
-            return;
-        }
+    e.preventDefault();
 
-        button.dataset.loading = "true";
 
-        const originalContent = button.innerHTML;
+    const fullname =
+        document.getElementById("fullname").value.trim();
 
-        button.innerHTML =
-            '<span class="loading-spinner"></span> Loading...';
+    const age =
+        document.getElementById("age").value;
 
-        button.style.pointerEvents = "none";
+    const gender =
+        document.getElementById("gender").value;
 
-        setTimeout(function(){
+    const county =
+        document.getElementById("county").value;
 
-            window.location.href = "register.html";
+    const phone =
+        document.getElementById("phone").value.trim();
 
-        }, 2000);
 
-    });
+    if (
+        !fullname ||
+        !age ||
+        !gender ||
+        !county ||
+        !phone
+    ) {
+
+        alert(
+            "Please complete all the required fields."
+        );
+
+        return;
+    }
+
+
+    if (
+        Number(age) < 18 ||
+        Number(age) > 99
+    ) {
+
+        alert(
+            "You must be between 18 and 99 years old."
+        );
+
+        return;
+    }
+
+
+    localStorage.setItem(
+        "fullname",
+        fullname
+    );
+
+    localStorage.setItem(
+        "age",
+        age
+    );
+
+    localStorage.setItem(
+        "gender",
+        gender
+    );
+
+    localStorage.setItem(
+        "county",
+        county
+    );
+
+    localStorage.setItem(
+        "phone",
+        phone
+    );
+
+
+    button.disabled = true;
+
+    button.innerHTML =
+        "PLEASE WAIT...";
+
+
+    setTimeout(function() {
+
+        window.location.href =
+            "register.html";
+
+    }, 500);
 
 });
 
