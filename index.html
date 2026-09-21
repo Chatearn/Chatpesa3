@@ -1,3 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chat & Earn</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #000000;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+    background: #000000;
+    padding: 10px;
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+
+/* HEADER */
+
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.logo {
+    width: 52px;
+    height: 52px;
+
+    margin: 0 auto 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #00A651;
+    border-radius: 50%;
+
+    font-size: 28px;
+}
+
+.header h1 {
+    color: #ffffff;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 28px;
+
+    font-weight: 900;
+
+    line-height: 1.1;
+
+    margin-bottom: 4px;
+}
+
+.header h1 span {
+    color: #00A651;
+}
+
+.header p {
+    color: #dddddd;
+
+    font-family: 'Mali', cursive;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+}
+
+
+/* CARD */
+
+.card {
+    background: #111111;
+
+    border: 1px solid #303030;
+
+    border-radius: 15px;
+
+    padding: 14px 13px;
+}
+
+.card h2 {
+    color: #ffffff;
+
+    text-align: center;
+
+    font-size: 19px;
+
+    font-weight: 900;
+
+    margin-bottom: 2px;
+}
+
+.intro {
+    color: #999999;
+
+    text-align: center;
+
+    font-family: 'Mali', cursive;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    margin-bottom: 9px;
+}
+
+
+/* FORM */
+
+.field {
+    margin-bottom: 7px;
+}
+
+label {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    margin-bottom: 3px;
+}
+
+input,
+select {
+    width: 100%;
+
+    height: 42px;
+
+    padding: 0 11px;
+
+    background: #ffffff;
+
+    border: 2px solid #444444;
+
+    border-radius: 9px;
+
+    color: #000000;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    outline: none;
+}
+
+input::placeholder {
+    color: #777777;
+}
+
+input:focus,
+select:focus {
+    border-color: #00A651;
+
+    box-shadow:
+        0 0 0 2px rgba(0,166,81,.2);
+}
+
+
+/* CONTINUE */
+
+.continue-btn {
+    width: 100%;
+
+    height: 52px;
+
+    margin-top: 5px;
+
+    background: #00A651;
+
+    color: #ffffff;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 19px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(0,166,81,.25);
+}
+
+.continue-btn:active {
+    transform: scale(.98);
+}
+
+.continue-btn:disabled {
+    opacity: .7;
+}
+
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+
+    padding-top: 8px;
+}
+
+.footer p {
+    color: #777777;
+
+    font-family: 'Mali', cursive;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+
+/* SMALL PHONES */
+
+@media (max-width: 360px) {
+
+    .page {
+        padding: 6px 8px;
+    }
+
+    .logo {
+        width: 45px;
+        height: 45px;
+        font-size: 24px;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .header p {
+        font-size: 11px;
+    }
+
+    .card {
+        padding: 11px 10px;
+    }
+
+    .field {
+        margin-bottom: 5px;
+    }
+
+    input,
+    select {
+        height: 39px;
+        font-size: 13px;
+    }
+
+    label {
+        font-size: 11px;
+    }
+
+    .continue-btn {
+        height: 48px;
+        font-size: 18px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="page">
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo">
+            🌍
+        </div>
+
+        <h1>
+            Chat <span>&</span> Earn
+        </h1>
+
+        <p>
+            Connect • Chat • Learn • Earn
+        </p>
+
+    </div>
+
+
+    <!-- REGISTRATION -->
+
+    <div class="card">
+
+        <h2>
+            Create Your Profile
+        </h2>
+
+        <p class="intro">
+            Enter your details to get started.
+        </p>
+
+
+        <form id="registrationForm">
+
+
+            <div class="field">
+
+                <label for="fullname">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullname"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="age">
+                    Age
+                </label>
+
+                <input
+                    type="number"
+                    id="age"
+                    placeholder="18 - 99"
+                    min="18"
+                    max="99"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="gender">
+                    Gender
+                </label>
+
+                <select id="gender" required>
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="county">
+                    County
+                </label>
+
+                <select id="county" required>
+
+                    <option value="">
+                        Select County
+                    </option>
+
+                    <option>Nairobi</option>
+                    <option>Mombasa</option>
+                    <option>Kisumu</option>
+                    <option>Nakuru</option>
+                    <option>Uasin Gishu</option>
+                    <option>Kiambu</option>
+                    <option>Machakos</option>
+                    <option>Kakamega</option>
+                    <option>Meru</option>
+                    <option>Nyeri</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="07XXXXXXXX"
+                    inputmode="numeric"
+                    autocomplete="tel"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="continue-btn"
+                id="continueBtn"
+            >
+                CONTINUE
+            </button>
+
+
+        </form>
+
+    </div>
+
+
+    <div class="footer">
+
+        <p>
+            Chat • Connect • Learn • Earn
+        </p>
+
+    </div>
+
+
+</div>
+
+</div>
+
+
 <script>
 
 const form =
@@ -99,3 +581,7 @@ form.addEventListener("submit", function(e) {
 });
 
 </script>
+
+
+</body>
+</html>
