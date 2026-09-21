@@ -5,297 +5,721 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Chat & Earn</title>
+<title>ChatPesa — Connect. Chat. Earn.</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Mali:wght@500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="description"
+content="ChatPesa connects people across borders through conversations and opportunities.">
 
 <style>
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #180629;
     color: #ffffff;
-    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
 }
 
-.page {
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    min-height: 100vh;
-    background: #000000;
-    padding: 10px;
+    z-index: 1000;
+
+    background: rgba(24, 6, 41, 0.95);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid rgba(139, 92, 246, 0.15);
 }
 
-.container {
-    width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-}
+.navbar {
+    max-width: 1100px;
+    margin: auto;
 
+    height: 70px;
 
-/* HEADER */
+    padding: 0 22px;
 
-.header {
-    text-align: center;
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
-    width: 52px;
-    height: 52px;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
 
-    margin: 0 auto 5px;
+.logo span {
+    color: #8b5cf6;
+}
+
+.nav-button {
+    padding: 11px 19px;
+
+    border-radius: 9px;
+
+    background: linear-gradient(
+        135deg,
+        #3b0764,
+        #6d28d9
+    );
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    border: 1px solid rgba(139, 92, 246, 0.4);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 720px;
+
+    padding: 145px 22px 70px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background: #00A651;
-    border-radius: 50%;
-
-    font-size: 28px;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(109, 40, 217, 0.25),
+            transparent 40%
+        ),
+        #180629;
 }
 
-.header h1 {
-    color: #ffffff;
-
-    font-family: 'Poppins', sans-serif;
-
-    font-size: 28px;
-
-    font-weight: 900;
-
-    line-height: 1.1;
-
-    margin-bottom: 4px;
-}
-
-.header h1 span {
-    color: #00A651;
-}
-
-.header p {
-    color: #dddddd;
-
-    font-family: 'Mali', cursive;
-
-    font-size: 12px;
-
-    font-weight: 600;
-
-    line-height: 1.3;
-}
-
-
-/* CARD */
-
-.card {
-    background: #111111;
-
-    border: 1px solid #303030;
-
-    border-radius: 15px;
-
-    padding: 14px 13px;
-}
-
-.card h2 {
-    color: #ffffff;
-
-    text-align: center;
-
-    font-size: 19px;
-
-    font-weight: 900;
-
-    margin-bottom: 2px;
-}
-
-.intro {
-    color: #999999;
-
-    text-align: center;
-
-    font-family: 'Mali', cursive;
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    margin-bottom: 9px;
-}
-
-
-/* FORM */
-
-.field {
-    margin-bottom: 7px;
-}
-
-label {
-    display: block;
-
-    color: #ffffff;
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    margin-bottom: 3px;
-}
-
-input,
-select {
+.hero-content {
     width: 100%;
+    max-width: 850px;
 
-    height: 42px;
+    text-align: center;
+}
 
-    padding: 0 11px;
+.eyebrow {
+    display: inline-block;
 
-    background: #ffffff;
+    margin-bottom: 18px;
 
-    border: 2px solid #444444;
+    padding: 7px 14px;
 
-    border-radius: 9px;
+    border-radius: 30px;
 
-    color: #000000;
+    background: rgba(139, 92, 246, 0.12);
 
-    font-family: 'Poppins', sans-serif;
+    border: 1px solid rgba(139, 92, 246, 0.25);
+
+    color: #c4b5fd;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 8vw, 76px);
+
+    line-height: 1.05;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 22px;
+
+    font-weight: 900;
+}
+
+.hero h1 span {
+    color: #8b5cf6;
+}
+
+.hero p {
+    max-width: 650px;
+
+    margin: 0 auto 32px;
+
+    color: #cfc5d9;
+
+    font-size: 17px;
+}
+
+.hero-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+.primary-button,
+.secondary-button {
+    padding: 14px 23px;
+
+    border-radius: 10px;
 
     font-size: 14px;
 
-    font-weight: 600;
+    font-weight: 800;
 
-    outline: none;
+    transition: 0.2s ease;
 }
 
-input::placeholder {
-    color: #777777;
-}
+.primary-button {
+    background: linear-gradient(
+        135deg,
+        #3b0764,
+        #8b5cf6
+    );
 
-input:focus,
-select:focus {
-    border-color: #00A651;
-
-    box-shadow:
-        0 0 0 2px rgba(0,166,81,.2);
-}
-
-
-/* CONTINUE */
-
-.continue-btn {
-    width: 100%;
-
-    height: 52px;
-
-    margin-top: 5px;
-
-    background: #00A651;
+    border: 1px solid #8b5cf6;
 
     color: #ffffff;
+
+    box-shadow:
+        0 10px 30px rgba(109, 40, 217, 0.25);
+}
+
+.secondary-button {
+    background: rgba(255, 255, 255, 0.04);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    color: #ffffff;
+}
+
+.primary-button:active,
+.secondary-button:active,
+.nav-button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   PLATFORM PREVIEW
+========================= */
+
+.preview-section {
+    padding: 20px 22px 80px;
+
+    background: #180629;
+}
+
+.preview {
+    max-width: 950px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 1.4fr 1fr;
+
+    gap: 18px;
+}
+
+.preview-main,
+.preview-small {
+    background: #211034;
+
+    border: 1px solid rgba(139, 92, 246, 0.16);
+
+    border-radius: 20px;
+}
+
+.preview-main {
+    min-height: 250px;
+
+    padding: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+.preview-main h3 {
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+.preview-main p {
+    color: #b9aec5;
+
+    font-size: 14px;
+}
+
+.preview-small-container {
+    display: grid;
+
+    gap: 18px;
+}
+
+.preview-small {
+    padding: 25px;
+
+    min-height: 115px;
+}
+
+.preview-small strong {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 17px;
+}
+
+.preview-small span {
+    color: #aaa0b5;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   TRUST
+========================= */
+
+.trust-section {
+    padding: 80px 22px;
+
+    background: #10031d;
+}
+
+.section-container {
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+.section-title {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+.section-title h2 {
+    font-size: 35px;
+
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #aaa0b5;
+
+    font-size: 14px;
+}
+
+.trust-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.trust-card {
+    padding: 28px 22px;
+
+    text-align: center;
+
+    background: #180629;
+
+    border: 1px solid rgba(139, 92, 246, 0.14);
+
+    border-radius: 17px;
+}
+
+.trust-icon {
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(139, 92, 246, 0.12);
+
+    font-size: 23px;
+}
+
+.trust-card h3 {
+    font-size: 17px;
+
+    margin-bottom: 7px;
+}
+
+.trust-card p {
+    color: #a9a0b1;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.features-section {
+    padding: 90px 22px;
+
+    background: #180629;
+}
+
+.features-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.feature-card {
+    padding: 30px 24px;
+
+    background: #211034;
+
+    border: 1px solid rgba(139, 92, 246, 0.15);
+
+    border-radius: 18px;
+}
+
+.feature-number {
+    color: #8b5cf6;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 20px;
+
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #aaa0b5;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   COUNTRIES
+========================= */
+
+.countries-section {
+    padding: 90px 22px;
+
+    background: #10031d;
+}
+
+.countries-grid {
+    max-width: 1000px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.country-card {
+    background: #180629;
+
+    border: 1px solid rgba(139, 92, 246, 0.15);
+
+    border-radius: 20px;
+
+    padding: 30px 20px;
+
+    text-align: center;
+}
+
+.country-flag {
+    font-size: 58px;
+
+    margin-bottom: 16px;
+}
+
+.country-card h3 {
+    font-size: 19px;
+
+    margin-bottom: 18px;
+}
+
+.flag-button {
+    width: 100%;
+
+    padding: 13px 15px;
 
     border: none;
 
     border-radius: 10px;
 
-    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(
+        135deg,
+        #3b0764,
+        #8b5cf6
+    );
 
-    font-size: 19px;
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+.flag-button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   WHY CHATPESA
+========================= */
+
+.why-section {
+    padding: 90px 22px;
+
+    background: #180629;
+}
+
+.why-box {
+    max-width: 850px;
+
+    margin: auto;
+
+    text-align: center;
+
+    padding: 50px 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(59, 7, 100, 0.45),
+            rgba(139, 92, 246, 0.08)
+        );
+
+    border: 1px solid rgba(139, 92, 246, 0.18);
+
+    border-radius: 25px;
+}
+
+.why-box h2 {
+    font-size: 36px;
+
+    margin-bottom: 15px;
+}
+
+.why-box p {
+    max-width: 620px;
+
+    margin: auto;
+
+    color: #bdb2c7;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta-section {
+    padding: 100px 22px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(109, 40, 217, 0.22),
+            transparent 55%
+        ),
+        #10031d;
+
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: clamp(34px, 7vw, 55px);
+
+    line-height: 1.1;
+
+    margin-bottom: 16px;
+}
+
+.cta-section p {
+    color: #bcb2c5;
+
+    margin-bottom: 30px;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 35px 20px;
+
+    background: #08010f;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.footer-logo {
+    font-size: 20px;
 
     font-weight: 900;
 
-    cursor: pointer;
-
-    box-shadow:
-        0 5px 15px rgba(0,166,81,.25);
+    margin-bottom: 6px;
 }
 
-.continue-btn:active {
-    transform: scale(.98);
+.footer-logo span {
+    color: #8b5cf6;
 }
 
-.continue-btn:disabled {
-    opacity: .7;
-}
+footer p {
+    color: #77707e;
 
-
-/* FOOTER */
-
-.footer {
-    text-align: center;
-
-    padding-top: 8px;
-}
-
-.footer p {
-    color: #777777;
-
-    font-family: 'Mali', cursive;
-
-    font-size: 10px;
-
-    font-weight: 600;
+    font-size: 12px;
 }
 
 
-/* SMALL PHONES */
+/* =========================
+   MOBILE
+========================= */
 
-@media (max-width: 360px) {
+@media (max-width: 750px) {
 
-    .page {
-        padding: 6px 8px;
+    .navbar {
+        height: 64px;
+
+        padding: 0 15px;
     }
 
     .logo {
-        width: 45px;
-        height: 45px;
-        font-size: 24px;
+        font-size: 22px;
     }
 
-    .header h1 {
-        font-size: 25px;
+    .nav-button {
+        padding: 9px 14px;
+
+        font-size: 12px;
     }
 
-    .header p {
-        font-size: 11px;
+    .hero {
+        min-height: 650px;
+
+        padding:
+            125px 18px
+            55px;
     }
 
-    .card {
-        padding: 11px 10px;
+    .hero h1 {
+        font-size: 45px;
+
+        letter-spacing: -2px;
     }
 
-    .field {
-        margin-bottom: 5px;
+    .hero p {
+        font-size: 14px;
     }
 
-    input,
-    select {
-        height: 39px;
-        font-size: 13px;
+    .preview {
+        grid-template-columns: 1fr;
     }
 
-    label {
-        font-size: 11px;
+    .preview-main {
+        min-height: 210px;
     }
 
-    .continue-btn {
-        height: 48px;
-        font-size: 18px;
+    .trust-grid,
+    .features-grid,
+    .countries-grid {
+        grid-template-columns: 1fr;
     }
+
+    .section-title h2 {
+        font-size: 29px;
+    }
+
+    .why-box h2 {
+        font-size: 30px;
+    }
+
+    .cta-section h2 {
+        font-size: 36px;
+    }
+
+}
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .primary-button,
+    .secondary-button {
+        width: 100%;
+    }
+
 }
 
 </style>
@@ -305,282 +729,457 @@ select:focus {
 <body>
 
 
-<div class="page">
+<!-- HEADER -->
 
-<div class="container">
+<header>
+
+    <div class="navbar">
+
+        <a href="interest.html" class="logo">
+            Chat<span>Pesa</span>
+        </a>
+
+        <a href="interest.html" class="nav-button">
+            Get Started
+        </a>
+
+    </div>
+
+</header>
 
 
-    <!-- HEADER -->
+<!-- HERO -->
 
-    <div class="header">
+<section class="hero">
 
-        <div class="logo">
-            🌍
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            A smarter way to connect online
         </div>
 
         <h1>
-            Chat <span>&</span> Earn
+            Conversations that
+            <span>create possibilities.</span>
         </h1>
 
         <p>
-            Connect • Chat • Learn • Earn
+            ChatPesa brings people together across borders.
+            Connect, communicate and discover opportunities
+            through meaningful conversations.
         </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="interest.html"
+                class="primary-button"
+            >
+                Create Your Account →
+            </a>
+
+            <a
+                href="#countries"
+                class="secondary-button"
+            >
+                Explore Connections
+            </a>
+
+        </div>
 
     </div>
 
+</section>
 
-    <!-- REGISTRATION -->
 
-    <div class="card">
+<!-- PLATFORM PREVIEW -->
+
+<section class="preview-section">
+
+    <div class="preview">
+
+        <div class="preview-main">
+
+            <div>
+
+                <h3>
+                    Connect globally.
+                </h3>
+
+                <p>
+                    Meet people from different countries
+                    and discover meaningful conversations.
+                </p>
+
+            </div>
+
+            <div>
+                🌍 Global Connections
+            </div>
+
+        </div>
+
+
+        <div class="preview-small-container">
+
+            <div class="preview-small">
+
+                <strong>
+                    💬 Simple
+                </strong>
+
+                <span>
+                    Designed for easy communication.
+                </span>
+
+            </div>
+
+
+            <div class="preview-small">
+
+                <strong>
+                    📱 Mobile First
+                </strong>
+
+                <span>
+                    Built to work smoothly on your phone.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TRUST -->
+
+<section class="trust-section">
+
+    <div class="section-container">
+
+        <div class="section-title">
+
+            <h2>
+                Built for connection.
+            </h2>
+
+            <p>
+                A simple experience focused on people.
+            </p>
+
+        </div>
+
+
+        <div class="trust-grid">
+
+
+            <div class="trust-card">
+
+                <div class="trust-icon">
+                    🌍
+                </div>
+
+                <h3>
+                    Global Connections
+                </h3>
+
+                <p>
+                    Connect with people across
+                    different countries.
+                </p>
+
+            </div>
+
+
+            <div class="trust-card">
+
+                <div class="trust-icon">
+                    📱
+                </div>
+
+                <h3>
+                    Mobile First
+                </h3>
+
+                <p>
+                    A smooth experience designed
+                    around your phone.
+                </p>
+
+            </div>
+
+
+            <div class="trust-card">
+
+                <div class="trust-icon">
+                    ✨
+                </div>
+
+                <h3>
+                    Simple Experience
+                </h3>
+
+                <p>
+                    Easy navigation without
+                    unnecessary complexity.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="features-section">
+
+    <div class="section-container">
+
+        <div class="section-title">
+
+            <h2>
+                Everything starts with a conversation.
+            </h2>
+
+            <p>
+                Explore what ChatPesa is designed to offer.
+            </p>
+
+        </div>
+
+
+        <div class="features-grid">
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    01
+                </div>
+
+                <h3>
+                    Meet New People
+                </h3>
+
+                <p>
+                    Discover people from different
+                    backgrounds and countries.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    02
+                </div>
+
+                <h3>
+                    Start Conversations
+                </h3>
+
+                <p>
+                    Build connections through
+                    meaningful conversations.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    03
+                </div>
+
+                <h3>
+                    Explore Opportunities
+                </h3>
+
+                <p>
+                    Discover possibilities that
+                    can come from connecting with others.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COUNTRIES -->
+
+<section
+    class="countries-section"
+    id="countries"
+>
+
+    <div class="section-container">
+
+        <div class="section-title">
+
+            <h2>
+                Explore Connections
+            </h2>
+
+            <p>
+                Choose where you would like
+                to start your journey.
+            </p>
+
+        </div>
+
+
+        <div class="countries-grid">
+
+
+            <!-- USA -->
+
+            <div class="country-card">
+
+                <div class="country-flag">
+                    🇺🇸
+                </div>
+
+                <h3>
+                    United States
+                </h3>
+
+                <a
+                    href="interest.html"
+                    class="flag-button"
+                >
+                    Select USA →
+                </a>
+
+            </div>
+
+
+            <!-- CANADA -->
+
+            <div class="country-card">
+
+                <div class="country-flag">
+                    🇨🇦
+                </div>
+
+                <h3>
+                    Canada
+                </h3>
+
+                <a
+                    href="interest.html"
+                    class="flag-button"
+                >
+                    Select Canada →
+                </a>
+
+            </div>
+
+
+            <!-- UK -->
+
+            <div class="country-card">
+
+                <div class="country-flag">
+                    🇬🇧
+                </div>
+
+                <h3>
+                    United Kingdom
+                </h3>
+
+                <a
+                    href="interest.html"
+                    class="flag-button"
+                >
+                    Select UK →
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHY CHATPESA -->
+
+<section class="why-section">
+
+    <div class="why-box">
 
         <h2>
-            Create Your Profile
+            Built around people.
         </h2>
 
-        <p class="intro">
-            Enter your details to get started.
-        </p>
-
-
-        <form id="registrationForm">
-
-
-            <div class="field">
-
-                <label for="fullname">
-                    Full Name
-                </label>
-
-                <input
-                    type="text"
-                    id="fullname"
-                    placeholder="Enter your full name"
-                    autocomplete="name"
-                    required
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="age">
-                    Age
-                </label>
-
-                <input
-                    type="number"
-                    id="age"
-                    placeholder="18 - 99"
-                    min="18"
-                    max="99"
-                    required
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="gender">
-                    Gender
-                </label>
-
-                <select id="gender" required>
-
-                    <option value="">
-                        Select Gender
-                    </option>
-
-                    <option value="Male">
-                        Male
-                    </option>
-
-                    <option value="Female">
-                        Female
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="county">
-                    County
-                </label>
-
-                <select id="county" required>
-
-                    <option value="">
-                        Select County
-                    </option>
-
-                    <option>Nairobi</option>
-                    <option>Mombasa</option>
-                    <option>Kisumu</option>
-                    <option>Nakuru</option>
-                    <option>Uasin Gishu</option>
-                    <option>Kiambu</option>
-                    <option>Machakos</option>
-                    <option>Kakamega</option>
-                    <option>Meru</option>
-                    <option>Nyeri</option>
-                    <option>Other</option>
-
-                </select>
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="phone">
-                    Phone Number
-                </label>
-
-                <input
-                    type="tel"
-                    id="phone"
-                    placeholder="07XXXXXXXX"
-                    inputmode="numeric"
-                    autocomplete="tel"
-                    required
-                >
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="continue-btn"
-                id="continueBtn"
-            >
-                CONTINUE
-            </button>
-
-
-        </form>
-
-    </div>
-
-
-    <div class="footer">
-
         <p>
-            Chat • Connect • Learn • Earn
+            ChatPesa is designed to make connecting
+            with people across borders simple,
+            accessible and enjoyable.
         </p>
 
     </div>
 
-
-</div>
-
-</div>
+</section>
 
 
-<script>
+<!-- FINAL CTA -->
 
-const form =
-    document.getElementById("registrationForm");
+<section class="cta-section">
 
-const button =
-    document.getElementById("continueBtn");
+    <h2>
+        Your next connection starts here.
+    </h2>
 
+    <p>
+        Create your ChatPesa account
+        and take the first step today.
+    </p>
 
-form.addEventListener("submit", function(e) {
+    <a
+        href="interest.html"
+        class="primary-button"
+    >
+        Get Started →
+    </a>
 
-    e.preventDefault();
-
-
-    const fullname =
-        document.getElementById("fullname").value.trim();
-
-    const age =
-        document.getElementById("age").value;
-
-    const gender =
-        document.getElementById("gender").value;
-
-    const county =
-        document.getElementById("county").value;
-
-    const phone =
-        document.getElementById("phone").value.trim();
+</section>
 
 
-    if (
-        !fullname ||
-        !age ||
-        !gender ||
-        !county ||
-        !phone
-    ) {
+<!-- FOOTER -->
 
-        alert(
-            "Please complete all the required fields."
-        );
+<footer>
 
-        return;
-    }
+    <div class="footer-logo">
+        Chat<span>Pesa</span>
+    </div>
 
+    <p>
+        Connect. Chat. Earn.
+    </p>
 
-    if (
-        Number(age) < 18 ||
-        Number(age) > 99
-    ) {
+    <p>
+        © 2026 ChatPesa. All rights reserved.
+    </p>
 
-        alert(
-            "You must be between 18 and 99 years old."
-        );
-
-        return;
-    }
-
-
-    localStorage.setItem(
-        "fullname",
-        fullname
-    );
-
-    localStorage.setItem(
-        "age",
-        age
-    );
-
-    localStorage.setItem(
-        "gender",
-        gender
-    );
-
-    localStorage.setItem(
-        "county",
-        county
-    );
-
-    localStorage.setItem(
-        "phone",
-        phone
-    );
-
-
-    button.disabled = true;
-
-    button.innerHTML =
-        "PLEASE WAIT...";
-
-
-    setTimeout(function() {
-
-        window.location.href =
-            "register.html";
-
-    }, 500);
-
-});
-
-</script>
+</footer>
 
 
 </body>
