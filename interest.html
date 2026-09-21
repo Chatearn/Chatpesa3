@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Your Interest | Chat & Earn</title>
+<title>Choose Your Interest | Chat & Earn</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,6 +72,8 @@ body {
 .header h1 {
     color: #ffffff;
 
+    font-family: 'Poppins', sans-serif;
+
     font-size: 28px;
 
     font-weight: 900;
@@ -107,7 +109,7 @@ body {
 
     border-radius: 15px;
 
-    padding: 18px 13px;
+    padding: 15px 13px;
 }
 
 .card h2 {
@@ -115,11 +117,11 @@ body {
 
     text-align: center;
 
-    font-size: 20px;
+    font-size: 19px;
 
     font-weight: 900;
 
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 }
 
 .intro {
@@ -133,40 +135,109 @@ body {
 
     font-weight: 600;
 
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 }
 
 
-/* INTEREST OPTIONS */
+/* SECTION TITLE */
 
-.options {
-    display: flex;
+.section-title {
+    color: #ffffff;
 
-    flex-direction: column;
+    font-size: 13px;
 
-    gap: 10px;
+    font-weight: 900;
 
-    margin-bottom: 16px;
+    margin-bottom: 7px;
 }
 
-.option {
-    width: 100%;
 
-    min-height: 58px;
+/* CHAT OPTIONS */
 
-    padding: 10px 13px;
+.chat-options {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+}
+
+.chat-option {
+    min-height: 70px;
+
+    background: #181818;
+
+    border: 2px solid #3a3a3a;
+
+    border-radius: 11px;
 
     display: flex;
 
     align-items: center;
 
-    gap: 12px;
+    justify-content: center;
+
+    gap: 8px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.chat-option:hover {
+    border-color: #00A651;
+}
+
+.chat-option.selected {
+    background: rgba(0,166,81,.10);
+
+    border-color: #00A651;
+
+    box-shadow:
+        0 0 0 1px rgba(0,166,81,.15);
+}
+
+.chat-icon {
+    font-size: 27px;
+}
+
+
+/* COUNTRY OPTIONS */
+
+.country-options {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+}
+
+.country-option {
+    min-height: 58px;
+
+    padding: 8px;
 
     background: #181818;
 
-    border: 2px solid #333333;
+    border: 2px solid #3a3a3a;
 
     border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
 
     color: #ffffff;
 
@@ -175,62 +246,41 @@ body {
     transition: 0.2s ease;
 }
 
-.option:hover {
+.country-option:hover {
     border-color: #00A651;
 }
 
-.option.selected {
-    border-color: #00A651;
+.country-option.selected {
+    background: rgba(0,166,81,.10);
 
-    background: rgba(0, 166, 81, 0.10);
+    border-color: #00A651;
 
     box-shadow:
-        0 0 0 1px rgba(0, 166, 81, 0.15);
+        0 0 0 1px rgba(0,166,81,.15);
 }
 
-.option-icon {
-    width: 40px;
-    height: 40px;
+.flag {
+    font-size: 25px;
 
     flex-shrink: 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background: #00A651;
-
-    border-radius: 10px;
-
-    font-size: 20px;
 }
 
-.option-content {
-    flex: 1;
-}
-
-.option-title {
-    font-size: 14px;
+.country-name {
+    font-size: 12px;
 
     font-weight: 800;
 
-    margin-bottom: 1px;
+    line-height: 1.2;
 }
 
-.option-description {
-    color: #999999;
 
-    font-size: 10px;
-
-    font-weight: 500;
-}
+/* CHECK */
 
 .check {
-    width: 22px;
-    height: 22px;
+    margin-left: auto;
 
-    flex-shrink: 0;
+    width: 19px;
+    height: 19px;
 
     border: 2px solid #555555;
 
@@ -241,10 +291,14 @@ body {
     align-items: center;
     justify-content: center;
 
-    font-size: 12px;
+    color: transparent;
+
+    font-size: 10px;
+
+    flex-shrink: 0;
 }
 
-.option.selected .check {
+.selected .check {
     background: #00A651;
 
     border-color: #00A651;
@@ -260,7 +314,7 @@ body {
 
     height: 52px;
 
-    margin-top: 3px;
+    margin-top: 2px;
 
     background: #00A651;
 
@@ -289,9 +343,11 @@ body {
 }
 
 .continue-btn:disabled {
-    opacity: .7;
+    opacity: .45;
 
     cursor: not-allowed;
+
+    box-shadow: none;
 }
 
 
@@ -325,6 +381,7 @@ body {
     .logo {
         width: 45px;
         height: 45px;
+
         font-size: 24px;
     }
 
@@ -337,22 +394,29 @@ body {
     }
 
     .card {
-        padding: 14px 10px;
+        padding: 12px 10px;
     }
 
-    .option {
-        min-height: 54px;
+    .chat-option {
+        min-height: 62px;
 
-        padding: 8px 10px;
-    }
-
-    .option-icon {
-        width: 36px;
-        height: 36px;
-    }
-
-    .option-title {
         font-size: 13px;
+    }
+
+    .chat-icon {
+        font-size: 23px;
+    }
+
+    .country-option {
+        min-height: 54px;
+    }
+
+    .country-name {
+        font-size: 11px;
+    }
+
+    .flag {
+        font-size: 22px;
     }
 
     .continue-btn {
@@ -367,6 +431,7 @@ body {
 </head>
 
 <body>
+
 
 <div class="page">
 
@@ -392,57 +457,254 @@ body {
     </div>
 
 
-    <!-- INTEREST CARD -->
+    <!-- MAIN CARD -->
 
     <div class="card">
 
         <h2>
-            Who Would You Like To Chat With?
+            Choose Your Interest
         </h2>
 
         <p class="intro">
-            Choose your preferred connection.
+            Tell us who you would like to connect with.
         </p>
 
 
-        <div class="options">
+        <!-- CHAT WITH -->
+
+        <div class="section-title">
+            Choose to chat with:
+        </div>
 
 
-            <!-- MEN -->
+        <div class="chat-options">
+
 
             <div
-                class="option"
-                data-value="Men"
+                class="chat-option"
+                data-gender="Man"
             >
 
-                <div class="option-icon">
+                <span class="chat-icon">
                     👨
-                </div>
+                </span>
 
-                <div class="option-content">
+                <span>
+                    Man
+                </span>
 
-                    <div class="option-title">
-                        Men
-                    </div>
-
-                    <div class="option-description">
-                        Connect and chat with men.
-                    </div>
-
-                </div>
-
-                <div class="check">
+                <span class="check">
                     ✓
-                </div>
+                </span>
 
             </div>
 
 
-            <!-- WOMEN -->
-
             <div
-                class="option"
-                data-value="Women"
+                class="chat-option"
+                data-gender="Woman"
             >
 
-               
+                <span class="chat-icon">
+                    👩
+                </span>
+
+                <span>
+                    Woman
+                </span>
+
+                <span class="check">
+                    ✓
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- COUNTRY -->
+
+        <div class="section-title">
+            Choose a country where they're coming from:
+        </div>
+
+
+        <div class="country-options">
+
+
+            <!-- USA -->
+
+            <div
+                class="country-option"
+                data-country="USA"
+            >
+
+                <span class="flag">
+                    🇺🇸
+                </span>
+
+                <span class="country-name">
+                    USA
+                </span>
+
+                <span class="check">
+                    ✓
+                </span>
+
+            </div>
+
+
+            <!-- CANADA -->
+
+            <div
+                class="country-option"
+                data-country="Canada"
+            >
+
+                <span class="flag">
+                    🇨🇦
+                </span>
+
+                <span class="country-name">
+                    Canada
+                </span>
+
+                <span class="check">
+                    ✓
+                </span>
+
+            </div>
+
+
+            <!-- AUSTRALIA -->
+
+            <div
+                class="country-option"
+                data-country="Australia"
+            >
+
+                <span class="flag">
+                    🇦🇺
+                </span>
+
+                <span class="country-name">
+                    Australia
+                </span>
+
+                <span class="check">
+                    ✓
+                </span>
+
+            </div>
+
+
+            <!-- UK -->
+
+            <div
+                class="country-option"
+                data-country="UK"
+            >
+
+                <span class="flag">
+                    🇬🇧
+                </span>
+
+                <span class="country-name">
+                    UK
+                </span>
+
+                <span class="check">
+                    ✓
+                </span>
+
+            </div>
+
+
+            <!-- NEW ZEALAND -->
+
+            <div
+                class="country-option"
+                data-country="New Zealand"
+            >
+
+                <span class="flag">
+                    🇳🇿
+                </span>
+
+                <span class="country-name">
+                    New Zealand
+                </span>
+
+                <span class="check">
+                    ✓
+                </span>
+
+            </div>
+
+
+            <!-- CHINA -->
+
+            <div
+                class="country-option"
+                data-country="China"
+            >
+
+                <span class="flag">
+                    🇨🇳
+                </span>
+
+                <span class="country-name">
+                    China
+                </span>
+
+                <span class="check">
+                    ✓
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- CONTINUE -->
+
+        <button
+            type="button"
+            class="continue-btn"
+            id="continueBtn"
+            disabled
+        >
+            CONTINUE
+        </button>
+
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        <p>
+            Chat • Connect • Learn • Earn
+        </p>
+
+    </div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+const chatOptions =
+    document.querySelectorAll(".chat-option");
+
+const countryOptions =
+    document.querySelectorAll(".country-option");
+
+const continue
